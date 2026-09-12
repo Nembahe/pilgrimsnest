@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilgrim's Nest — A Sanctuary for the Journey | Under Construction</title>
+  
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Pilgrim's Nest is crafting an intentional sanctuary of rest, nourishment, contemplation, and community for seekers and wayfarers. Opening in 2026.">
+  <meta name="keywords" content="Pilgrim's Nest, pilgrimsnest.org, sanctuary, retreat, wayfarer, hospitality, meditation, community, spiritual haven">
+  <meta name="author" content="Pilgrim's Nest">
+  <meta name="theme-color" content="#070A12">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pilgrimsnest.org/">
+  <meta property="og:title" content="Pilgrim's Nest — A Sanctuary for the Journey">
+  <meta property="og:description" content="An intentional sanctuary of quiet rest, warm hearths, and mindful fellowship. Our doors open in 2026.">
+  <meta property="og:image" content="https://pilgrimsnest.org/favicon.svg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://pilgrimsnest.org/">
+  <meta property="twitter:title" content="Pilgrim's Nest — A Sanctuary for the Journey">
+  <meta property="twitter:description" content="An intentional sanctuary of quiet rest, warm hearths, and mindful fellowship. Our doors open in 2026.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="logo-512.png">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Starlight & Ember Canvas -->
+  <canvas id="starCanvas"></canvas>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="brand-link" aria-label="Pilgrim's Nest Home">
+        <img src="logo-512.png" alt="Pilgrim's Nest Logo" class="brand-icon-img">
+        <div>
+          <span class="brand-title">PILGRIM'S NEST</span>
+          <span class="brand-tagline">Sanctuary &bull; Community &bull; Haven</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#vision">The Vision</a>
+        <a href="#milestones">Milestones</a>
+        <a href="#pillars">The Pillars</a>
+        <a href="#contemplation">Contemplations</a>
+        <a href="#faq">Inquiries</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="status-badge" title="Sanctuary is currently in development">
+          <span class="pulse-dot"></span>
+          <span>In The Making</span>
+        </div>
+        <a href="#contact" class="btn btn-secondary" style="padding: 0.45rem 1.1rem; font-size: 0.82rem;" data-open-modal="contactModal">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero" id="vision">
+      <div class="container hero-grid">
+        
+        <!-- Main Screen Centerpiece Logo -->
+        <div class="hero-emblem-wrap">
+          <div class="hero-emblem-halo"></div>
+          <div class="hero-emblem-ring"></div>
+          <img src="logo.png" alt="Pilgrim's Nest Official Logo" class="hero-logo-img">
+        </div>
+
+        <div class="eyebrow-pill">
+          <span>✦</span>
+          <span>A Haven in the Making &bull; Est. 2026</span>
+          <span>✦</span>
+        </div>
+
+        <h1 class="hero-headline">
+          A Sanctuary for the <span class="gradient-text">Journey</span>,<br>
+          A Hearth for the <span class="gradient-text">Soul</span>.
+        </h1>
+
+        <p class="hero-description">
+          Wayfarers, seekers, and contemplative travelers need a place to pause, breathe, and gather. 
+          <strong>Pilgrim's Nest</strong> is curating an intentional sanctuary of restful hospitality, 
+          mindful solitude, and warm companionship.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#founding-circle" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Join Founding Circle
+          </a>
+          <a href="#milestones" class="btn btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Follow Construction Progress
+          </a>
+        </div>
+
+        <!-- Real-Time Countdown Box -->
+        <div class="countdown-box" aria-label="Countdown to Inaugural Opening">
+          <div class="countdown-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m12 6 0 6 4 2"></path>
+            </svg>
+            Anticipated Welcoming Date &bull; Autumn 2026
+          </div>
+          <div class="countdown-grid">
+            <div class="time-card">
+              <span class="time-value" id="cdDays">00</span>
+              <span class="time-label">Days</span>
+            </div>
+            <div class="time-card">
+              <span class="time-value" id="cdHours">00</span>
+              <span class="time-label">Hours</span>
+            </div>
+            <div class="time-card">
+              <span class="time-value" id="cdMinutes">00</span>
+              <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-card">
+              <span class="time-value" id="cdSeconds">00</span>
+              <span class="time-label">Seconds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Construction Roadmap Section -->
+    <section class="section" id="milestones">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Sanctuary Blueprint</span>
+          <h2 class="section-title">Crafting the Nest with Sacred Intention</h2>
+          <p class="section-desc">
+            Like ancient waystations along historic trails, every space within Pilgrim's Nest is being 
+            thoughtfully shaped for rest, connection, and spiritual replenishment.
+          </p>
+        </div>
+
+        <div class="timeline-card">
+          <div class="progress-overall-wrap">
+            <div class="progress-header">
+              <span class="progress-title">Overall Development Progress</span>
+              <span class="progress-pct">78% Complete</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="milestones-grid">
+            <!-- Step 1 -->
+            <div class="milestone-item completed">
+              <div class="milestone-step">&#10003;</div>
+              <h3 class="milestone-title">1. Vision & Grounding</h3>
+              <p class="milestone-desc">Securing the ethos, foundation, community charter, and domain guardianship for pilgrimsnest.org.</p>
+              <span class="milestone-status">Completed</span>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="milestone-item completed">
+              <div class="milestone-step">&#10003;</div>
+              <h3 class="milestone-title">2. Architectural Haven</h3>
+              <p class="milestone-desc">Designing quiet prayer alcoves, communal firepits, natural timber dwellings, and sustainable layouts.</p>
+              <span class="milestone-status">Completed</span>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="milestone-item active">
+              <div class="milestone-step">03</div>
+              <h3 class="milestone-title">3. Interior Craft & Hearth</h3>
+              <p class="milestone-desc">Weaving natural textiles, library curation, hearth construction, and welcoming amenities.</p>
+              <span class="milestone-status">In Progress &bull; 78%</span>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="milestone-item upcoming">
+              <div class="milestone-step">04</div>
+              <h3 class="milestone-title">4. First Wayfarer Arrivals</h3>
+              <p class="milestone-desc">Opening the sanctuary gates to founding pilgrims, inaugural retreat circles, and fellow travelers.</p>
+              <span class="milestone-status">Autumn 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sanctuary Pillars -->
+    <section class="section" id="pillars">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Four Sacred Pillars</span>
+          <h2 class="section-title">What Awaits You at Pilgrim's Nest</h2>
+          <p class="section-desc">
+            A harmonious rhythm of rest and engagement, stillness and warm conversation.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Pillar 1 -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-wrap">
+                <!-- Moon/Rest SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                </svg>
+              </div>
+              <span class="pillar-number">PILLAR 01</span>
+              <h3 class="pillar-title">The Haven</h3>
+              <p class="pillar-desc">
+                Quiet rooms and restful nooks designed free from digital clamor. Deep slumber, natural light, soft linens, and the sweet restorative luxury of silence.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-wrap">
+                <!-- Flame/Hearth SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                </svg>
+              </div>
+              <span class="pillar-number">PILLAR 02</span>
+              <h3 class="pillar-title">The Hearth</h3>
+              <p class="pillar-desc">
+                A shared table where wholesome, wholesome food is served. Fresh bread, garden teas, and nourishing soups shared with fellow travelers around crackling fires.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-wrap">
+                <!-- Compass / Trail SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                </svg>
+              </div>
+              <span class="pillar-number">PILLAR 03</span>
+              <h3 class="pillar-title">The Path</h3>
+              <p class="pillar-desc">
+                Forest paths, prayer labyrinths, and contemplative walking trails. Mindful practices to reconnect body and spirit with the wild earth and peaceful sky.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-wrap">
+                <!-- Users / Circle SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <span class="pillar-number">PILLAR 04</span>
+              <h3 class="pillar-title">The Circle</h3>
+              <p class="pillar-desc">
+                An open, non-dogmatic fellowship. Storytelling evenings, acoustic poetry, workshops in artisan crafts, and heartfelt exchanges among kindred wayfarers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contemplation / Wisdom Widget -->
+    <section class="section reflection-section" id="contemplation">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 2rem;">
+          <span class="section-tag">Pause & Breathe</span>
+          <h2 class="section-title">Wayfarer's Contemplation</h2>
+        </div>
+
+        <div class="reflection-card">
+          <div class="quote-ornament">&ldquo;</div>
+          <blockquote class="reflection-text" id="reflectionText">
+            “Sanctuary is not merely a destination at the road's end; it is the stillness we bring into each step of the journey.”
+          </blockquote>
+          <div class="reflection-author" id="reflectionAuthor">— Wayfarer's Rule</div>
+          <button class="btn-reflect" id="reflectBtn" aria-label="Generate another reflection">
+            ✦ Contemplate Another Reflection ✦
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founding Circle Waitlist -->
+    <section class="section" id="founding-circle">
+      <div class="container">
+        <div class="signup-card">
+          <span class="section-tag" style="margin-bottom: 0.5rem;">Join the Founding Circle</span>
+          <h2 class="signup-title">Be Part of Our First Ingathering</h2>
+          <p class="signup-desc">
+            Receive exclusive updates on our construction progress, soft-opening retreat reservations, 
+            and seasonal gatherings before public release.
+          </p>
+
+          <form class="signup-form" id="waitlistForm">
+            <input 
+              type="email" 
+              class="input-field" 
+              id="waitlistEmail" 
+              placeholder="Enter your email address..." 
+              required 
+              aria-label="Email address for updates"
+            >
+            <button type="submit" class="btn btn-primary" id="waitlistSubmit">
+              Keep Me Informed
+            </button>
+          </form>
+
+          <div class="signup-privacy">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>We honor your peace. Zero spam, unsubscribe whenever your journey calls.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Wayfarer Guidance</span>
+          <h2 class="section-title">Frequently Asked Inquiries</h2>
+          <p class="section-desc">Everything you need to know about the emerging sanctuary.</p>
+        </div>
+
+        <div class="faq-wrap">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is Pilgrim's Nest?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Pilgrim's Nest is a hospitality retreat sanctuary and community initiative designed to offer solace, simple beauty, and nourishment to travelers on personal, creative, or spiritual pilgrimages. Whether seeking a quiet weekend of writing or fellowship with others, the nest is your haven.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Who can visit or attend retreats?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We welcome wayfarers from all backgrounds, beliefs, and walks of life. Our community is anchored in mutual respect, hospitality, quiet reflection, and kindness.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>When will reservations open?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Inaugural reservations for the Founding Circle will open in late summer 2026, followed by our official public autumn opening. Members of the Founding Circle receive priority booking dates.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How can I contribute, volunteer, or partner?</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We welcome artisan builders, gardeners, cooks, teachers, and kindred souls. Please click the Contact button above to share how you'd like to collaborate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="logo-512.png" alt="Pilgrim's Nest Logo" class="brand-icon-img" style="width: 32px; height: 32px;">
+            <span style="font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: #fff;">PILGRIM'S NEST</span>
+          </div>
+          <p class="footer-desc">
+            A sanctuary dedicated to hospitality, stillness, and human warmth. 
+            May all who wander find comfort by our hearth.
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="#vision">The Vision</a></li>
+          <li><a href="#milestones">Milestones</a></li>
+          <li><a href="#pillars">The Pillars</a></li>
+          <li><a href="#" data-open-modal="contactModal">Get in Touch</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 <strong>pilgrimsnest.org</strong>. All rights reserved.</div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <span style="color: var(--gold-primary);">&#10022;</span>
+          <span>In the Making with Care</span>
+          <span style="color: var(--gold-primary);">&#10022;</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact / Inquiry Modal Dialog -->
+  <div class="modal-overlay" id="contactModal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">&times;</button>
+      <h3 class="modal-title" id="modalTitle">Send a Message to the Stewards</h3>
+      <p class="modal-desc">Questions about our vision, volunteer opportunities, or retreat inquiries? We’d love to hear from you.</p>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label class="form-label" for="contactName">Your Name</label>
+          <input type="text" id="contactName" class="modal-input" required placeholder="Wayfarer Name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactEmail">Email Address</label>
+          <input type="email" id="contactEmail" class="modal-input" required placeholder="name@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactType">Inquiry Purpose</label>
+          <select id="contactType" class="modal-select">
+            <option value="retreat">Retreats & Future Stays</option>
+            <option value="volunteer">Volunteering & Community Support</option>
+            <option value="partnership">Artisan & Gathering Partnerships</option>
+            <option value="other">General Greeting or Question</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactMessage">Your Message</label>
+          <textarea id="contactMessage" class="modal-textarea" required placeholder="Share your thoughts with us..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Dispatch Message
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Interactive JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
