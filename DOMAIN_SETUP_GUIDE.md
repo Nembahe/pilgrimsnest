@@ -6,18 +6,36 @@
 
 ---
 
-## 📌 Current Status Explained
+## ✅ Current Status — LIVE
 
-1. **Your new website is already built, uploaded, and live online** at:  
-   👉 **https://nembahe.github.io/pilgrimsnest/**  
-   *(Featuring your official Pilgrim emblem, ambient ember/starlight canvas, countdown clock, roadmap, and responsive layout).*
+**The cutover completed on 2026-09-13.** `pilgrimsnest.org` now serves this repo over HTTPS.
 
-2. **Why `pilgrimsnest.org` currently shows the "Under Construction" sand dunes picture:**  
-   - Your domain was purchased/transferred through **Squarespace Domains** (formerly Google Domains).
-   - Its DNS is currently pointed to Squarespace's default parking servers. Verified live state:
-     four apex `A` records (`198.185.159.144`, `198.185.159.145`, `198.49.23.144`, `198.49.23.145`)
-     and `www` as a CNAME to `ext-sq.squarespace.com`. Nameservers are `nsd1-nsd4.squarespacedns.com`.
-   - Until you tell Squarespace to point your domain to your new website, Squarespace will continue displaying that generic placeholder screen.
+| | |
+| :--- | :--- |
+| `https://pilgrimsnest.org` | Live, HTTPS enforced |
+| `https://www.pilgrimsnest.org` | Redirects to the apex |
+| TLS certificate | Issued and approved for both names |
+| Google Workspace email | Unaffected — MX, SPF and DKIM verified after the change |
+| Squarespace parking | Removed, including the `HTTPS`/SVCB record |
+
+Verified live DNS:
+
+| Type | Name | Data |
+| :--- | :--- | :--- |
+| A | `@` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| AAAA | `@` | `2606:50c0:8000::153` … `8003::153` |
+| CNAME | `www` | `nembahe.github.io` |
+| HTTPS | `@` | *(none — deliberately)* |
+| MX | `@` | `smtp.google.com` |
+| TXT | `@` | `v=spf1 include:_spf.google.com ~all` |
+| TXT | `google._domainkey` | `v=DKIM1; k=rsa; p=MIIBIj…` |
+
+The custom domain is set by the [`CNAME`](CNAME) file in this repo, not by hand in the
+GitHub UI. Deleting that file drops the custom domain.
+
+> The steps below are kept as the record of how this was done, and as the procedure to
+> follow if the domain is ever moved again. **They have already been carried out — do not
+> re-run them against the live domain.**
 
 ---
 
