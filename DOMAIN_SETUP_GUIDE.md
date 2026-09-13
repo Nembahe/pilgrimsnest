@@ -17,6 +17,8 @@
 | TLS certificate | Issued and approved for both names |
 | Google Workspace email | Unaffected — MX, SPF and DKIM verified after the change |
 | Squarespace parking | Removed, including the `HTTPS`/SVCB record |
+| Domain verification | Verified with GitHub — the name cannot be claimed by another account |
+| DMARC | Published at `p=none` (monitor-only), reports to `pilgrim@pilgrimsnest.org` |
 
 Verified live DNS:
 
@@ -29,6 +31,8 @@ Verified live DNS:
 | MX | `@` | `smtp.google.com` |
 | TXT | `@` | `v=spf1 include:_spf.google.com ~all` |
 | TXT | `google._domainkey` | `v=DKIM1; k=rsa; p=MIIBIj…` |
+| TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:pilgrim@pilgrimsnest.org` |
+| TXT | `_github-pages-challenge-Nembahe` | GitHub domain-verification token |
 
 The custom domain is set by the [`CNAME`](CNAME) file in this repo, not by hand in the
 GitHub UI. Deleting that file drops the custom domain.
@@ -318,6 +322,8 @@ touched the MX or TXT records.
 ---
 
 ## 🔒 Hardening
+
+> **Both items below are done.** They are kept as the record of how, and what the records mean.
 
 ### Verify the domain with GitHub
 
