@@ -317,13 +317,59 @@ touched the MX or TXT records.
 
 ---
 
-## 🔒 Optional Hardening (after the site is live)
+## 🔒 Hardening
 
-- **Verify the domain with GitHub.** Settings → Pages → *Verify domain*. It gives you a
-  `_github-pages-challenge-Nembahe` TXT record to add in Squarespace. Without it, if this
-  repo is ever deleted or made private, someone else could claim `pilgrimsnest.org` on their
-  own Pages site.
-- **Add a DMARC record.** The domain publishes SPF and DKIM but has no `_dmarc` policy.
+### Verify the domain with GitHub
+
+Without verification, if this repo is ever deleted or made private, someone else could claim
+`pilgrimsnest.org` on their own Pages site. There is no API for this — GitHub mints the
+challenge token only in the UI.
+
+1. **https://github.com/settings/pages** (account settings, not the repo) → **Add a domain**.
+2. Enter `pilgrimsnest.org` → **Continue**. GitHub shows a TXT record.
+3. Add it in Squarespace → **Custom records** → **ADD RECORD**:
+
+   | Type | Name | TTL | Data |
+   | :--- | :--- | :--- | :--- |
+   | TXT | `_github-pages-challenge-nembahe` | 1 hr | *(token GitHub displays)* |
+
+4. Wait for it to resolve, then click **Verify**:
+
+   ```
+   nslookup -type=TXT _github-pages-challenge-nembahe.pilgrimsnest.org 1.1.1.1
+   ```
+
+Verifying too early just fails the check; it does no harm and can be retried.
+
+### DMARC
+
+The domain publishes SPF and DKIM but had no `_dmarc` policy, so receivers had no instruction
+for mail that fails both.
+
+| Type | Name | TTL | Data |
+| :--- | :--- | :--- | :--- |
+| TXT | `_dmarc` | 1 hr | `v=DMARC1; p=none; rua=mailto:pilgrim@pilgrimsnest.org` |
+
+`p=none` is **monitor-only** — it changes nothing about how mail is delivered. It asks
+receivers to send aggregate reports so you can see who is sending as this domain.
+
+`rua` points at an address on this same domain deliberately. A cross-domain `rua` (a
+`@gmail.com` address, say) requires the receiving domain to publish an authorization record
+of the form `pilgrimsnest.org._report._dmarc.<that-domain>`; without it most receivers skip
+reporting entirely.
+
+Do not add `fo=` here. It configures *failure* reports, which require a `ruf=` address, and
+has no effect on its own.
+
+**Only tighten after watching the reports.** Once a few weeks of aggregate reports confirm
+that all legitimate mail passes SPF or DKIM, move `p=none` → `p=quarantine`, and later
+`p=reject`. Jumping straight to a strict policy is how domains send their own mail to spam.
+
+Verify:
+
+```
+nslookup -type=TXT _dmarc.pilgrimsnest.org 1.1.1.1
+```
 
 ---
 
