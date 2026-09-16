@@ -123,8 +123,8 @@ function initParticles() {
    2. Real-Time Launch Countdown
    ========================================================================== */
 function initCountdown() {
-  // Target: Autumn 2026 Grand Welcoming (e.g. Oct 24, 2026)
-  const targetDate = new Date('2026-10-24T00:00:00Z').getTime();
+  // Target: Autumn 2026 Welcoming (5 days countdown)
+  const targetDate = new Date('2026-09-22T00:00:00Z').getTime();
 
   const daysEl = document.getElementById('cdDays');
   const hoursEl = document.getElementById('cdHours');
