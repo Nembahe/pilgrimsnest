@@ -152,10 +152,8 @@ function initParticles() {
    ========================================================================== */
 function initCountdown() {
   // Single source of truth for the opening date.
-  // Set this to an ISO 8601 UTC string, e.g. '2027-03-01T00:00:00Z', once the
-  // date is confirmed. While it is null the countdown stays hidden and the
-  // "To Be Announced" status is shown instead of a dead 00/00/00/00 clock.
-  const OPENING_DATE_ISO = null;
+  // Set to 5 days from today (target: 2026-10-08T12:00:00Z).
+  const OPENING_DATE_ISO = '2026-10-08T12:00:00Z';
 
   const box = document.getElementById('countdownBox');
   const status = document.getElementById('openingStatus');
