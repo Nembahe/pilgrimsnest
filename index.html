@@ -6,7 +6,7 @@
   <title>Pilgrim's Nest — A Sanctuary for the Journey | Under Construction</title>
   
   <!-- SEO & Social Meta -->
-  <meta name="description" content="Pilgrim's Nest is crafting an intentional sanctuary of rest, nourishment, contemplation, and community for seekers and wayfarers. Opening in 2026.">
+  <meta name="description" content="Pilgrim's Nest is crafting an intentional sanctuary of rest, nourishment, contemplation, and community for seekers and wayfarers. New opening date to be announced.">
   <meta name="keywords" content="Pilgrim's Nest, pilgrimsnest.org, sanctuary, retreat, wayfarer, hospitality, meditation, community, spiritual haven">
   <meta name="author" content="Pilgrim's Nest">
   <meta name="theme-color" content="#070A12">
@@ -15,14 +15,14 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pilgrimsnest.org/">
   <meta property="og:title" content="Pilgrim's Nest — A Sanctuary for the Journey">
-  <meta property="og:description" content="An intentional sanctuary of quiet rest, warm hearths, and mindful fellowship. Our doors open in 2026.">
+  <meta property="og:description" content="An intentional sanctuary of quiet rest, warm hearths, and mindful fellowship. Our opening date will be announced soon.">
   <meta property="og:image" content="https://pilgrimsnest.org/favicon.svg">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://pilgrimsnest.org/">
   <meta property="twitter:title" content="Pilgrim's Nest — A Sanctuary for the Journey">
-  <meta property="twitter:description" content="An intentional sanctuary of quiet rest, warm hearths, and mindful fellowship. Our doors open in 2026.">
+  <meta property="twitter:description" content="An intentional sanctuary of quiet rest, warm hearths, and mindful fellowship. Our opening date will be announced soon.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
@@ -101,14 +101,30 @@
         </p>
 
 
-        <!-- Real-Time Countdown Box -->
-        <div class="countdown-box" aria-label="Countdown to Inaugural Opening">
+        <!-- Opening Date Status -->
+        <div class="countdown-box" id="openingStatus" aria-label="Opening date status">
           <div class="countdown-title">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
               <path d="m12 6 0 6 4 2"></path>
             </svg>
-            Anticipated Welcoming Date &bull; Autumn 2026
+            Opening Date &bull; To Be Announced
+          </div>
+          <p class="countdown-note" id="openingNote">
+            We are still at the hearth-side, putting the finishing touches in place.
+            The date for the first ingathering is being confirmed, and we will
+            announce it here the moment it is set.
+          </p>
+        </div>
+
+        <!-- Real-Time Countdown Box (shown only once an opening date is set) -->
+        <div class="countdown-box" id="countdownBox" aria-label="Countdown to Inaugural Opening" hidden>
+          <div class="countdown-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m12 6 0 6 4 2"></path>
+            </svg>
+            <span id="countdownHeading">Anticipated Welcoming Date</span>
           </div>
           <div class="countdown-grid">
             <div class="time-card">
@@ -185,7 +201,7 @@
               <div class="milestone-step">04</div>
               <h3 class="milestone-title">4. First Wayfarer Arrivals</h3>
               <p class="milestone-desc">Opening the sanctuary gates to founding pilgrims, inaugural retreat circles, and fellow travelers.</p>
-              <span class="milestone-status">Autumn 2026</span>
+              <span class="milestone-status">Date To Be Announced</span>
             </div>
           </div>
         </div>
@@ -307,8 +323,14 @@
           <span class="section-tag" style="margin-bottom: 0.5rem;">Join the Founding Circle</span>
           <h2 class="signup-title">Be Part of Our First Ingathering</h2>
           <p class="signup-desc">
-            Receive exclusive updates on our construction progress, soft-opening retreat reservations, 
-            and seasonal gatherings before public release.
+            We are finalising our opening date. Once our list is connected we will be able to
+            send construction progress, soft-opening retreat reservations, and seasonal
+            gathering invitations ahead of public release.
+          </p>
+
+          <p class="signup-notice" id="waitlistNotice">
+            <strong>Not yet connected.</strong> This form is not sending or saving your address yet.
+            Please return once we announce the opening.
           </p>
 
           <form class="signup-form" id="waitlistForm">
@@ -330,7 +352,7 @@
               <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
-            <span>We honor your peace. Zero spam, unsubscribe whenever your journey calls.</span>
+            <span>When this does go live, we honour your peace. Zero spam, unsubscribe whenever your journey calls.</span>
           </div>
         </div>
       </div>
@@ -372,7 +394,7 @@
               <span class="faq-toggle-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>Inaugural reservations for the Founding Circle will open in late summer 2026, followed by our official public autumn opening. Members of the Founding Circle receive priority booking dates.</p>
+              <p>Our original autumn 2026 date has passed while we finish preparing the sanctuary. We are confirming a new opening date and will announce it here, along with early reservations for the Founding Circle, as soon as it is set.</p>
             </div>
           </div>
 
@@ -429,7 +451,12 @@
     <div class="modal-card">
       <button class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">&times;</button>
       <h3 class="modal-title" id="modalTitle">Send a Message to the Stewards</h3>
-      <p class="modal-desc">Questions about our vision, volunteer opportunities, or retreat inquiries? We’d love to hear from you.</p>
+      <p class="modal-desc">Questions about our vision, volunteer opportunities, or retreat inquiries? We would love to hear from you.</p>
+
+      <p class="modal-notice">
+        <strong>Not yet connected.</strong> Messaging is not live, so submitting this form will
+        not send your message. Your words stay in the form below.
+      </p>
 
       <form id="contactForm">
         <div class="form-group">

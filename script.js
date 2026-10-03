@@ -123,8 +123,29 @@ function initParticles() {
    2. Real-Time Launch Countdown
    ========================================================================== */
 function initCountdown() {
-  // Target: Autumn 2026 Welcoming (extended by 3 days)
-  const targetDate = new Date('2026-09-25T00:00:00Z').getTime();
+  // Single source of truth for the opening date.
+  // Set this to an ISO 8601 UTC string, e.g. '2027-03-01T00:00:00Z', once the
+  // date is confirmed. While it is null the countdown stays hidden and the
+  // "To Be Announced" status is shown instead of a dead 00/00/00/00 clock.
+  const OPENING_DATE_ISO = null;
+
+  const box = document.getElementById('countdownBox');
+  const status = document.getElementById('openingStatus');
+  const heading = document.getElementById('countdownHeading');
+
+  if (!OPENING_DATE_ISO) {
+    if (box) box.hidden = true;
+    if (status) status.hidden = false;
+    return;
+  }
+
+  const targetDate = new Date(OPENING_DATE_ISO).getTime();
+  if (Number.isNaN(targetDate)) {
+    console.warn('OPENING_DATE_ISO is not a valid date:', OPENING_DATE_ISO);
+    if (box) box.hidden = true;
+    if (status) status.hidden = false;
+    return;
+  }
 
   const daysEl = document.getElementById('cdDays');
   const hoursEl = document.getElementById('cdHours');
@@ -133,11 +154,16 @@ function initCountdown() {
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
+  if (box) box.hidden = false;
+  if (status) status.hidden = true;
+
   function updateClock() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance < 0) {
+      // The date has arrived. Show a clear opened state instead of zeroing out.
+      if (heading) heading.textContent = 'The Gates Are Open';
       daysEl.textContent = '00';
       hoursEl.textContent = '00';
       minutesEl.textContent = '00';
@@ -183,25 +209,15 @@ function initWaitlist() {
     // Button loading state
     const originalText = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = `<span>Joining Circle...</span>`;
+    submitBtn.innerHTML = `<span>Sending...</span>`;
 
+    // No backend is connected yet, so nothing is submitted or stored.
+    // Say so plainly instead of reporting a success that did not happen.
     setTimeout(() => {
-      // Store in localStorage for demonstration and persistency
-      try {
-        const existing = JSON.parse(localStorage.getItem('pilgrims_nest_subscribers') || '[]');
-        if (!existing.includes(email)) {
-          existing.push(email);
-          localStorage.setItem('pilgrims_nest_subscribers', JSON.stringify(existing));
-        }
-      } catch (err) {
-        console.warn('Storage error:', err);
-      }
-
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
-      emailInput.value = '';
 
-      showToast('✨ Welcome to the Founding Circle. You will be notified the moment our sanctuary opens!', 'success');
+      showToast('The Founding Circle list is not connected yet, so your address was not saved. Please return once we announce the opening.', 'warning');
     }, 700);
   });
 }
@@ -358,9 +374,9 @@ function initContactModal() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      closeModal();
-      form.reset();
-      showToast('🕊️ Your message has been received by the Pilgrim’s Nest stewards. We will be in touch soon.', 'success');
+      // No backend is connected yet. Keep the visitor's message in the form so
+      // nothing they typed is silently thrown away, and do not claim delivery.
+      showToast('Messaging is not connected yet, so your message was not sent. It is still here in the form if you would like to keep a copy.', 'warning');
     });
   }
 }

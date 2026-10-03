@@ -89,10 +89,37 @@ Or double-click [`index.html`](index.html) to open directly in Chrome/Edge/Firef
 ## ✨ Features Included
 
 - **Celestial & Hearth Particles**: Interactive HTML5 Canvas ambient ember/starlight system with mouse proximity reactivity.
-- **Live Countdown Clock**: Dynamic real-time calculation to target welcoming date (Autumn 2026).
+- **Live Countdown (paused)**: The countdown is wired but hidden while the opening date is unconfirmed. Set `OPENING_DATE_ISO` to activate it.
 - **Milestone Progress Tracker**: Visual progress bar (78% complete) with four distinct phases from ground vision to inaugural welcoming.
 - **Four Sacred Pillars**: The Haven (Quiet Rest), The Hearth (Shared Table), The Path (Mindful Walks), and The Circle (Community Fellowship).
 - **Wayfarer's Contemplations**: Interactive wisdom quote rotator with quotes on journey, stillness, and sanctuary.
 - **Founding Circle Waitlist**: Email collection form with validation and local persistence.
 - **Inquiries & Contact Modal**: Accessible popup dialog for retreat inquiries, volunteering, and collaborations.
-- **Fully Responsive**: Designed with mobile-first fluidity, accessible contrasts, and `prefers-reduced-motion` compliance.
+- **Fully Responsive**: Designed with mobile-first fluidity and accessible contrasts.
+- **Reduced Motion (partial)**: The canvas particles and hero parallax honour `prefers-reduced-motion` in JavaScript. The CSS entrance, halo, and shimmer animations are **not** yet behind a `prefers-reduced-motion` media query.
+
+---
+
+## ⚠️ Forms Are Not Yet Connected
+
+Both forms on this site are **inert**. Nothing is submitted, sent, or stored.
+
+- **Founding Circle waitlist** — shows a notice and says plainly that the address was not saved.
+- **Contact modal** — keeps the visitor's message in the form and states that it was not sent.
+
+They were previously wired to `localStorage` and a success toast, which reported a
+confirmation that never happened. That was removed. To go live, point the forms at a
+real endpoint (Formspree, Buttondown, a Google Form, or your own handler) and delete
+the "Not yet connected" notices.
+
+---
+
+## 🗓 Opening Date
+
+There is deliberately no countdown at present. The original 25 September 2026 target
+passed without the sanctuary opening, and showing a dead `00/00/00/00` clock implied
+otherwise. The site now shows **"Opening Date — To Be Announced"**.
+
+To set a real date, edit `OPENING_DATE_ISO` in **both** `script.js` and
+`google-sites-embed.html` (each file holds its own copy — keep them in sync) and update
+the milestone and FAQ copy in `index.html`.

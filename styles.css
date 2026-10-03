@@ -937,6 +937,42 @@ h1, h2, h3, h4 {
   margin-bottom: 2.5rem;
 }
 
+/* Honest "not connected yet" notices */
+.signup-notice,
+.modal-notice {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--gold-light);
+  background: var(--gold-glow-subtle);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm, 10px);
+  padding: 0.85rem 1.1rem;
+  max-width: 580px;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.modal-notice {
+  margin-inline: 0;
+  text-align: left;
+}
+
+.signup-notice strong,
+.modal-notice strong {
+  color: var(--gold-primary);
+}
+
+/* Opening-date note shown while the date is unconfirmed */
+.countdown-note {
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 46ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
 .signup-form {
   display: flex;
   flex-wrap: wrap;

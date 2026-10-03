@@ -271,6 +271,34 @@
       background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
     }
 
+    /* Opening-date note shown while the date is unconfirmed */
+    .countdown-note {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 46ch;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    /* Honest "not connected yet" notices */
+    .signup-notice {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--gold-light);
+      background: var(--gold-glow-subtle);
+      border: 1px solid var(--border-gold);
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+      max-width: 520px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .signup-notice strong {
+      color: var(--gold-primary);
+    }
+
     .countdown-title {
       font-family: var(--font-serif);
       font-size: 0.82rem;
@@ -629,9 +657,19 @@
           mindful solitude, and warm companionship.
         </p>
 
-        <!-- Countdown -->
-        <div class="countdown-box">
-          <div class="countdown-title">Anticipated Welcoming &bull; Autumn 2026</div>
+        <!-- Opening Date Status -->
+        <div class="countdown-box" id="openingStatus" aria-label="Opening date status">
+          <div class="countdown-title">Opening Date &bull; To Be Announced</div>
+          <p class="countdown-note">
+            We are still at the hearth-side, putting the finishing touches in place.
+            The date for the first ingathering is being confirmed, and we will
+            announce it here the moment it is set.
+          </p>
+        </div>
+
+        <!-- Countdown (shown only once an opening date is set) -->
+        <div class="countdown-box" id="countdownBox" aria-label="Countdown to Inaugural Opening" hidden>
+          <div class="countdown-title"><span id="countdownHeading">Anticipated Welcoming Date</span></div>
           <div class="countdown-grid">
             <div class="time-card">
               <span class="time-value" id="cdDays">00</span>
@@ -690,7 +728,7 @@
             <div class="milestone-item">
               <div class="milestone-step">04</div>
               <h3 class="milestone-title">4. First Welcoming</h3>
-              <p class="milestone-desc">Opening doors to founding pilgrims in Autumn 2026.</p>
+              <p class="milestone-desc">Opening doors to founding pilgrims once the new date is confirmed.</p>
             </div>
           </div>
         </div>
@@ -751,7 +789,13 @@
           <span class="section-tag">Founding Circle</span>
           <h2 style="margin-bottom: 0.75rem; font-size: 1.8rem;">Be Part of Our First Ingathering</h2>
           <p style="color: var(--text-secondary); max-width: 520px; margin: 0 auto;">
-            Receive exclusive updates, retreat reservations, and early access before public opening.
+            We are finalising our opening date. Once our list is connected we will be able to
+            send updates, retreat reservations, and early access ahead of the public opening.
+          </p>
+
+          <p class="signup-notice" style="margin-top: 1.5rem;">
+            <strong>Not yet connected.</strong> This form is not sending or saving your address yet.
+            Please return once we announce the opening.
           </p>
 
           <form class="signup-form" id="waitlistForm">
@@ -816,13 +860,38 @@
       draw();
     })();
 
-    // Countdown
+    // Countdown — mirrors script.js. Keep OPENING_DATE_ISO in sync with it.
     (function() {
-      const target = new Date('2026-09-25T00:00:00Z').getTime();
+      const OPENING_DATE_ISO = null;
+      const box = document.getElementById('countdownBox');
+      const status = document.getElementById('openingStatus');
+      const heading = document.getElementById('countdownHeading');
+
+      if (!OPENING_DATE_ISO) {
+        if (box) box.hidden = true;
+        if (status) status.hidden = false;
+        return;
+      }
+
+      const target = new Date(OPENING_DATE_ISO).getTime();
+      if (Number.isNaN(target)) {
+        if (box) box.hidden = true;
+        if (status) status.hidden = false;
+        return;
+      }
+
+      if (box) box.hidden = false;
+      if (status) status.hidden = true;
+
       function tick() {
-        const now = new Date().getTime();
-        const diff = target - now;
-        if (diff <= 0) return;
+        const diff = target - new Date().getTime();
+        if (diff < 0) {
+          if (heading) heading.textContent = 'The Gates Are Open';
+          ['cdDays', 'cdHours', 'cdMinutes', 'cdSeconds'].forEach((id) => {
+            document.getElementById(id).textContent = '00';
+          });
+          return;
+        }
         document.getElementById('cdDays').textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
         document.getElementById('cdHours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
         document.getElementById('cdMinutes').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
@@ -855,19 +924,20 @@
       });
     })();
 
-    // Waitlist
+    // Waitlist — no backend connected, so nothing is submitted or stored.
     (function() {
       const form = document.getElementById('waitlistForm');
       const input = document.getElementById('waitlistEmail');
       const btn = document.getElementById('waitlistSubmit');
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        btn.textContent = 'Enrolled!';
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
         setTimeout(() => {
-          alert('✨ Welcome to the Founding Circle of Pilgrim’s Nest!');
-          input.value = '';
+          btn.disabled = false;
           btn.textContent = 'Keep Me Informed';
-        }, 300);
+          alert('The Founding Circle list is not connected yet, so your address was not saved. Please return once we announce the opening.');
+        }, 600);
       });
     })();
   </script>
