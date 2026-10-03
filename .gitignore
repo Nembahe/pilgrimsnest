@@ -1,0 +1,14 @@
+# Generated media and review artifacts — not for the deployed site.
+# Committing a 4.5 MB video or 2.5 MB poster here would permanently
+# bloat the public repo history, since removing it afterwards requires
+# a history rewrite on a domain that is already live.
+output/
+
+# Local Playwright runs
+.playwright-cli/
+test-results/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
