@@ -301,6 +301,25 @@ Nothing further is spent and nothing is in flight. The only open question is a p
 
 ---
 
+## Shipped state (2026-10-03)
+
+**Published.** `main` is at `f3bdc28`, pushed to `origin/main`, and pilgrimsnest.org is
+serving the new build (verified in a real browser against production).
+
+Live verification on `https://pilgrimsnest.org`:
+- Hero video **playing**: `paused: false`, `readyState 4`, **2560×1440**, no media error.
+- Countdown **live and ticking** at the newly set date: `05` days `03` hours `41` min.
+- Keyboard focus ring present on the live site: `outline-width 2px`, `outline-color rgb(245, 158, 11)`.
+- `google-sites-embed.html` live and still **100% self-contained** (zero external `src`/`href` references).
+
+**Opening date set to 8 October 2026** by the user (`OPENING_DATE_ISO = '2026-10-08T12:00:00Z'`
+in both call sites). Four pieces of copy still said "date to be announced" and would have shipped
+contradicting a live clock; all were updated in `f3bdc28`: meta description, Twitter card, the
+reservations FAQ answer, and milestone 4. The unused "To Be Announced" note is now `hidden` so it
+cannot flash before the script runs.
+
+The local `revamp/h3-hero-video` branch was merged with `--ff-only` and deleted after the push.
+
 ## Passes used
 
 - **Pass 1** — raised F1-F10; closed F1, F2, F3, F4, F5, F7, F8, F9, F10 by rewriting the plan; escalated two copy decisions to the user.
