@@ -289,6 +289,35 @@ h1, h2, h3, h4 {
   padding-top: 7rem;
   padding-bottom: 4rem;
   position: relative;
+  overflow: hidden;
+}
+
+/* Ambient hearth loop behind the hero copy */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.38;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Darkens the footage and protects text contrast over the moving image */
+.hero-video-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 158, 11, 0.10) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(7, 10, 18, 0.70) 0%, rgba(7, 10, 18, 0.84) 50%, rgba(7, 10, 18, 0.70) 100%);
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-grid {
@@ -1323,4 +1352,77 @@ h1, h2, h3, h4 {
     right: 1rem;
     bottom: 1rem;
   }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   Previously this preference was honoured only in JavaScript, so every CSS
+   animation below ran regardless. This block disables them for visitors who
+   ask for reduced motion, and stops the hero video from autoplaying.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  /* Hero ambient loop: hide entirely rather than pause, so no motion at all */
+  .hero-video {
+    display: none;
+  }
+
+  /* Entrance + looping animations */
+  .hero-emblem-wrap,
+  .hero-emblem-halo,
+  .hero-emblem-ring,
+  .status-badge,
+  .pulse-dot,
+  .quote-ornament,
+  .section-header,
+  .milestone-item,
+  .pillar-card,
+  .timeline-card,
+  .signup-card,
+  .reflection-card,
+  .faq-item {
+    animation: none !important;
+  }
+
+  /* Infinite spinners/sweeps */
+  .btn-primary::after,
+  .progress-fill::after,
+  .milestone-item.completed .milestone-step::before {
+    animation: none !important;
+  }
+
+  /* Smooth scrolling is motion too */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ==========================================================================
+   Keyboard Focus
+   Interactive elements previously set `outline: none` with nothing in its
+   place, so keyboard users had no visible focus at all. Restore a clear
+   gold ring that matches the brand, and keep it above the ambient layer.
+   ========================================================================== */
+:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Inputs already style their own border on focus; avoid a doubled ring */
+.input-field:focus,
+.input-field:focus-visible,
+.modal-input:focus,
+.modal-input:focus-visible,
+.modal-textarea:focus,
+.modal-textarea:focus-visible,
+.modal-select:focus,
+.modal-select:focus-visible {
+  outline: none;
+  border-color: var(--border-gold-strong);
 }

@@ -96,7 +96,8 @@ Or double-click [`index.html`](index.html) to open directly in Chrome/Edge/Firef
 - **Founding Circle Waitlist**: Email collection form with validation and local persistence.
 - **Inquiries & Contact Modal**: Accessible popup dialog for retreat inquiries, volunteering, and collaborations.
 - **Fully Responsive**: Designed with mobile-first fluidity and accessible contrasts.
-- **Reduced Motion (partial)**: The canvas particles and hero parallax honour `prefers-reduced-motion` in JavaScript. The CSS entrance, halo, and shimmer animations are **not** yet behind a `prefers-reduced-motion` media query.
+- **Ambient Hero Loop**: A short muted H.264 loop (`assets/hero-loop.mp4`, 718 KB, 2560×1440) sits behind the hero at 38% opacity under a dark scrim. It is decorative, `aria-hidden`, and **fully suppressed for `prefers-reduced-motion` visitors — the `src` is removed in JS so the file is never downloaded for them**.
+- **Reduced Motion**: Now honoured in **both** CSS and JS. A `prefers-reduced-motion` block disables the entrance, halo, shimmer and looping animations, and hides the hero video.
 
 ---
 

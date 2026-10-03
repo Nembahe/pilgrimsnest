@@ -180,6 +180,8 @@
     .hero {
       padding: 4.5rem 0 3rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
     .hero-grid {
@@ -636,6 +638,10 @@
   <main>
     <!-- Hero -->
     <section class="hero">
+      <!-- No <video> here on purpose. This file is pasted into Google Sites
+           as a single self-contained embed, so a relative path to
+           assets/hero-loop.mp4 would resolve to nothing and 404. The ambient
+           loop lives in index.html only. -->
       <div class="container hero-grid">
         <div class="hero-emblem-wrap" style="position: relative; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
           <div style="position: absolute; width: 140%; height: 140%; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.28) 0%, transparent 70%); filter: blur(25px); pointer-events: none;"></div>
@@ -745,22 +751,22 @@
 
         <div class="pillars-grid">
           <div class="pillar-card">
-            <span class="pillar-number">PILLAR 01</span>
+            <span class="pillar-number">Rest</span>
             <h3 class="pillar-title">The Haven</h3>
             <p class="pillar-desc">Quiet rooms designed free from digital distraction. Deep rest, soft linens, and sweet silence.</p>
           </div>
           <div class="pillar-card">
-            <span class="pillar-number">PILLAR 02</span>
+            <span class="pillar-number">Nourish</span>
             <h3 class="pillar-title">The Hearth</h3>
             <p class="pillar-desc">A shared table of wholesome bread, garden teas, and nourishing soups shared around open fires.</p>
           </div>
           <div class="pillar-card">
-            <span class="pillar-number">PILLAR 03</span>
+            <span class="pillar-number">Walk</span>
             <h3 class="pillar-title">The Path</h3>
             <p class="pillar-desc">Contemplative walking trails and forest paths to reconnect body and spirit with the wild earth.</p>
           </div>
           <div class="pillar-card">
-            <span class="pillar-number">PILLAR 04</span>
+            <span class="pillar-number">Gather</span>
             <h3 class="pillar-title">The Circle</h3>
             <p class="pillar-desc">Storytelling evenings, craft workshops, and heartfelt exchanges among kindred travelers.</p>
           </div>

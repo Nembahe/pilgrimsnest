@@ -74,6 +74,16 @@
   <!-- Hero Section -->
   <main>
     <section class="hero" id="vision">
+
+      <!-- Ambient hearth loop. Decorative only: hidden from assistive tech,
+           muted + playsinline so mobile browsers will autoplay it, and fully
+           suppressed for visitors who ask for reduced motion (see styles.css). -->
+      <video class="hero-video" id="heroVideo"
+             src="assets/hero-loop.mp4"
+             muted loop playsinline autoplay preload="auto"
+             aria-hidden="true" tabindex="-1"></video>
+      <div class="hero-video-scrim" aria-hidden="true"></div>
+
       <div class="container hero-grid">
         
         <!-- Main Screen Centerpiece Logo -->
@@ -229,7 +239,7 @@
                   <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                 </svg>
               </div>
-              <span class="pillar-number">PILLAR 01</span>
+              <span class="pillar-number">Rest</span>
               <h3 class="pillar-title">The Haven</h3>
               <p class="pillar-desc">
                 Quiet rooms and restful nooks designed free from digital clamor. Deep slumber, natural light, soft linens, and the sweet restorative luxury of silence.
@@ -246,10 +256,10 @@
                   <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
                 </svg>
               </div>
-              <span class="pillar-number">PILLAR 02</span>
+              <span class="pillar-number">Nourish</span>
               <h3 class="pillar-title">The Hearth</h3>
               <p class="pillar-desc">
-                A shared table where wholesome, wholesome food is served. Fresh bread, garden teas, and nourishing soups shared with fellow travelers around crackling fires.
+                A shared table where wholesome food is served. Fresh bread, garden teas, and nourishing soups shared with fellow travelers around crackling fires.
               </p>
             </div>
           </div>
@@ -264,7 +274,7 @@
                   <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
                 </svg>
               </div>
-              <span class="pillar-number">PILLAR 03</span>
+              <span class="pillar-number">Walk</span>
               <h3 class="pillar-title">The Path</h3>
               <p class="pillar-desc">
                 Forest paths, prayer labyrinths, and contemplative walking trails. Mindful practices to reconnect body and spirit with the wild earth and peaceful sky.
@@ -284,7 +294,7 @@
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </div>
-              <span class="pillar-number">PILLAR 04</span>
+              <span class="pillar-number">Gather</span>
               <h3 class="pillar-title">The Circle</h3>
               <p class="pillar-desc">
                 An open, non-dogmatic fellowship. Storytelling evenings, acoustic poetry, workshops in artisan crafts, and heartfelt exchanges among kindred wayfarers.

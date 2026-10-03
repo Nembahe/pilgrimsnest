@@ -4,6 +4,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroVideo();
   initParticles();
   initCountdown();
   initWaitlist();
@@ -12,6 +13,33 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactModal();
   initHeroLogoParallax();
 });
+
+/* ==========================================================================
+   0. Hero Ambient Video
+   ========================================================================== */
+function initHeroVideo() {
+  const video = document.getElementById('heroVideo');
+  if (!video) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    // Do not autoplay for reduced-motion visitors. Remove the source so the
+    // browser never fetches the 718 KB asset for them at all.
+    video.removeAttribute('autoplay');
+    video.removeAttribute('src');
+    video.load();
+    return;
+  }
+
+  // Autoplay can still be refused (low-power mode, data saver). The page
+  // degrades to the static dark background, which is the intended fallback.
+  const attempt = video.play();
+  if (attempt && typeof attempt.catch === 'function') {
+    attempt.catch(() => {
+      video.removeAttribute('autoplay');
+    });
+  }
+}
 
 /* ==========================================================================
    1. Ambient Starlight & Floating Embers Canvas
