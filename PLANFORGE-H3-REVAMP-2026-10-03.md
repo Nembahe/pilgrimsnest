@@ -197,7 +197,18 @@ The objective was a *revamp*, and I had been treating it as an asset-delivery pr
 - Visual capture: logo, eyebrow pill and headline render cleanly over the video; canvas particles still visible; no contrast loss.
 - **Reduced motion** (`set-reduced-motion reduce` + reload): `matchMedia` matches, **`src` attribute removed entirely** so the 718 KB is never fetched, `paused: true`, `readyState 0`, `display: none`.
 - **F8 now genuinely closed:** under reduced motion `haloPulse` computes to `animation-name: none`, `animation-duration: 0s`. The 9 previously-unguarded CSS animations are disabled.
-- **Mobile verification (390×844) — PASSED for the video:**
+- **F19 — loop seam quantified, not eyeballed (P2, accepted).** My earlier claim that the 3s cut is "visually indistinguishable" rested on comparing two screenshots by eye, which is not a measurement. I measured it properly, in-browser, by seeking and compositing frames to a canvas:
+
+| Measurement | Mean abs pixel diff (0-255) |
+|---|---|
+| Raw file: last frame (2.90s) vs first (0.00s) | **3.509** |
+| Raw file control: adjacent frames 0.05s vs 0.15s | 0.330 |
+| **As composited** at 0.38 opacity + `#070A12` scrim: seam | **0.277** |
+| As composited: adjacent-frame control | 0.029 |
+
+The seam is ~10x an ordinary frame-to-frame change in both cases — so it is **not zero**, and I was overstating when I said "indistinguishable". But the scrim attenuates it by **12.7x** (3.509 → 0.277), and what a viewer actually receives is **0.277 of 255 grey levels — under one grey level**. That sits below the visibility threshold on a typical display, which is why the side-by-side captures looked identical. The loop is acceptable, on evidence rather than assertion.
+
+**Mobile verification (390×844) — PASSED for the video:**
 - Video playing (`paused: false`, `readyState 4`), `muted: true`, **`playsInline: true`** (the attribute iOS requires for inline autoplay), `opacity: 0.38`, sized 390×1163 to cover the tall hero.
 - Headline wraps to 342px and stays readable over the footage.
 - **No horizontal overflow** from the video (`scrollWidth > innerWidth` is `false`).
