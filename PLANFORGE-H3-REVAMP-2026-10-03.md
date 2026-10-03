@@ -272,6 +272,24 @@ The objective was a *revamp*, and I had been treating it as an asset-delivery pr
 
 ---
 
+## Handoff state (2026-10-03, for the next session)
+
+**All work is committed to a local branch and cannot be lost.**
+
+| | |
+|---|---|
+| Branch | `revamp/h3-hero-video` at `fbe1a0b` — **local only, no upstream, never pushed** |
+| `main` | `137922d` — unchanged, tracks `origin/main` |
+| Live site | `pilgrimsnest.org` — serving the Phase 0 truth build, verified this session |
+| Working tree | clean |
+
+**To publish:** `git push origin revamp/h3-hero-video` (opens a PR) or merge into `main`.
+**To discard:** `git checkout main && git branch -D revamp/h3-hero-video` — the site never changes.
+
+Nothing further is spent and nothing is in flight. The only open question is a publish decision.
+
+---
+
 ## Passes used
 
 - **Pass 1** — raised F1-F10; closed F1, F2, F3, F4, F5, F7, F8, F9, F10 by rewriting the plan; escalated two copy decisions to the user.
