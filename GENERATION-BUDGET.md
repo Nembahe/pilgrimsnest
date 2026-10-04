@@ -1,6 +1,17 @@
-# Generation budget — hard ceiling 5,000 credits
+# Generation budget — hard ceiling 5,000 credits TOTAL
 
-Set by Jayden, 2026-10-04. This is a **standing limit**, not a per-task estimate.
+Set by Jayden, 2026-10-04. **Confirmed 2026-10-05 as a total budget across all AI
+generation work** — a lifetime ceiling, **not** a per-task allowance.
+
+## What this means in practice
+
+Credits **do not refill monthly**. The remaining balance *is* the budget:
+
+- If the Credits balance ever reads **5,000**, generation **stops entirely**.
+- There is no monthly reset to fall back on, so spending 500 on one idea leaves 4500
+  for everything that follows, for good.
+- Prefer reusing what is already on disk over regenerating. The two assets below cost
+  real money and are reusable indefinitely.
 
 ## Why this exists
 
@@ -12,7 +23,7 @@ the thing being drained; Credits is.
 ## The rule
 
 **Never submit a generation without stating its cost first.** If the cost would push
-spend past 5,000 credits, do not submit — say so and work from assets already on disk.
+spend past the ceiling, do not submit — say so and work from assets already on disk.
 
 No batch retries. No "one more attempt" loops. A failed generation is not charged, but
 repeated failures still burn time.
