@@ -183,17 +183,20 @@ function initCountdown() {
   if (box) box.hidden = false;
   if (status) status.hidden = true;
 
+  let timerId = null;
+
   function updateClock() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance < 0) {
       // The date has arrived. Show a clear opened state instead of zeroing out.
+      // A frozen 00/00/00/00 under that heading is the same dead clock this
+      // whole fix removed, so hide the digit grid and stop the ticker instead.
       if (heading) heading.textContent = 'The Gates Are Open';
-      daysEl.textContent = '00';
-      hoursEl.textContent = '00';
-      minutesEl.textContent = '00';
-      secondsEl.textContent = '00';
+      const grid = document.querySelector('.countdown-grid');
+      if (grid) grid.hidden = true;
+      clearInterval(timerId);
       return;
     }
 
@@ -209,7 +212,11 @@ function initCountdown() {
   }
 
   updateClock();
-  setInterval(updateClock, 1000);
+  // Only start the ticker if the clock is actually still counting down;
+  // updateClock clears it itself once the opening date has passed.
+  if (timerId === null) {
+    timerId = setInterval(updateClock, 1000);
+  }
 }
 
 /* ==========================================================================
