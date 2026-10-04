@@ -1374,6 +1374,32 @@ h1, h2, h3, h4 {
   .nav-actions .btn {
     white-space: nowrap;
   }
+
+  /* Touch targets: WCAG 2.5.8 asks for 24x24 minimum, but 44px is the
+     comfortable size for a thumb. The header button, the modal close X
+     and the FAQ toggle were all under 40px on a phone. */
+  .nav-actions .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .modal-close-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .faq-question {
+    min-height: 44px;
+  }
+
+  .faq-toggle-icon {
+    min-width: 32px;
+    min-height: 32px;
+  }
 }
 
 @media (max-width: 640px) {
