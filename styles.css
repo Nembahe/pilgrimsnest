@@ -1332,6 +1332,50 @@ h1, h2, h3, h4 {
   }
 }
 
+/* Mobile header: brand (171px) + status badge + Contact button (205px
+   together) exceeded a 390px viewport, pushing "Contact Us" 34px past the
+   right edge and clipping it. Hide the status badge on small screens — the
+   "In The Making" state is already stated in the hero copy — and let the
+   brand title truncate rather than wrap to three lines. */
+@media (max-width: 640px) {
+  .nav-wrap {
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .brand-link {
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 0.55rem;
+  }
+
+  .brand-title,
+  .brand-tagline {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  .brand-tagline {
+    font-size: 0.6rem;
+  }
+
+  .nav-actions {
+    flex: 0 0 auto;
+    gap: 0.5rem;
+  }
+
+  .status-badge {
+    display: none;
+  }
+
+  .nav-actions .btn {
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 640px) {
   .countdown-grid {
     gap: 0.5rem;
