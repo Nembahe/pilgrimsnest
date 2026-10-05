@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music &mdash; Pilgrim's Nest | AI music for the awakened mind</title>
+  <meta name="description" content="Pilgrim creates AI music for the awakened mind. Stream the singles on Spotify, Apple Music, YouTube and more.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="starCanvas"></canvas>
+
+  <!-- Header (same as index.html) -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="brand-link" aria-label="Pilgrim's Nest Home">
+          <img src="logo-512.png" alt="Pilgrim's Nest Logo" class="brand-icon-img">
+          <div>
+            <span class="brand-title">PILGRIM'S NEST</span>
+            <span class="brand-tagline">Sanctuary &bull; Community &bull; Haven</span>
+          </div>
+        </a>
+        <nav class="nav-links" aria-label="Primary Navigation">
+          <a href="index.html#vision">The Vision</a>
+          <a href="index.html#about">About</a>
+          <a href="music.html" aria-current="page">Music</a>
+        </nav>
+        <div class="nav-actions">
+          <span class="status-badge"><span class="pulse-dot"></span>In The Making</span>
+          <a href="index.html#contact" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Music Hero -->
+    <section class="music-hero">
+      <div class="container">
+        <span class="section-tag">The Music</span>
+        <h1 class="music-title">AI Music for the <span class="gradient-text">Awakened Mind</span></h1>
+        <p class="music-lede">
+          Singles exploring identity, consciousness and the definitions shaping our
+          experience &mdash; written from the ache of it, not around it.
+        </p>
+        <div class="platform-links">
+          <a class="platform-btn" href="https://music.apple.com/bw/artist/pilgrim/1857562164" target="_blank" rel="noopener noreferrer">
+            <span class="platform-name">Apple Music</span>
+          </a>
+          <a class="platform-btn" href="#" data-platform="spotify" target="_blank" rel="noopener noreferrer">
+            <span class="platform-name">Spotify</span>
+          </a>
+          <a class="platform-btn" href="#" data-platform="youtube" target="_blank" rel="noopener noreferrer">
+            <span class="platform-name">YouTube</span>
+          </a>
+          <a class="platform-btn" href="#" data-platform="tbd" target="_blank" rel="noopener noreferrer">
+            <span class="platform-name">Bandcamp</span>
+          </a>
+        </div>
+        <p class="platform-note" id="platformNote">
+          Streaming everywhere via DistroKid. Spotify and YouTube links are added once the
+          artist profiles are confirmed &mdash; every release is already live on Apple Music.
+        </p>
+      </div>
+    </section>
+
+    <!-- Track list, populated from releases.json -->
+    <section class="section" id="releases">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Singles</span>
+          <h2 class="section-title">The Released Work</h2>
+        </div>
+
+        <div class="release-list" id="releaseList">
+          <!-- Rendered by script.js from releases.json -->
+          <p class="release-loading">Loading releases&hellip;</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About (same copy as index.html) -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About Pilgrim's Nest</span>
+          <h2 class="section-title">Where Creative Expression and Spiritual Exploration Meet</h2>
+        </div>
+        <div class="about-lede">
+          <p>
+            Pilgrim's Nest brings together laughter with insight, visuals with meaning, and
+            self-awareness with play. Each piece offers a different reflection on identity,
+            consciousness, and the many ways we experience life.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-bottom">
+    <div class="container">
+      <div>&copy; 2026 <strong>pilgrimsnest.org</strong>. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

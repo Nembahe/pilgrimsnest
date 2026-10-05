@@ -1,0 +1,55 @@
+{
+  "artist": "Pilgrim",
+  "source": "Verified against the Apple Music artist page and the iTunes lookup API on 2026-10-05. All 7 are live releases distributed by DistroKid.",
+  "releases": [
+    {
+      "title": "Tears in the Rain",
+      "released": "2026-09-25",
+      "appleId": "6815746322",
+      "appleUrl": "https://music.apple.com/bw/album/tears-in-the-rain-single/6815746322",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d2/a6/10/d2a61074-a191-9200-b7b1-b6bd808b47de/artwork.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "These are the Games we play as God",
+      "released": "2026-07-26",
+      "appleId": "6794726975",
+      "appleUrl": "https://music.apple.com/bw/album/these-are-the-games-we-play-as-god-single/6794726975",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/62/2a/63/622a63b1-e839-5755-5e3e-c31e27b94058/artwork.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "Magaraba",
+      "released": "2026-06-26",
+      "appleId": "6784610644",
+      "appleUrl": "https://music.apple.com/bw/album/magaraba-single/6784610644",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/12/ac/e7/12ace7db-a5cf-cad0-0316-e6ef12140297/artwork.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "Me Time",
+      "released": "2026-06-21",
+      "appleId": "6782628012",
+      "appleUrl": "https://music.apple.com/bw/album/me-time-single/6782628012",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/63/27/25/63272516-9732-65b3-61aa-167c66582946/artwork.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "New View",
+      "released": "2026-06-15",
+      "appleId": "6780299472",
+      "appleUrl": "https://music.apple.com/bw/album/new-view-single/6780299472",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e3/48/f1/e348f197-ffa4-79d9-3c2a-79d509780e95/artwork.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "A Fool and a Liar",
+      "released": "2026-04-30",
+      "appleId": "1895871191",
+      "appleUrl": "https://music.apple.com/bw/album/a-fool-and-a-liar-single/1895871191",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/bf/b2/d5bfb2e1-7613-683a-fe10-4875c4c12766/artwork.jpg/600x600bb.jpg"
+    },
+    {
+      "title": "This Long Weekend",
+      "released": "2026-09-15",
+      "appleId": "6811697680",
+      "appleUrl": "https://music.apple.com/bw/album/this-long-weekend-single/6811697680",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/7e/55/3a7e5538-061f-9d3f-862e-b301a6952898/artwork.jpg/600x600bb.jpg"
+    }
+  ]
+}

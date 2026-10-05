@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
   initWaitlist();
   initReflections();
+  initReleases();
   initAccordion();
   initContactModal();
   initHeroLogoParallax();
@@ -16,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* ==========================================================================
    0. Hero Ambient Video
-   ========================================================================== */
-function initHeroVideo() {
+   ========================================================================== */function initHeroVideo() {
   const video = document.getElementById('heroVideo');
   if (!video) return;
 
@@ -458,4 +458,61 @@ function initHeroLogoParallax() {
   wrap.addEventListener('mouseleave', () => {
     logo.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
   });
+}
+
+/* ==========================================================================
+   8. Music Page - Release List
+   ========================================================================== */
+function formatReleaseDate(iso) {
+  const d = new Date(iso + 'T00:00:00Z');
+  if (Number.isNaN(d.getTime())) return '';
+  return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
+}
+
+function initReleases() {
+  const list = document.getElementById('releaseList');
+  if (!list) return; // not on the music page
+
+  // Unconfirmed platform links are inert until the real URLs exist, so a
+  // dead link is never shipped to a visitor.
+  document.querySelectorAll('[data-platform]').forEach((btn) => {
+    if (!btn.getAttribute('href') || btn.getAttribute('href') === '#') {
+      btn.setAttribute('data-unconfirmed', 'true');
+      btn.removeAttribute('target');
+      btn.removeAttribute('rel');
+      btn.setAttribute('aria-disabled', 'true');
+      btn.addEventListener('click', (e) => e.preventDefault());
+    }
+  });
+
+  fetch('releases.json')
+    .then((r) => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then((data) => {
+      const items = data.releases || [];
+      if (!items.length) throw new Error('no releases');
+
+      list.innerHTML = items.map((rel) => `
+        <article class="release-item">
+          <img class="release-cover" src="${rel.cover}" alt="${rel.title} cover art"
+               loading="lazy" decoding="async" width="84" height="84">
+          <div class="release-meta">
+            <h3 class="release-title">${rel.title}</h3>
+            <p class="release-date">${formatReleaseDate(rel.released)}</p>
+          </div>
+          <div class="release-links">
+            <a class="release-link" href="${rel.appleUrl}"
+               target="_blank" rel="noopener noreferrer">Listen</a>
+          </div>
+        </article>
+      `).join('');
+    })
+    .catch((err) => {
+      console.error('Could not load releases.json:', err);
+      list.innerHTML = '<p class="release-error">The release list could not be loaded. ' +
+        'All singles are available on <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" ' +
+        'target="_blank" rel="noopener noreferrer">Apple Music</a>.</p>';
+    });
 }
