@@ -374,6 +374,48 @@
       color: var(--text-secondary);
     }
 
+    /* About section */
+    .about-lede {
+      max-width: 760px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .about-lede p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin-inline: auto;
+    }
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+    }
+    .about-label {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold-primary);
+      margin-bottom: 0.85rem;
+    }
+    .about-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+    @media (max-width: 640px) {
+      .about-card { padding: 1.5rem 1.25rem; }
+    }
+
     /* Roadmap */
     .timeline-card {
       background: var(--bg-card);
@@ -693,6 +735,44 @@
               <span class="time-value" id="cdSeconds">00</span>
               <span class="time-label">Seconds</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About — copy from about.txt -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About Pilgrim's Nest</span>
+          <h2 class="section-title">Where Creative Expression and Spiritual Exploration Meet</h2>
+        </div>
+
+        <div class="about-lede">
+          <p>
+            Pilgrim's Nest brings together laughter with insight, visuals with meaning, and
+            self-awareness with play. Each piece offers a different reflection on identity,
+            consciousness, and the many ways we experience life.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <span class="about-label">Goal</span>
+            <p>
+              To create and share work that entertains, sparks curiosity, and makes spiritual
+              ideas accessible. Pilgrim's Nest invites people to notice the definitions shaping
+              their experience, and to express themselves more authentically.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <span class="about-label">Vision</span>
+            <p>
+              A world where people remember themselves as conscious creators, recognise the role
+              their definitions play in their experience, and live as their authentic selves
+              unapologetically.
+            </p>
           </div>
         </div>
       </div>
