@@ -135,6 +135,53 @@ Two notes on the weaker signals:
   low confidence and high unknown mass mean this shouldn't justify building it alone. If
   we do it, it should ride along with adding lyrics to the Tier 2 tracks.
 
+## CORRECTION (2026-10-05) — the in-folder WAVs were missed
+
+A second pass, after being asked whether I had checked the WAV **inside each single's
+folder**, found that the first pass under-reported. Four tracks have a master in the
+folder that differs from the one sitting at the album root:
+
+| Track | In folder | At root | Folder is newer? |
+|---|---|---|---|
+| **Tears in the Rain** | **4:24 · −12.8 LUFS · −1.1 dBTP** | 4:59 · −12.6 LUFS · −1.0 dBTP | **yes** (23 Sep vs 25 Apr) |
+| **Me Time** | **5:05 · −12.2 LUFS** | 5:05 · −12.2 LUFS | **yes** (21 Jun vs 24 Apr) |
+| **New View** | **3:47 · −12.2 LUFS** | 3:48 · **−15.0 LUFS** | **yes** (14 Jun vs 25 Apr) |
+| **Magaraba** | 5:16 · −10.2 LUFS | 5:16 · −10.2 LUFS | identical timestamp |
+
+**The in-folder master is the current one in every case.** The root-level copies are older
+working files that were never cleaned up.
+
+**This changes a conclusion.** My first pass reported *New View* at **−12.2 LUFS**, and I
+listed it as a healthy Tier 2 track. The in-folder master confirms −12.2, so that one
+stands. But the root copy at −15.0 LUFS is the outlier, and **Tears in the Rain** has a
+35-second difference between the two versions (4:24 vs 4:59) — so the *released* track may
+not be the folder master, or vice versa. **That one needs your ear, not a measurement.**
+
+**Rule this exposed:** `Get-ChildItem -Recurse` finds every WAV, but a flat list hides
+*which version of a track is current*. For a library with duplicates, the per-folder
+master plus its timestamp is the authoritative answer, and a flat file listing is not.
+
+Also found in the same pass, and not in the first report:
+
+- **`This Long Weekend (Single Release) (Vocals).wav`** — 4:34, **−19.4 LUFS, −6.0 dBTP**.
+  Both figures are far outside a safe master. This is a stems/vocals export, consistent
+  with its filename. The real master beside it is 4:36 at −15.1 LUFS / −1.5 dBTP.
+- **`New View Final.wav`** is *not* louder than `New View.wav` despite the name:
+  −12.8 vs −12.2 LUFS. The name is misleading; neither is the "even master".
+
+**Corrected Tier 1 measurements** (from the in-folder masters, which are the current ones):
+
+| # | Track | LUFS | True peak | Duration |
+|---|---|---|---|---|
+| 1 | **Tears in the Rain** | −12.8 | −1.1 | 4:24 |
+| 2 | **The Games We Play as God** | −12.2 | −1.0 | 5:08 |
+| 3 | **Me Time** | −12.2 | −1.1 | 5:05 |
+| 4 | **New View** | −12.2 | −1.1 | 3:47 |
+
+*This Long Weekend* stays in Tier 1 at −15.1 LUFS, but the note about it sounding quiet
+now has a second cause: there is a **−19.4 LUFS** stems export sitting next to the real
+master, which is an easy mistake to make when picking a file.
+
 ## Your call
 
 Mark the list for me and I'll proceed:

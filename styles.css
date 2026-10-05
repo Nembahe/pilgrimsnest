@@ -32,7 +32,11 @@
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
-  --text-dim: #64748B;
+  /* Lightened from #64748B: the original measured 4.16:1 on --bg-dark and
+     3.76:1 on --bg-card, both under the WCAG AA 4.5:1 gate for body text.
+     #74839A gives 5.14:1 and 4.64:1 respectively, and still sits clearly
+     below --text-muted so the hierarchy is preserved. */
+  --text-dim: #74839A;
 
   /* Borders & Dividers */
   --border-subtle: rgba(255, 255, 255, 0.08);
@@ -1753,5 +1757,38 @@ h1, h2, h3, h4 {
   }
   .release-link {
     min-height: 44px;
+  }
+}
+
+/* ==========================================================================
+   Touch Target Gate (WCAG 2.5.5 / iOS 44px)
+   Measured at 390px these were 41-43px tall. Lifted to a true 44px minimum
+   so every interactive control clears the thumb-target threshold.
+   ========================================================================== */
+@media (max-width: 640px) {
+  .btn-reflect,
+  .modal-input,
+  .modal-select,
+  .modal-textarea,
+  .modal-card .btn {
+    min-height: 44px;
+  }
+
+  .input-field {
+    min-height: 44px;
+  }
+
+  /* The close button is `position: absolute` and sits inside a modal card
+     that carries a 0.94 scale transform, so 44px renders as 41px. Size the
+     element up to clear 44px *after* the transform is applied. */
+  .modal-close-btn {
+    min-height: 47px;
+    min-width: 47px;
+  }
+
+  .modal-input,
+  .modal-select,
+  .modal-card .btn {
+    min-height: 47px;
   }
 }
