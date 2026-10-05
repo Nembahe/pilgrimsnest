@@ -1,0 +1,112 @@
+{
+  "model": "jev-latest",
+  "state": {
+    "question": "Which of these AI-music masters by the artist 'Pilgrim' are finished enough to feature on a public website catalogue, given the artist has 7 singles already released via DistroKid?",
+    "artist": "Pilgrim",
+    "already_released_via_distrokid": [
+      "Tears in the Rain",
+      "These are the Games we play as God",
+      "Magaraba",
+      "Me Time",
+      "New View",
+      "A Fool and a Liar",
+      "This Long Weekend"
+    ],
+    "master_inventory": {
+      "total_wav_files": 32,
+      "distinct_songs": 17,
+      "note": "32 files resolve to roughly 17 distinct songs once byte-identical duplicates, near-duplicates, and 1:50 A/B segment exports are excluded."
+    },
+    "measured_loudness_lufs": {
+      "Tears in the Rain": -12.8,
+      "The Games We Play as God": -12.2,
+      "This Long Weekend": -15.1,
+      "Me Time": -12.2,
+      "New View": -12.2,
+      "A Fool and a Liar": -10.3,
+      "Magaraba": -10.2,
+      "I Remember": -12.1,
+      "Life Abundantly": -12.2,
+      "An Artist": -12.3,
+      "Light & Darkness": -12.0,
+      "This is Love": -14.3
+    },
+    "measured_true_peak_db": {
+      "Tears in the Rain": -1.1,
+      "The Games We Play as God": -1.0,
+      "This Long Weekend": -1.5,
+      "Me Time": -1.1,
+      "New View": -1.1,
+      "A Fool and a Liar": -1.1,
+      "Magaraba": -1.1,
+      "I Remember": -1.0,
+      "Life Abundantly": -1.0,
+      "An Artist": -1.0,
+      "Light & Darkness": -1.0,
+      "This is Love": -4.2,
+      "Luv Yourself": -3.0
+    },
+    "synced_lyrics_lrc_available": [
+      "Tears in the Rain",
+      "The Games We Play as God",
+      "This Long Weekend",
+      "Me Time"
+    ],
+    "asset_gaps": {
+      "no_cover_and_no_lyrics_on_disk": [
+        "I Remember",
+        "Life Abundantly",
+        "An Artist",
+        "Light & Darkness",
+        "Light Behind My Eyes"
+      ],
+      "cover_but_no_lyrics": [
+        "New View",
+        "A Fool and a Liar",
+        "Magaraba",
+        "Love Yourself"
+      ]
+    },
+    "excluded": {
+      "All That Is": "6:30 / 131 MB file named '(Final remove reverb) (Vocals)' - a stems file, not a finished master; no cover, no lyrics.",
+      "New View A/B exports": "Two 1:50 segments, not full tracks.",
+      "byte_identical_duplicates": "I AM Happiness = happy\\Happiness; Magaraba = Magaraba\\Magaraba; 3 New View variants all 57.3 MB.",
+      "abbreviations": "mt.wav = Me Time; Luv Yourself is a near-duplicate of Love Yourself."
+    },
+    "already_on_site": "pilgrimsnest.org/music.html is live and lists exactly the 7 DistroKid-released singles with verified Apple Music links."
+  },
+  "questions": {
+    "catalogue_scope": {
+      "type": "choice",
+      "instructions": "Which catalogue scope should the public site present, given `state.already_released_via_distrokid` are already distributed everywhere and `state.asset_gaps` describe unfinished metadata?",
+      "criteria": {
+        "released_only": "Show only the 7 already-released singles. Zero risk: everything listed is finished and distributed.",
+        "released_plus_measured": "Show the 7 released, plus mastered tracks whose only gap is missing cover art or lyrics, and fix those assets first.",
+        "everything_mastered": "Show every mastered master regardless of metadata gaps, accepting an uneven-looking catalogue.",
+        "none": "None of these scopes fits; the catalogue decision should not be made from this state."
+      }
+    },
+    "loudness_consistency_needed": {
+      "type": "noul",
+      "instructions": "Does `state.measured_loudness_lufs` show a spread large enough to require normalisation before tracks share a single track-list page? A Fool and a Liar at -10.3 and Magaraba at -10.2 sit about 2 LU above the -12.2 cluster; This Long Weekend at -15.1 sits about 3 LU below it."
+    },
+    "clipping_blocker": {
+      "type": "noul",
+      "instructions": "Does `state.measured_true_peak_db` contain a track whose true peak is too hot to publish safely? This is Love at -4.2 dBTP and Luv Yourself at -3.0 dBTP, against a mastered norm near -1.0 dBTP."
+    },
+    "lyrics_scroll_value": {
+      "type": "score",
+      "instructions": "How much does a synced lyric scroll add to a catalogue page, given only 4 of 17 tracks in `state.synced_lyrics_lrc_available` actually have timing data?",
+      "criteria": [
+        "No value: only 4 of 17 tracks have synced lyrics, so most rows would be static text and the feature would look broken.",
+        "Small value: useful on the 4 tracks that have it, marginal elsewhere.",
+        "Clear value: a timed scroll is a genuine differentiator on a lyrics-first artist's site.",
+        "Essential: the site cannot succeed without it."
+      ]
+    },
+    "publish_blocked_without_artist_input": {
+      "type": "noul",
+      "instructions": "Does deciding which tracks are finished REQUIRE the artist's own judgment, rather than being derivable from the measured audio in `state`? Loudness and true peak indicate technical readiness, not artistic intent, and the asset gaps do not say whether the artist intends those tracks to be public."
+    }
+  }
+}

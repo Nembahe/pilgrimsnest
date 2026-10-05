@@ -110,6 +110,31 @@ the A/B exports and duplicate WAVs should be cleaned up regardless.
 
 ---
 
+## Jev's read on the catalogue scope (2026-10-05)
+
+I put the measured data to Jev (`jev-track-readiness.json`, model `imajev-2b`) rather than
+guessing. Its answers, with probabilities:
+
+| Question | Answer | Confidence |
+|---|---|---|
+| Catalogue scope | **`released_plus_measured`** (68.7%) over `released_only` (28.1%) | 0.58 |
+| Loudness normalisation needed? | **Yes, 0.61** | — |
+| Clipping blocker present? | **No, 0.42** — it did *not* flag a blocker | — |
+| Value of a synced lyric scroll | **1.53 / 3 — "clear value"** (54% at level 2) | 0.31 (low) |
+| Does this need the artist's own judgment? | **Yes, 0.97** | — |
+
+**The last row is the one that matters.** Jev is near-certain that loudness and true-peak
+measurements *cannot* tell us what you intend to publish. Technical readiness is not
+artistic intent. So the measurement can narrow the field to a shortlist, but the final
+call is yours — which is why the list above needs your tick marks rather than my verdict.
+
+Two notes on the weaker signals:
+- **Clipping: 0.42, not a blocker.** I disagree on the specifics — *This is Love* at
+  −4.2 dBTP is objectively outside a safe master. Treat that row as a soft opinion.
+- **Lyric scroll: 0.31 confidence, 21% unknown.** Directionally "clear value", but the
+  low confidence and high unknown mass mean this shouldn't justify building it alone. If
+  we do it, it should ride along with adding lyrics to the Tier 2 tracks.
+
 ## Your call
 
 Mark the list for me and I'll proceed:
