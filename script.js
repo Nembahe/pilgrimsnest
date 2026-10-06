@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHome();
   initAlbums();
   initLyrics();
+  initBrandEmblem();
   initAccordion();
   initContactModal();
   initHeroLogoParallax();
@@ -33,14 +34,34 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Autoplay can still be refused (low-power mode, data saver). The page
-  // degrades to the static dark background, which is the intended fallback.
-  const attempt = video.play();
-  if (attempt && typeof attempt.catch === 'function') {
-    attempt.catch(() => {
-      video.removeAttribute('autoplay');
-    });
-  }
+  // The first play() is often refused: it can run before the browser has
+  // decided the page may autoplay. The old code gave up after that one try,
+  // which left the loop frozen on its first frame. Keep asking instead, at
+  // each moment the browser is likely to say yes.
+  video.muted = true;
+  video.loop = true;
+
+  const tryPlay = () => {
+    if (!video.paused) return;
+    const attempt = video.play();
+    if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+  };
+
+  tryPlay();
+  video.addEventListener('canplay', tryPlay);
+  window.addEventListener('load', tryPlay);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') tryPlay();
+  });
+  ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach((type) => {
+    window.addEventListener(type, tryPlay, { once: true, passive: true });
+  });
+
+  // Belt and braces for browsers that ignore the loop attribute
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    tryPlay();
+  });
 }
 
 /* ==========================================================================
@@ -628,4 +649,31 @@ function initReleases() {
         'All singles are available on <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" ' +
         'target="_blank" rel="noopener noreferrer">Apple Music</a>.</p>';
     });
+}
+/* ==========================================================================
+   12. Header Emblem - spins, and shows the next image each time round
+   ========================================================================== */
+function initBrandEmblem() {
+  const emblem = document.querySelector('.brand-emblem');
+  if (!emblem) return;
+
+  const faces = emblem.querySelectorAll('.brand-face');
+  if (faces.length < 2) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let current = 0;
+
+  emblem.addEventListener('animationend', () => emblem.classList.remove('is-spinning'));
+
+  setInterval(() => {
+    if (document.hidden) return;
+    emblem.classList.add('is-spinning');
+    // The spin is one second and linear, so at a quarter of the way round the
+    // emblem is edge-on: swap the image there, where the change cannot be seen.
+    setTimeout(() => {
+      faces[current].classList.remove('is-active');
+      current = (current + 1) % faces.length;
+      faces[current].classList.add('is-active');
+    }, 250);
+  }, 4000);
 }

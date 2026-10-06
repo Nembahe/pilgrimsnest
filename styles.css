@@ -1794,6 +1794,113 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
+   Header: centred brand with a spinning emblem
+   The brand sits in the middle column; the nav and the Listen button take
+   the equal-width columns either side, so the brand stays truly centred.
+   ========================================================================== */
+.nav-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.nav-links {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+}
+
+.brand-link {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.nav-actions {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+}
+
+.brand-title {
+  display: block;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.brand-tagline {
+  font-size: 0.72rem;
+}
+
+.brand-emblem {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+}
+
+.brand-emblem .brand-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.brand-emblem .brand-face.is-active {
+  opacity: 1;
+}
+
+.brand-emblem.is-spinning {
+  animation: emblemSpin 1s linear;
+}
+
+@keyframes emblemSpin {
+  from { transform: perspective(400px) rotateY(0deg); }
+  to { transform: perspective(400px) rotateY(360deg); }
+}
+
+/* Sections land below the taller fixed header when reached from the nav */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+@media (max-width: 1100px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* On a phone the centred brand needs the full width, and the hero's own
+   Listen buttons are already on screen, so the header button steps aside. */
+@media (max-width: 640px) {
+  .nav-actions {
+    display: none;
+  }
+
+  .nav-wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-link {
+    grid-column: 1;
+    gap: 0.75rem;
+  }
+
+  .brand-title {
+    font-size: 1.5rem;
+  }
+
+  .brand-emblem {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* ==========================================================================
    Artist Home (index.html)
    The landing page is Pilgrim's music: the artist name, the latest single,
    one lyric in the song's own words, then the rest of the singles.
