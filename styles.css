@@ -1863,6 +1863,19 @@ h1, h2, h3, h4 {
   to { transform: perspective(400px) rotateY(360deg); }
 }
 
+/* The taller header needs more room before the first heading */
+.home-hero,
+.music-hero {
+  padding-top: 9rem;
+}
+
+@media (max-width: 640px) {
+  .home-hero,
+  .music-hero {
+    padding-top: 8rem;
+  }
+}
+
 /* Sections land below the taller fixed header when reached from the nav */
 section[id] {
   scroll-margin-top: 6rem;
