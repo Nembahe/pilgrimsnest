@@ -5,7 +5,7 @@
     "spotify": "https://open.spotify.com/artist/38LF5CnSlrsLlRaau5VZmc",
     "youtube": "https://www.youtube.com/channel/UCEpubs9WKih7WW-9HYVdqyw"
   },
-  "linkSource": "Spotify album links read from the Spotify artist discography page on 2026-10-06. YouTube links supplied by Pilgrim on 2026-10-06; Me Time has no YouTube link yet.",
+  "linkSource": "Spotify album links read from the Spotify artist discography page on 2026-10-06. YouTube links supplied by Pilgrim on 2026-10-06.",
   "source": "Verified against the Apple Music artist page and the iTunes lookup API on 2026-10-05. All 7 are live releases distributed by DistroKid.",
   "albumSource": "I AM verified against the iTunes lookup API on 2026-10-06: 18 tracks, durations in seconds as listed there.",
   "albums": [
@@ -76,6 +76,7 @@
       "lyrics": "lyrics/me-time.txt",
       "appleUrl": "https://music.apple.com/bw/album/me-time-single/6782628012",
       "spotifyUrl": "https://open.spotify.com/album/0KUuH1meCI5QgIHbmkMIsM",
+      "youtubeUrl": "https://www.youtube.com/watch?v=8VguV95KUxE&list=OLAK5uy_knzig3cIIt2k-e8h8MSbdrRWu4IMdntlc",
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/63/27/25/63272516-9732-65b3-61aa-167c66582946/artwork.jpg/600x600bb.jpg"
     },
     {
