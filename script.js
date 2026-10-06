@@ -6,10 +6,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   initHeroVideo();
   initParticles();
-  initCountdown();
   initWaitlist();
   initReflections();
   initReleases();
+  initHome();
+  initAlbums();
+  initLyrics();
   initAccordion();
   initContactModal();
   initHeroLogoParallax();
@@ -145,78 +147,6 @@ function initParticles() {
   }
 
   render();
-}
-
-/* ==========================================================================
-   2. Real-Time Launch Countdown
-   ========================================================================== */
-function initCountdown() {
-  // Single source of truth for the opening date.
-  // Set to 5 days from today (target: 2026-10-08T12:00:00Z).
-  const OPENING_DATE_ISO = '2026-10-08T12:00:00Z';
-
-  const box = document.getElementById('countdownBox');
-  const status = document.getElementById('openingStatus');
-  const heading = document.getElementById('countdownHeading');
-
-  if (!OPENING_DATE_ISO) {
-    if (box) box.hidden = true;
-    if (status) status.hidden = false;
-    return;
-  }
-
-  const targetDate = new Date(OPENING_DATE_ISO).getTime();
-  if (Number.isNaN(targetDate)) {
-    console.warn('OPENING_DATE_ISO is not a valid date:', OPENING_DATE_ISO);
-    if (box) box.hidden = true;
-    if (status) status.hidden = false;
-    return;
-  }
-
-  const daysEl = document.getElementById('cdDays');
-  const hoursEl = document.getElementById('cdHours');
-  const minutesEl = document.getElementById('cdMinutes');
-  const secondsEl = document.getElementById('cdSeconds');
-
-  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
-
-  if (box) box.hidden = false;
-  if (status) status.hidden = true;
-
-  let timerId = null;
-
-  function updateClock() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      // The date has arrived. Show a clear opened state instead of zeroing out.
-      // A frozen 00/00/00/00 under that heading is the same dead clock this
-      // whole fix removed, so hide the digit grid and stop the ticker instead.
-      if (heading) heading.textContent = 'The Gates Are Open';
-      const grid = document.querySelector('.countdown-grid');
-      if (grid) grid.hidden = true;
-      clearInterval(timerId);
-      return;
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    daysEl.textContent = String(days).padStart(2, '0');
-    hoursEl.textContent = String(hours).padStart(2, '0');
-    minutesEl.textContent = String(minutes).padStart(2, '0');
-    secondsEl.textContent = String(seconds).padStart(2, '0');
-  }
-
-  updateClock();
-  // Only start the ticker if the clock is actually still counting down;
-  // updateClock clears it itself once the opening date has passed.
-  if (timerId === null) {
-    timerId = setInterval(updateClock, 1000);
-  }
 }
 
 /* ==========================================================================
@@ -469,31 +399,217 @@ function formatReleaseDate(iso) {
   return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
 }
 
+// releases.json is the single source of truth for both pages. Newest first,
+// so the order never depends on where an entry was pasted into the file.
+// One link per platform a release is actually on. A missing URL in
+// releases.json simply produces no link, so nothing dead is ever shipped.
+function platformLinks(rel, cls) {
+  const esc = (u) => String(u).replace(/&/g, '&amp;');
+  return [['appleUrl', 'Apple Music'], ['spotifyUrl', 'Spotify'], ['youtubeUrl', 'YouTube']]
+    .filter(([key]) => rel[key])
+    .map(([key, label]) => `<a class="${cls}" href="${esc(rel[key])}" target="_blank" rel="noopener noreferrer" aria-label="${rel.title} on ${label}">${label}</a>`)
+    .join('') + lyricsButton(rel);
+}
+
+// Lyrics exist only for releases that name a text file in releases.json.
+function lyricsButton(rel) {
+  if (!rel.lyrics) return '';
+  return `<button type="button" class="release-link lyrics-btn" data-lyrics="${rel.lyrics}" data-lyrics-title="${rel.title}">Lyrics</button>`;
+}
+
+/* ==========================================================================
+   11. Lyrics Dialog (both pages)
+   ========================================================================== */
+function initLyrics() {
+  if (typeof HTMLDialogElement === 'undefined') return;
+
+  const dialog = document.createElement('dialog');
+  dialog.className = 'lyrics-dialog';
+  dialog.setAttribute('aria-labelledby', 'lyricsTitle');
+  dialog.innerHTML = `
+    <div class="lyrics-head">
+      <h2 class="lyrics-title" id="lyricsTitle"></h2>
+      <button type="button" class="lyrics-close" aria-label="Close lyrics">&times;</button>
+    </div>
+    <div class="lyrics-body" tabindex="0"></div>
+  `;
+  document.body.appendChild(dialog);
+
+  const titleEl = dialog.querySelector('.lyrics-title');
+  const bodyEl = dialog.querySelector('.lyrics-body');
+
+  dialog.querySelector('.lyrics-close').addEventListener('click', () => dialog.close());
+  // A click on the backdrop lands on the dialog element itself
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  // Delegated, so it also covers buttons rendered later from releases.json
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-lyrics]');
+    if (!btn) return;
+
+    titleEl.textContent = btn.dataset.lyricsTitle || 'Lyrics';
+    bodyEl.textContent = 'Loading the lyrics…';
+    dialog.showModal();
+    bodyEl.scrollTop = 0;
+
+    fetch(btn.dataset.lyrics)
+      .then((r) => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then((text) => {
+        bodyEl.textContent = text.trim();
+      })
+      .catch((err) => {
+        console.error('Could not load lyrics:', err);
+        bodyEl.textContent = 'The lyrics could not be loaded. Close this and try again.';
+      });
+  });
+}
+
+let cataloguePromise = null;
+
+function fetchCatalogue() {
+  if (!cataloguePromise) {
+    cataloguePromise = fetch('releases.json').then((r) => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    });
+  }
+  return cataloguePromise;
+}
+
+function fetchReleases() {
+  return fetchCatalogue().then((data) => {
+    const items = (data.releases || []).slice().sort(
+      (a, b) => String(b.released).localeCompare(String(a.released))
+    );
+    if (!items.length) throw new Error('no releases');
+    return items;
+  });
+}
+
+/* ==========================================================================
+   10. Albums - cover, facts and the full track list (both pages)
+   ========================================================================== */
+function formatTrackTime(seconds) {
+  const s = Math.round(Number(seconds) || 0);
+  return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+}
+
+function initAlbums() {
+  const wrap = document.getElementById('albumList');
+  if (!wrap) return;
+
+  fetchCatalogue()
+    .then((data) => {
+      const albums = data.albums || [];
+      if (!albums.length) throw new Error('no albums');
+
+      wrap.innerHTML = albums.map((album) => {
+        const tracks = album.tracks || [];
+        const minutes = Math.round(tracks.reduce((sum, t) => sum + (Number(t.seconds) || 0), 0) / 60);
+
+        return `
+          <article class="album">
+            <div class="album-side">
+              <a class="feature-cover-link" href="${album.appleUrl}"
+                 target="_blank" rel="noopener noreferrer"
+                 aria-label="Listen to ${album.title} on Apple Music">
+                <img class="feature-cover" src="${album.cover}" alt="${album.title} album cover"
+                     loading="lazy" decoding="async" width="600" height="600">
+              </a>
+              <h3 class="album-title">${album.title}</h3>
+              <p class="album-facts">${tracks.length} tracks &bull; ${minutes} min &bull; ${formatReleaseDate(album.released)}</p>
+              <div class="platform-links">${platformLinks(album, 'platform-btn')}</div>
+            </div>
+            <ol class="album-tracks">
+              ${tracks.map((t) => `
+                <li class="album-track">
+                  <span class="album-track-title">${t.title}</span>
+                  <span class="album-track-time">${formatTrackTime(t.seconds)}</span>
+                </li>
+              `).join('')}
+            </ol>
+          </article>
+        `;
+      }).join('');
+    })
+    .catch((err) => {
+      console.error('Could not load the album from releases.json:', err);
+      wrap.innerHTML = '<p class="release-error">The album could not be loaded. ' +
+        'It is on <a href="https://music.apple.com/bw/album/i-am/1857644050" ' +
+        'target="_blank" rel="noopener noreferrer">Apple Music</a>.</p>';
+    });
+}
+
+/* ==========================================================================
+   9. Home Page - Latest Single + Earlier Singles
+   ========================================================================== */
+function initHome() {
+  const grid = document.getElementById('singlesGrid');
+  if (!grid) return; // not on the home page
+
+  const feature = document.getElementById('featuredRelease');
+
+  fetchReleases()
+    .then((items) => {
+      const latest = items[0];
+      const earlier = items.slice(1);
+
+      // index.html ships the latest single as static markup so the hero works
+      // without JavaScript. Only redraw it when releases.json has moved on.
+      if (feature && feature.dataset.releaseId !== latest.appleId) {
+        feature.dataset.releaseId = latest.appleId;
+        feature.innerHTML = `
+          <a class="feature-cover-link" href="${latest.appleUrl}"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Listen to ${latest.title} on Apple Music">
+            <img class="feature-cover" width="600" height="600"
+                 src="${latest.cover}" alt="${latest.title} cover art">
+          </a>
+          <div class="feature-body">
+            <div class="feature-meta">
+              <span class="feature-label">Latest single</span>
+              <h2 class="feature-title">${latest.title}</h2>
+              <p class="feature-date">${formatReleaseDate(latest.released)}</p>
+            </div>
+            <div class="release-links">${platformLinks(latest, 'release-link')}</div>
+          </div>
+        `;
+      }
+
+      grid.innerHTML = earlier.map((rel) => `
+        <article class="single-card">
+          <a class="single-cover-link" href="${rel.appleUrl}" target="_blank" rel="noopener noreferrer"
+             aria-label="Listen to ${rel.title} on Apple Music">
+            <img class="single-cover" src="${rel.cover}" alt="${rel.title} cover art"
+                 loading="lazy" decoding="async" width="600" height="600">
+          </a>
+          <div class="single-meta">
+            <h3 class="single-title">${rel.title}</h3>
+            <p class="single-date">${formatReleaseDate(rel.released)}</p>
+          </div>
+          <div class="release-links">${platformLinks(rel, 'release-link')}</div>
+        </article>
+      `).join('');
+    })
+    .catch((err) => {
+      console.error('Could not load releases.json:', err);
+      grid.innerHTML = '<p class="release-error">The singles could not be loaded. ' +
+        'All of them are on <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" ' +
+        'target="_blank" rel="noopener noreferrer">Apple Music</a>.</p>';
+    });
+}
+
 function initReleases() {
   const list = document.getElementById('releaseList');
   if (!list) return; // not on the music page
 
-  // Unconfirmed platform links are inert until the real URLs exist, so a
-  // dead link is never shipped to a visitor.
-  document.querySelectorAll('[data-platform]').forEach((btn) => {
-    if (!btn.getAttribute('href') || btn.getAttribute('href') === '#') {
-      btn.setAttribute('data-unconfirmed', 'true');
-      btn.removeAttribute('target');
-      btn.removeAttribute('rel');
-      btn.setAttribute('aria-disabled', 'true');
-      btn.addEventListener('click', (e) => e.preventDefault());
-    }
-  });
-
-  fetch('releases.json')
-    .then((r) => {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    })
-    .then((data) => {
-      const items = data.releases || [];
-      if (!items.length) throw new Error('no releases');
-
+  fetchReleases()
+    .then((items) => {
       list.innerHTML = items.map((rel) => `
         <article class="release-item">
           <img class="release-cover" src="${rel.cover}" alt="${rel.title} cover art"
@@ -502,10 +618,7 @@ function initReleases() {
             <h3 class="release-title">${rel.title}</h3>
             <p class="release-date">${formatReleaseDate(rel.released)}</p>
           </div>
-          <div class="release-links">
-            <a class="release-link" href="${rel.appleUrl}"
-               target="_blank" rel="noopener noreferrer">Listen</a>
-          </div>
+          <div class="release-links">${platformLinks(rel, 'release-link')}</div>
         </article>
       `).join('');
     })

@@ -22,17 +22,18 @@
           <img src="logo-512.png" alt="Pilgrim's Nest Logo" class="brand-icon-img">
           <div>
             <span class="brand-title">PILGRIM'S NEST</span>
-            <span class="brand-tagline">Sanctuary &bull; Community &bull; Haven</span>
+            <span class="brand-tagline">The home of Pilgrim's music</span>
           </div>
         </a>
         <nav class="nav-links" aria-label="Primary Navigation">
-          <a href="index.html#vision">The Vision</a>
+          <a href="index.html#latest">Latest</a>
+          <a href="index.html#singles">Singles</a>
           <a href="index.html#about">About</a>
-          <a href="music.html" aria-current="page">Music</a>
+          <a href="music.html" aria-current="page">Catalogue</a>
         </nav>
         <div class="nav-actions">
-          <span class="status-badge"><span class="pulse-dot"></span>In The Making</span>
-          <a href="index.html#contact" class="btn btn-secondary">Contact Us</a>
+          <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" class="btn btn-secondary btn-compact"
+             target="_blank" rel="noopener noreferrer">Listen<span class="nav-cta-long">&nbsp;on Apple Music</span></a>
         </div>
       </div>
     </div>
@@ -52,20 +53,29 @@
           <a class="platform-btn" href="https://music.apple.com/bw/artist/pilgrim/1857562164" target="_blank" rel="noopener noreferrer">
             <span class="platform-name">Apple Music</span>
           </a>
-          <a class="platform-btn" href="#" data-platform="spotify" target="_blank" rel="noopener noreferrer">
+          <a class="platform-btn" href="https://open.spotify.com/artist/38LF5CnSlrsLlRaau5VZmc" target="_blank" rel="noopener noreferrer">
             <span class="platform-name">Spotify</span>
           </a>
-          <a class="platform-btn" href="#" data-platform="youtube" target="_blank" rel="noopener noreferrer">
+          <a class="platform-btn" href="https://www.youtube.com/channel/UCEpubs9WKih7WW-9HYVdqyw" target="_blank" rel="noopener noreferrer">
             <span class="platform-name">YouTube</span>
-          </a>
-          <a class="platform-btn" href="#" data-platform="tbd" target="_blank" rel="noopener noreferrer">
-            <span class="platform-name">Bandcamp</span>
           </a>
         </div>
         <p class="platform-note" id="platformNote">
-          Streaming everywhere via DistroKid. Spotify and YouTube links are added once the
-          artist profiles are confirmed &mdash; every release is already live on Apple Music.
+          The album and every single are on Apple Music and Spotify, and almost all of them are on YouTube.
         </p>
+      </div>
+    </section>
+
+    <!-- Album, populated from releases.json -->
+    <section class="section" id="album">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">The Album</span>
+          <h2 class="section-title">Eighteen Tracks, Start to Finish</h2>
+        </div>
+        <div id="albumList">
+          <p class="release-loading">Loading the album&hellip;</p>
+        </div>
       </div>
     </section>
 
