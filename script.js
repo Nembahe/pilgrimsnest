@@ -438,6 +438,19 @@ function lyricsButton(rel) {
   return `<button type="button" class="release-link lyrics-btn" data-lyrics="${rel.lyrics}" data-lyrics-title="${rel.title}">Lyrics</button>`;
 }
 
+// A release that is not on Apple Music yet still needs its cover art on screen,
+// so the cover only becomes a link when there is a real URL behind it. Without
+// this, a release missing appleUrl renders href="undefined" and ships a dead
+// link on the most prominent card on the page.
+function coverImage(rel, cls, width, height, lazy) {
+  const esc = (u) => String(u).replace(/&/g, '&amp;');
+  const img = `<img class="${cls}"${lazy ? ' loading="lazy" decoding="async"' : ''}` +
+    ` width="${width}" height="${height}" src="${esc(rel.cover)}" alt="${rel.title} cover art">`;
+  if (!rel.appleUrl) return img;
+  return `<a class="${cls}-link" href="${esc(rel.appleUrl)}" target="_blank" rel="noopener noreferrer"` +
+    ` aria-label="Listen to ${rel.title} on Apple Music">${img}</a>`;
+}
+
 /* ==========================================================================
    11. Lyrics Dialog (both pages)
    ========================================================================== */
@@ -582,15 +595,13 @@ function initHome() {
 
       // index.html ships the latest single as static markup so the hero works
       // without JavaScript. Only redraw it when releases.json has moved on.
-      if (feature && feature.dataset.releaseId !== latest.appleId) {
-        feature.dataset.releaseId = latest.appleId;
+      // The title is the fallback key because a release that is not on Apple
+      // has no appleId, and "undefined" would never equal a stored string.
+      const latestKey = latest.appleId || latest.title;
+      if (feature && feature.dataset.releaseId !== latestKey) {
+        feature.dataset.releaseId = latestKey;
         feature.innerHTML = `
-          <a class="feature-cover-link" href="${latest.appleUrl}"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Listen to ${latest.title} on Apple Music">
-            <img class="feature-cover" width="600" height="600"
-                 src="${latest.cover}" alt="${latest.title} cover art">
-          </a>
+          ${coverImage(latest, 'feature-cover', 600, 600, false)}
           <div class="feature-body">
             <div class="feature-meta">
               <span class="feature-label">Latest single</span>
@@ -604,11 +615,7 @@ function initHome() {
 
       grid.innerHTML = earlier.map((rel) => `
         <article class="single-card">
-          <a class="single-cover-link" href="${rel.appleUrl}" target="_blank" rel="noopener noreferrer"
-             aria-label="Listen to ${rel.title} on Apple Music">
-            <img class="single-cover" src="${rel.cover}" alt="${rel.title} cover art"
-                 loading="lazy" decoding="async" width="600" height="600">
-          </a>
+          ${coverImage(rel, 'single-cover', 600, 600, true)}
           <div class="single-meta">
             <h3 class="single-title">${rel.title}</h3>
             <p class="single-date">${formatReleaseDate(rel.released)}</p>

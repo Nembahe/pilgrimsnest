@@ -6,7 +6,7 @@
     "youtube": "https://www.youtube.com/channel/UCEpubs9WKih7WW-9HYVdqyw"
   },
   "linkSource": "Spotify album links read from the Spotify artist discography page on 2026-10-06. YouTube links supplied by Pilgrim on 2026-10-06.",
-  "source": "Verified against the Apple Music artist page and the iTunes lookup API on 2026-10-05. All 7 are live releases distributed by DistroKid.",
+  "source": "Verified against the Apple Music artist page and the iTunes lookup API on 2026-10-05, re-verified 2026-10-09. All 8 are live releases distributed by DistroKid. I AM Talking to you has no Spotify or YouTube link yet; platformLinks() omits a platform that has no URL rather than shipping a dead one.",
   "albumSource": "I AM verified against the iTunes lookup API on 2026-10-06: 18 tracks, durations in seconds as listed there.",
   "albums": [
     {
@@ -40,6 +40,14 @@
     }
   ],
   "releases": [
+    {
+      "title": "I AM Talking to you",
+      "released": "2026-10-09",
+      "appleId": "6820991591",
+      "lyrics": "lyrics/i-am-talking-to-you.txt",
+      "appleUrl": "https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/97/80/51978078-959c-28f0-17bd-a5f8a0359e2f/artwork.jpg/600x600bb.jpg"
+    },
     {
       "title": "Tears in the Rain",
       "released": "2026-09-25",
