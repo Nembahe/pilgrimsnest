@@ -1,0 +1,1114 @@
+{
+  "verifiedAt": "2026-10-11",
+  "verificationMethod": "Anonymous HTTPS video documents, without cookies or authentication; persisted metadata projection only",
+  "selection": "Newest 20 public video posts per confirmed account; pinned posts included by publication date; photo posts and private posts excluded. Includes commentary and other videos, not only AI films.",
+  "boundaryEvidence": {
+    "thetruegentile": {
+      "twentiethId": "7427240676028435717",
+      "twentiethPublished": "2024-10-18T22:07:22+00:00",
+      "nextOlderId": "7401403377353100550",
+      "nextOlderPublished": "2024-08-10T07:05:22+00:00"
+    },
+    "truepilgrimm": {
+      "twentiethId": "7377414645872676101",
+      "twentiethPublished": "2024-06-06T15:36:44+00:00",
+      "nextOlderId": "7373988218670173446",
+      "nextOlderPublished": "2024-05-28T10:00:28+00:00"
+    }
+  },
+  "videos": [
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7636073214120135943",
+      "publicAccessVerified": true,
+      "published": "2026-05-04T16:24:08+00:00",
+      "title": "When I was still fellowSHEEPing with other sheep...",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7636073214120135943",
+      "handle": "thetruegentile",
+      "duration": 90,
+      "still": {
+        "src": "assets/film-stills/7636073214120135943.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A hooded figure in a dark forest on the A Fool and a Liar cover.",
+        "sha256": "5289e21729be4affc8ffa085976a096ad45ef96ff81041dfcc387df990c5b89f",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7636073214120135943",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7636073214120135943",
+          "originalSha256": "b2cbf5fcdb9aa7270e2f00c9c1b8760cf5af64996abf6ea8b7c4a63290ed5193",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7616806068517211412",
+      "publicAccessVerified": true,
+      "published": "2026-03-13T18:17:50+00:00",
+      "title": "As she continues to live life and life abundantly... See you on the other side. For we never lose anyone.",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7616806068517211412",
+      "handle": "thetruegentile",
+      "duration": 212,
+      "still": {
+        "src": "assets/film-stills/7616806068517211412.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A glowing robed figure stands in a sunlit room.",
+        "sha256": "d1ad53d6fb6be1cf08c686b3bbb2a5647abd8f76ab953cbc9f3d91cd143b0616",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7616806068517211412",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7616806068517211412",
+          "originalSha256": "52c1a1d5f48b4938c055c5e148d9b022fed1ceac2fdc91c1275bef986a9038d9",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7593352887632186631",
+      "title": "Unexpected Adventures Teaser! #mishumo #nembahe #truepilgrimm #thetruegentile #UnexpectedAdventures",
+      "handle": "truepilgrimm",
+      "published": "2026-01-09T13:27:23+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7593352887632186631",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 52,
+      "still": {
+        "src": "assets/film-stills/7593352887632186631.webp",
+        "width": 540,
+        "height": 960,
+        "alt": "Three characters on the Unexpected Adventures film poster.",
+        "sha256": "c2282f5febc8b0b6121d75d8450833a7bce2a78b7e1512e3b8fcd68241a2b587",
+        "source": {
+          "type": "public-video-origin-cover",
+          "videoId": "7593352887632186631",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7593352887632186631",
+          "originalSha256": "2de4cbb0c55f7abde7762c98aec36f1eafd9a5d615a36b656a77853808731087",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7567365911208791303",
+      "publicAccessVerified": true,
+      "published": "2025-10-31T12:44:40+00:00",
+      "title": "Pilgrim - I AM album 29th November 2025 #mishumo #nembahe #thetruegentile #truepilgrimm #ai",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7567365911208791303",
+      "handle": "thetruegentile",
+      "duration": 260,
+      "still": {
+        "src": "assets/film-stills/7567365911208791303.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A man with dreadlocks framed by tree branches and roots.",
+        "sha256": "4e0d56ca637c8ab98183f1712f11621f4d47fd8759a0aab1214c080aee9d5450",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7567365911208791303",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7567365911208791303",
+          "originalSha256": "6fe5043cae2a54136dbc427b2b04d03856a5aafa8b8b3602f7ad071013fcd3dc",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7552199629354339592",
+      "title": "The Guardians of the Green! #mishumo #nembahe #truepilgrimm #thetruegentile #ai",
+      "handle": "truepilgrimm",
+      "published": "2025-09-20T15:51:44+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7552199629354339592",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 83,
+      "still": {
+        "src": "assets/film-stills/7552199629354339592.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "Two black wolves stand in a green mountain landscape.",
+        "sha256": "325d3fa3e2e80ad4362a082b74f639d5a211b6f0dc69efb2df4dd98617a5b235",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7552199629354339592",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7552199629354339592",
+          "originalSha256": "a9f47460ed91949ecfc53f9e5fac5cdfc1c0b26ce0417d1eab3e2629977c4009",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7544991848507411719",
+      "publicAccessVerified": true,
+      "published": "2025-09-01T05:41:54+00:00",
+      "title": "The Holy Undead! #mishumo #nembahe #thetruegentile #iamgentile",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7544991848507411719",
+      "handle": "thetruegentile",
+      "duration": 137,
+      "still": {
+        "src": "assets/film-stills/7544991848507411719.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "Lightning strikes above an ancient city and its domed building.",
+        "sha256": "12f45155945d70caf017d49ea9a4a7ec455a9d3f5743057002b6f98dbc49d8f2",
+        "source": {
+          "type": "public-video-cover",
+          "videoId": "7544991848507411719",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7544991848507411719",
+          "originalSha256": "2b1b3de05c506ea865ed5373b45cd147be46d82ff80c4f9c7c84c483a2f1198a",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7524258423094005048",
+      "publicAccessVerified": true,
+      "published": "2025-07-07T08:45:40+00:00",
+      "title": "The Age of Superheroes! #mishumo #nembahe #thetruegentile #iamgentile #ai #aivideo #superheroes",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7524258423094005048",
+      "handle": "thetruegentile",
+      "duration": 65,
+      "still": {
+        "src": "assets/film-stills/7524258423094005048.webp",
+        "width": 960,
+        "height": 530,
+        "alt": "A black title card reading A special dedication.",
+        "sha256": "844d9ffb3402a89da1e7f9d5226ee33e421d4cdf7337be89e86c95728034a413",
+        "source": {
+          "type": "public-video-origin-cover",
+          "videoId": "7524258423094005048",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7524258423094005048",
+          "originalSha256": "4ea4e72b9519087e5fafd74b2820c44a2773216055f1a8849ed0b6dd9b41c6bf",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7493184643601091845",
+      "publicAccessVerified": true,
+      "published": "2025-04-14T15:03:29+00:00",
+      "title": "Those interested in my other account... The fire is burning. I AM Pilgrim's Nest (@truepilgrimm).",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7493184643601091845",
+      "handle": "thetruegentile",
+      "duration": 30,
+      "still": {
+        "src": "assets/film-stills/7493184643601091845.webp",
+        "width": 540,
+        "height": 960,
+        "alt": "A mini-series production announcement above an account screenshot.",
+        "sha256": "9f29bdfbbf2ecb0aa1aac1909556bc3c24e1c1649cc398b8c6cf7dbca42143cf",
+        "source": {
+          "type": "public-video-origin-cover",
+          "videoId": "7493184643601091845",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7493184643601091845",
+          "originalSha256": "69cb796589349dc3b8afb380919f9e91f9b4d461a318e3da4e361e925aa92ff9",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7492379630243040517",
+      "title": "Unexpected Adventures! #mishumo  #nembahe#pilgrim #iampilgrim #ai #aivideo #UnexpectedAdventures",
+      "handle": "truepilgrimm",
+      "published": "2025-04-12T10:59:42+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7492379630243040517",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 30,
+      "still": {
+        "src": "assets/film-stills/7492379630243040517.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A worried man and woman look ahead in a jungle.",
+        "sha256": "ceab7983cbff0fa1a8c3b82dac55f6de8c94abcc242ae87c54fdb6b531df6b2a",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7492379630243040517",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7492379630243040517",
+          "originalSha256": "9b7352716406b1aa54d7a43e6d63d8036240ed8949135a0fed01a3d7373672c1",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7488645737497038086",
+      "publicAccessVerified": true,
+      "published": "2025-04-02T09:30:16+00:00",
+      "title": "I AM the Creator God experiencing ITSELF through infinite simultaneous existences. Existence is MARVELLOUS.",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7488645737497038086",
+      "handle": "thetruegentile",
+      "duration": 14,
+      "still": {
+        "src": "assets/film-stills/7488645737497038086.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "Glowing blue abstract forms against a dark background.",
+        "sha256": "b1ff4132e8d8b3fed1e00fd96ffc8cc0578fe929f0212ede8946cf640f98fdb1",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7488645737497038086",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7488645737497038086",
+          "originalSha256": "64d22b8bc862d9bb00a934688e8cc6762f69d5cb6bd1f4043779335663b552f5",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7477223537330228486",
+      "publicAccessVerified": true,
+      "published": "2025-03-02T14:46:16+00:00",
+      "title": "Without God! #mishumo #nembahe #thetruegentile #iamgentile #gentile #withoutGod #ai #aivideo",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7477223537330228486",
+      "handle": "thetruegentile",
+      "duration": 39,
+      "still": {
+        "src": "assets/film-stills/7477223537330228486.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A statue with outstretched arms overlooks a coastal city at sunset.",
+        "sha256": "c3bae1e979594c3bf960cf88f9d6bee902d9e7b967ac5dda06342d400c2cd64f",
+        "source": {
+          "type": "public-video-preview-frame",
+          "videoId": "7477223537330228486",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7477223537330228486",
+          "originalSha256": "f34505cfd10535b825b4faf63c72d34e628f4b19d9f4d2f2d61b4b6748102abb",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "previewFrameIndex": 0
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7473105559298919685",
+      "publicAccessVerified": true,
+      "published": "2025-02-19T12:26:23+00:00",
+      "title": "Social Media Religions! #mishumo #nembahe #thetruegentile #iamgentile #gentile #socialmediareligions #christianitytoday #christianity",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7473105559298919685",
+      "handle": "thetruegentile",
+      "duration": 18,
+      "still": {
+        "src": "assets/film-stills/7473105559298919685.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A moon and planets seen above spacecraft control panels.",
+        "sha256": "69041a99b6a733e3317e24bb73d927f4afb34c2cb3b9082a69da0aaedf5a5600",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7473105559298919685",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7473105559298919685",
+          "originalSha256": "c6961188ae5fc0a7c1ed283a2b6eec176bbab23f935107a8f2c5ab039ff298b9",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7472093736634207543",
+      "title": "AI Nanoreels! #mishumo #nembahe #pilgrim #iampilgrim",
+      "handle": "truepilgrimm",
+      "published": "2025-02-16T19:00:01+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7472093736634207543",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 7,
+      "still": {
+        "src": "assets/film-stills/7472093736634207543.webp",
+        "width": 842,
+        "height": 480,
+        "alt": "A woman flies low over a road in golden evening light.",
+        "sha256": "6e5583606dfe1ecbedbfc22af8ca74b9f4511331826173d9cfd4298905f9d726",
+        "source": {
+          "type": "public-video-frame",
+          "videoId": "7472093736634207543",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7472093736634207543",
+          "originalSha256": "9c00a97b33e8d5665e1d6fce0ba9623663cf7abf8dc77b79081695bce91a1437",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "frameTimestampSeconds": 2
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7469375452579204358",
+      "publicAccessVerified": true,
+      "published": "2025-02-09T11:11:45+00:00",
+      "title": "Look closely! #thetruegentile #gentile #iamgentile #thedevilmademedoit #job #religions",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7469375452579204358",
+      "handle": "thetruegentile",
+      "duration": 16,
+      "still": {
+        "src": "assets/film-stills/7469375452579204358.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "An illustration of Job kneeling, accompanied by a message about faith.",
+        "sha256": "343c6e90a34f629f7b0c64fff3a46642aefb89375e23d3416145076cc45ebf98",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7469375452579204358",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7469375452579204358",
+          "originalSha256": "33fc2a2c941e86822a0dcf69dec0a97e96657554f0140f70fe0e03543d2dd436",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7463867348361972998",
+      "title": "Every day Cause and Effect! #truepilgrimm #pilgrim #iampilgrim #abdomen",
+      "handle": "truepilgrimm",
+      "published": "2025-01-25T14:57:24+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7463867348361972998",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 13,
+      "still": {
+        "src": "assets/film-stills/7463867348361972998.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "Two rounded bellies in blue and orange shirts face each other.",
+        "sha256": "4e2c255c92dd1e14296afa2af880b640ed929e80f79b7447b8e0967598141298",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7463867348361972998",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7463867348361972998",
+          "originalSha256": "d967155b29d065c19153617a320a69a9d84cad1b8a23d0b3539d54f2a2000cb9",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7462000887817424133",
+      "title": "the judas priest #truepilgrimm #pilgrim  #thetruegentile #iamgentile #gentile #thejudaspriest #ai #aivideo",
+      "handle": "truepilgrimm",
+      "published": "2025-01-20T14:14:38+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7462000887817424133",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 7,
+      "still": {
+        "src": "assets/film-stills/7462000887817424133.webp",
+        "width": 540,
+        "height": 960,
+        "alt": "A skull-faced character wears a skull-trimmed top hat and holds a cigar.",
+        "sha256": "d4690d710e167344984b9518ea1e5ef5e88aaf9eadac685f228f59050f915609",
+        "source": {
+          "type": "public-video-origin-cover",
+          "videoId": "7462000887817424133",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7462000887817424133",
+          "originalSha256": "0639dc481ef2d245819fdf2d6a377939cabbbb1daa9c296f8fc264b5c5f0911e",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7461195298732346629",
+      "title": "Is prompting the new art? #truepilgrimm #pilgrim #iampilgrim #prompting #ai #aivideo",
+      "handle": "truepilgrimm",
+      "published": "2025-01-18T10:08:36+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7461195298732346629",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 40,
+      "still": {
+        "src": "assets/film-stills/7461195298732346629.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A smiling man raises a trophy at a podium.",
+        "sha256": "eb6a49dc4631462f7b8ec4d0843fc6126b023238e5c8418d648850a7ff8e55a9",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7461195298732346629",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7461195298732346629",
+          "originalSha256": "14ec9f95d8c44cbc815c71b2bf761fde65e375348790eb3a8a6336eb1589492d",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7458930806489189637",
+      "title": "The War of the Dead! #pilgrim #truepilgrimm #thetruegentile #kling #klingai #aivideo",
+      "handle": "truepilgrimm",
+      "published": "2025-01-12T07:41:15+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7458930806489189637",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 17,
+      "still": {
+        "src": "assets/film-stills/7458930806489189637.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "Two travellers look out over a ruined city.",
+        "sha256": "650c8699f0bbc416821c5591248fad43047c5aeadb4f5dcd224c2931f24313d1",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7458930806489189637",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7458930806489189637",
+          "originalSha256": "740ceb579b489569f9650661fe034fe42be63cf07e7fbebeac9bf25a7568938f",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7457231834175393029",
+      "title": "Don't do more, BE MORE! #thetruegentile #truepilgrimm #pilgrim #BeMore",
+      "handle": "truepilgrimm",
+      "published": "2025-01-07T17:48:17+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7457231834175393029",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 20,
+      "still": {
+        "src": "assets/film-stills/7457231834175393029.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A small flame burns on a branch above the word Lovelessness.",
+        "sha256": "e9f80d354d2322c689043d912bd203ff045a9ccf0f8e8013133d8d120d3f8e2d",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7457231834175393029",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7457231834175393029",
+          "originalSha256": "723b8dd94f40b101febf2b4aae2c29f11192590bfcb317e319fda1fcd4e7b95f",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7456785211427163398",
+      "title": "In a dark and wet alley... #truepilgrimm #pilgrim #sora #thetruedetective",
+      "handle": "truepilgrimm",
+      "published": "2025-01-06T12:55:29+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7456785211427163398",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 10,
+      "still": {
+        "src": "assets/film-stills/7456785211427163398.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A figure in a coat and hat walks through a dark, wet alley.",
+        "sha256": "b821d3a4b8c2e0e150b163bf874e14f305280e5fdebff8e558f1e967d3f9f34f",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7456785211427163398",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7456785211427163398",
+          "originalSha256": "d60e9d24bcafc1d55d42ea84dafbc4cb7cf91668b544ffb217f50d44b93e5b3a",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7455098775414066437",
+      "publicAccessVerified": true,
+      "published": "2025-01-01T23:50:56+00:00",
+      "title": "Existence is Marvellous! Oh, I love it! It is like wiping my S with silk. #thetruegentile #iamgentile #gentile #existence #IAMGOD #AndSoAreYou",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7455098775414066437",
+      "handle": "thetruegentile",
+      "duration": 9,
+      "still": {
+        "src": "assets/film-stills/7455098775414066437.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A robed man stands in a warmly lit interior.",
+        "sha256": "fa29bb8255bab133f4b25b97731e88b5253b6ad485d65d9612882838c3c204b1",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7455098775414066437",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7455098775414066437",
+          "originalSha256": "86df5e7bd8a92a1c69e71ae4f9a40053277c91a7dad62bcde8b1374db164fba1",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7454620025626955013",
+      "publicAccessVerified": true,
+      "published": "2024-12-31T16:53:04+00:00",
+      "title": "Remember who you are! #thetruegentile #gentile #iamgentile #rememberwhoyouare",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7454620025626955013",
+      "handle": "thetruegentile",
+      "duration": 12,
+      "still": {
+        "src": "assets/film-stills/7454620025626955013.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "Layered picture frames show a lone figure in a desert.",
+        "sha256": "baba0f2e09629a4f4dc2a73de10af913b4f37aa03e6f7b8569aff982e0b267b3",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7454620025626955013",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7454620025626955013",
+          "originalSha256": "06f28cc15e23b737a3d7debfdc6b09a4c7afb677aceeac8f7d80084a0789d1d3",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7452332906606890246",
+      "publicAccessVerified": true,
+      "published": "2024-12-25T12:57:56+00:00",
+      "title": "Plants VS meat! #thetruegentile #gentile #iamgentile #genesis #plantsvsmeat",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7452332906606890246",
+      "handle": "thetruegentile",
+      "duration": 31,
+      "still": {
+        "src": "assets/film-stills/7452332906606890246.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A tiger rests in sunlit grass.",
+        "sha256": "a193ab942a36d18d4c93a1e0445ba7d71e22a03500e7d5384ebf07546ee49135",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7452332906606890246",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7452332906606890246",
+          "originalSha256": "2bd18c1326ee13fe1fcab5f7438b2c7568e944d4ba1787ce540793cc8b214e12",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7450674341332700422",
+      "publicAccessVerified": true,
+      "published": "2024-12-21T01:41:50+00:00",
+      "title": "Is the Word of God a book? #gentile #iamgentile #thetruegentile #thewordofgod  #bible #spoken #written",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7450674341332700422",
+      "handle": "thetruegentile",
+      "duration": 13,
+      "still": {
+        "src": "assets/film-stills/7450674341332700422.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A white church with ornate towers beneath a blue sky.",
+        "sha256": "8730fa3006b6c4a1be1d89ba49174cc3c79fea53adbffeb19214ad37273b76bd",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7450674341332700422",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7450674341332700422",
+          "originalSha256": "00f974dd0cda65df80829104b4ddbf9dd1ac13547b7fc8d0bf066cb224ed8c32",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7450276960879611142",
+      "publicAccessVerified": true,
+      "published": "2024-12-19T23:59:47+00:00",
+      "title": "You are more than you believe. Know thyself! #thetruegentile #iamgentile #gentile #sinnerandsaints",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7450276960879611142",
+      "handle": "thetruegentile",
+      "duration": 7,
+      "still": {
+        "src": "assets/film-stills/7450276960879611142.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A lion in profile above the word Believe.",
+        "sha256": "18f45b9762b57e7a87f1a59f116c6eb84098a829a8d2a77fcae650a6d683f841",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7450276960879611142",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7450276960879611142",
+          "originalSha256": "32ce331ef958c5c1cd95531e1ba30d24f0c763111cb94c337731c2aee328fda0",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7446363150036831493",
+      "publicAccessVerified": true,
+      "published": "2024-12-09T10:52:16+00:00",
+      "title": "Self Deception! #thetruegentile #gentile #iamgentile #selfdeception",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7446363150036831493",
+      "handle": "thetruegentile",
+      "duration": 13,
+      "still": {
+        "src": "assets/film-stills/7446363150036831493.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A woman beside a lit candle above the words The greatest.",
+        "sha256": "958d6f29a66bea6ab4ad4d4004abcde40fa5b16525ac96222df8fd56fddb1373",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7446363150036831493",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7446363150036831493",
+          "originalSha256": "ab61fbf5c5c14cd36a3ccd7263d3a681e1daf97ea2971ee69b43479dbc88eef7",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7445582128693153030",
+      "publicAccessVerified": true,
+      "published": "2024-12-07T08:21:32+00:00",
+      "title": "Not everyone wakes up at the same time. #thetruegentile #iamgentile #gentile #sheep #lions",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7445582128693153030",
+      "handle": "thetruegentile",
+      "duration": 10,
+      "still": {
+        "src": "assets/film-stills/7445582128693153030.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A flock of sheep beneath an orange sunset.",
+        "sha256": "839a64bcdc24baed5be922ee20aff154647d740c76df36c1cab43f2b045a8448",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7445582128693153030",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7445582128693153030",
+          "originalSha256": "fe423abb90823cf443f48b0dc68f6500a6edc5d48ef249000826766272cba4de",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7443890056923860280",
+      "publicAccessVerified": true,
+      "published": "2024-12-02T18:55:22+00:00",
+      "title": "Not everything is as it appears. #thetruegentile #iamgentile #gentile #beyondage #beyondtime #beyondspace",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7443890056923860280",
+      "handle": "thetruegentile",
+      "duration": 12,
+      "still": {
+        "src": "assets/film-stills/7443890056923860280.webp",
+        "width": 720,
+        "height": 960,
+        "alt": "A couple hold a baby in a living room.",
+        "sha256": "cf459c7d5e137d4b30766245823bec06230351499c9307026a14e05f9526877b",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7443890056923860280",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7443890056923860280",
+          "originalSha256": "f794a7b9fdced5c55ae1d0dcc8a98a03ac3489abf6ba32376d128c7ec4353737",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7439677062878743863",
+      "publicAccessVerified": true,
+      "published": "2024-11-21T10:26:47+00:00",
+      "title": "Burnt Offerings! #thetruegentile #gentile #iamgentile #burnt #offerings",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7439677062878743863",
+      "handle": "thetruegentile",
+      "duration": 13,
+      "still": {
+        "src": "assets/film-stills/7439677062878743863.webp",
+        "width": 540,
+        "height": 960,
+        "alt": "Dark roasted food on a plate above the word Food.",
+        "sha256": "e01c89b34a3debbfe9fcaed033864022de7624c8baadf1e48748ac539a5cb058",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7439677062878743863",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7439677062878743863",
+          "originalSha256": "672979e2416523e120ea600185caebc29aeeadac542b9b142053b0f7262bc3fa",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7427240676028435717",
+      "publicAccessVerified": true,
+      "published": "2024-10-18T22:07:22+00:00",
+      "title": "Existence is Marvellous! #thetruegentile #gentile #existence",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7427240676028435717",
+      "handle": "thetruegentile",
+      "duration": 11,
+      "still": {
+        "src": "assets/film-stills/7427240676028435717.webp",
+        "width": 270,
+        "height": 480,
+        "alt": "A man walks through a busy city street above Life is like a game.",
+        "sha256": "6f46c2394327e72709fcc4b555a868a229f0dfd75ebbc98885d9cd24714a45be",
+        "source": {
+          "type": "public-video-preview-frame",
+          "videoId": "7427240676028435717",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7427240676028435717",
+          "originalSha256": "1432e4dbf3ea1e12afafa96f90127fdcdb6c32990a9ae0f628567f78cff65ac7",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "previewFrameIndex": 0
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7399919509198408966",
+      "title": "KFC's Secret Recipe! #truepilgrimm #pilgrim #kfcsecretrecipe",
+      "handle": "truepilgrimm",
+      "published": "2024-08-06T07:07:13+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7399919509198408966",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 28,
+      "still": {
+        "src": "assets/film-stills/7399919509198408966.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "A man in a white suit against a red-and-white restaurant backdrop.",
+        "sha256": "7bc96aea146e37fe1fd0a725f44fbe1df033e757252c8ef77722c2eff1c157ee",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7399919509198408966",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7399919509198408966",
+          "originalSha256": "e5138907a96072f89c80722db083d24f714673e7a28a0fb5d52e9a422f8e5c27",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7393603837271035142",
+      "title": "Meet Pablo - 04 - Role Playing! #truepilgrimm #pilgrim #meetpablo #roleplaying",
+      "handle": "truepilgrimm",
+      "published": "2024-07-20T06:39:05+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7393603837271035142",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 30,
+      "still": {
+        "src": "assets/film-stills/7393603837271035142.webp",
+        "width": 270,
+        "height": 480,
+        "alt": "A man in white pyjamas sits on a bed above Meet Pablo.",
+        "sha256": "b0fecb5240d499c2da046bda5fee81e36b1557b848af5fbdd37ff7b9849ec7dd",
+        "source": {
+          "type": "public-video-preview-frame",
+          "videoId": "7393603837271035142",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7393603837271035142",
+          "originalSha256": "ffac6e0784954976fab78c401c907b2a5ebbb024ddaa35c6cc6fdf0ccb7a5655",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "previewFrameIndex": 0
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7390027249791143173",
+      "title": "Facts or fun! #01 WWE #truepilgrimm #pilgrim #wwe",
+      "handle": "truepilgrimm",
+      "published": "2024-07-10T15:20:05+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7390027249791143173",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 14,
+      "still": {
+        "src": "assets/film-stills/7390027249791143173.webp",
+        "width": 480,
+        "height": 854,
+        "alt": "A news presenter in a suit appears in a brightly lit studio.",
+        "sha256": "0f0a34dddb6477e63b448000485be769f3f5f62cba3a9c8949278157425734fa",
+        "source": {
+          "type": "public-video-frame",
+          "videoId": "7390027249791143173",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7390027249791143173",
+          "originalSha256": "773d10a5745d5a21db431848ad56c5281c7b0e1b0694c346566ba0965cc27555",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "frameTimestampSeconds": 11.2
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7388128645660970245",
+      "title": "Hear no Evil!  #truepilgrimm #pilgrim #hearnoevil",
+      "handle": "truepilgrimm",
+      "published": "2024-07-05T12:32:31+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7388128645660970245",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 19,
+      "still": {
+        "src": "assets/film-stills/7388128645660970245.webp",
+        "width": 480,
+        "height": 270,
+        "alt": "A fiery explosion rises over a desert at sunset.",
+        "sha256": "0d30f5501a71e27cc260a85ba58c9cd48a46126733831ddca1845d1a06b53f68",
+        "source": {
+          "type": "public-video-preview-frame",
+          "videoId": "7388128645660970245",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7388128645660970245",
+          "originalSha256": "acc613cb503489afbd465bf432a41bf3f88e5e62288acea258b0be7cc0734d6e",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "previewFrameIndex": 0
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7386637164500602117",
+      "title": "The Fibre Job! #truepilgrimm #pilgrim #thefibrejob",
+      "handle": "truepilgrimm",
+      "published": "2024-07-01T12:04:49+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7386637164500602117",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 22,
+      "still": {
+        "src": "assets/film-stills/7386637164500602117.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "Three hooded figures with glowing eyes sit inside a van.",
+        "sha256": "dddab4271bd2614aed111136275b502685c2bc463ac83172836f322d64b0e512",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7386637164500602117",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7386637164500602117",
+          "originalSha256": "ba920262a04d76699eddac3066cae7a8bd636691f62d7a053a5d1a7a1ef5630c",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7385109460735380741",
+      "title": "Meet Pablo - 03 - Safe Words #truepilgrimm #pilgrim #safewords #meetpablo",
+      "handle": "truepilgrimm",
+      "published": "2024-06-27T09:16:37+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7385109460735380741",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 18,
+      "still": {
+        "src": "assets/film-stills/7385109460735380741.webp",
+        "width": 480,
+        "height": 270,
+        "alt": "Paramedics wheel a stretcher beside an ambulance.",
+        "sha256": "acf9d6003579c4a296201efa04fe30f32b3ba88baa15ec31cf1b946d0816326e",
+        "source": {
+          "type": "public-video-preview-frame",
+          "videoId": "7385109460735380741",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7385109460735380741",
+          "originalSha256": "774e939b0845c607987c61e299c11ce5c9148247db0b41e18d4e566742055497",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "previewFrameIndex": 0
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7383981322513042693",
+      "title": "Meet Emely - The Sax Addict #truepilgrimm #pilgrim #saxaddict",
+      "handle": "truepilgrimm",
+      "published": "2024-06-24T08:18:49+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7383981322513042693",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 35,
+      "still": {
+        "src": "assets/film-stills/7383981322513042693.webp",
+        "width": 540,
+        "height": 960,
+        "alt": "An illuminated entrance marked Addiction Rehab Center.",
+        "sha256": "058834489c0383e67fe490f8631b9c120428470acd2c025c87ec53a39529aa37",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7383981322513042693",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7383981322513042693",
+          "originalSha256": "f3777ab0559323b3c1d2ed2109df27fff5acc754af2338a87f62f0e4850f8fd4",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7381163518935977222",
+      "title": "Witchcraft! #truepilgrimm #pilgrim #witchcraft",
+      "handle": "truepilgrimm",
+      "published": "2024-06-16T18:04:16+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7381163518935977222",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 17,
+      "still": {
+        "src": "assets/film-stills/7381163518935977222.webp",
+        "width": 270,
+        "height": 480,
+        "alt": "Two children stand by a wall beneath Wait for it.",
+        "sha256": "8c38a7bb6b8a242e9bf8dfe6a599eb0c04461feb2d3a20e1423ad3791d3f01bd",
+        "source": {
+          "type": "public-video-preview-frame",
+          "videoId": "7381163518935977222",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7381163518935977222",
+          "originalSha256": "88a8681e580a731fb51cd0ab5abc887c313709df6f627643dbe037d8e2b6853d",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "previewFrameIndex": 0
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7378859110214749446",
+      "title": "Empty Promises 02 - Meet Pablo Series! #truepilgrimm #pilgrim #meetpablo  #emptypromises",
+      "handle": "truepilgrimm",
+      "published": "2024-06-10T13:01:59+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7378859110214749446",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 22,
+      "still": {
+        "src": "assets/film-stills/7378859110214749446.webp",
+        "width": 960,
+        "height": 540,
+        "alt": "A man kneels to propose to a woman in a busy shopping centre.",
+        "sha256": "058f167c588448254e7b3c3f04bb47e4b00f69be9921e7e0173f529bcc2ba379",
+        "source": {
+          "type": "public-video-selected-cover",
+          "videoId": "7378859110214749446",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7378859110214749446",
+          "originalSha256": "f0160d8d53f3a9c564d8d7c7e9c06ccb90868803a9acbfee53e9966d4c5e42ec",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00"
+        }
+      }
+    },
+    {
+      "videoVerified": true,
+      "id": "7377414645872676101",
+      "title": "Fashion Show by Metu! #truepilgrimm #pilgrim #fashion #models",
+      "handle": "truepilgrimm",
+      "published": "2024-06-06T15:36:44+00:00",
+      "url": "https://www.tiktok.com/@truepilgrimm/video/7377414645872676101",
+      "publicAccessVerified": true,
+      "dateVerified": true,
+      "owner": "truepilgrimm",
+      "ownerVerified": true,
+      "duration": 59,
+      "still": {
+        "src": "assets/film-stills/7377414645872676101.webp",
+        "width": 450,
+        "height": 270,
+        "alt": "A model walks a runway in a flowing patterned outfit.",
+        "sha256": "5054505ddc29e5d425b7381836fa1ebe1d37172a53911594611d2d3d2ce2d808",
+        "source": {
+          "type": "public-video-preview-frame",
+          "videoId": "7377414645872676101",
+          "url": "https://www.tiktok.com/@truepilgrimm/video/7377414645872676101",
+          "originalSha256": "8933685894b2b37a1a2edd54bc1e96d8f5d9b61be261394a446956bafb8eb99f",
+          "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+          "previewFrameIndex": 0
+        }
+      }
+    }
+  ],
+  "stillVerification": {
+    "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
+    "method": "All 40 images individually reviewed against public sources. Nine weak covers replaced: seven public preview frames and two decoded public-video frames. Local WebP copies retain the source composition. No signed URLs or credentials stored."
+  }
+}

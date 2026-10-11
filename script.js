@@ -4,171 +4,16 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initHeroVideo();
-  initParticles();
   initWaitlist();
   initReflections();
   initReleases();
   initHome();
   initAlbums();
   initLyrics();
-  initBrandEmblem();
   initAccordion();
   initContactModal();
   initHeroLogoParallax();
 });
-
-/* ==========================================================================
-   0. Hero Ambient Video
-   ========================================================================== */function initHeroVideo() {
-  const video = document.getElementById('heroVideo');
-  if (!video) return;
-
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) {
-    // Do not autoplay for reduced-motion visitors. Remove the source so the
-    // browser never fetches the 718 KB asset for them at all.
-    video.removeAttribute('autoplay');
-    video.removeAttribute('src');
-    video.load();
-    return;
-  }
-
-  // The first play() is often refused: it can run before the browser has
-  // decided the page may autoplay. The old code gave up after that one try,
-  // which left the loop frozen on its first frame. Keep asking instead, at
-  // each moment the browser is likely to say yes.
-  video.muted = true;
-  video.loop = true;
-
-  const tryPlay = () => {
-    if (!video.paused) return;
-    const attempt = video.play();
-    if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
-  };
-
-  tryPlay();
-  video.addEventListener('canplay', tryPlay);
-  window.addEventListener('load', tryPlay);
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') tryPlay();
-  });
-  ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach((type) => {
-    window.addEventListener(type, tryPlay, { once: true, passive: true });
-  });
-
-  // Belt and braces for browsers that ignore the loop attribute
-  video.addEventListener('ended', () => {
-    video.currentTime = 0;
-    tryPlay();
-  });
-}
-
-/* ==========================================================================
-   1. Ambient Starlight & Floating Embers Canvas
-   ========================================================================== */
-function initParticles() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let particles = [];
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-
-  // Generate particle mix: celestial stars + warm hearth embers
-  const count = window.innerWidth < 768 ? 45 : 90;
-  for (let i = 0; i < count; i++) {
-    const isEmber = Math.random() > 0.65;
-    particles.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: isEmber ? Math.random() * 2.2 + 0.8 : Math.random() * 1.5 + 0.5,
-      speedX: (Math.random() - 0.5) * (isEmber ? 0.3 : 0.1),
-      speedY: isEmber ? -(Math.random() * 0.4 + 0.15) : (Math.random() - 0.5) * 0.1,
-      alpha: Math.random() * 0.7 + 0.2,
-      maxAlpha: isEmber ? 0.85 : 0.75,
-      pulseSpeed: Math.random() * 0.02 + 0.005,
-      pulseDir: 1,
-      type: isEmber ? 'ember' : 'star',
-      color: isEmber ? 'rgba(245, 158, 11,' : 'rgba(254, 243, 199,'
-    });
-  }
-
-  // Mouse interaction
-  let mouse = { x: -1000, y: -1000, active: false };
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouse.active = true;
-  });
-  window.addEventListener('mouseleave', () => {
-    mouse.active = false;
-  });
-
-  function render() {
-    ctx.clearRect(0, 0, width, height);
-
-    for (let p of particles) {
-      // Pulse brightness
-      p.alpha += p.pulseSpeed * p.pulseDir;
-      if (p.alpha > p.maxAlpha) {
-        p.alpha = p.maxAlpha;
-        p.pulseDir = -1;
-      } else if (p.alpha < 0.15) {
-        p.alpha = 0.15;
-        p.pulseDir = 1;
-      }
-
-      if (!prefersReducedMotion) {
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        // Wrap around borders
-        if (p.y < 0) {
-          p.y = height;
-          p.x = Math.random() * width;
-        } else if (p.y > height) {
-          p.y = 0;
-        }
-
-        if (p.x < 0) p.x = width;
-        else if (p.x > width) p.x = 0;
-
-        // Gentle mouse avoidance
-        if (mouse.active) {
-          const dx = p.x - mouse.x;
-          const dy = p.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            p.x += (dx / dist) * 1.5;
-            p.y += (dy / dist) * 1.5;
-          }
-        }
-      }
-
-      // Draw particle with glow
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `${p.color} ${p.alpha})`;
-      ctx.shadowBlur = p.type === 'ember' ? 8 : 4;
-      ctx.shadowColor = p.type === 'ember' ? '#F59E0B' : '#FEF3C7';
-      ctx.fill();
-    }
-
-    requestAnimationFrame(render);
-  }
-
-  render();
-}
 
 /* ==========================================================================
    3. Founding Wayfarers Waitlist Form
@@ -656,31 +501,4 @@ function initReleases() {
         'All singles are available on <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" ' +
         'target="_blank" rel="noopener noreferrer">Apple Music</a>.</p>';
     });
-}
-/* ==========================================================================
-   12. Header Emblem - spins, and shows the next image each time round
-   ========================================================================== */
-function initBrandEmblem() {
-  const emblem = document.querySelector('.brand-emblem');
-  if (!emblem) return;
-
-  const faces = emblem.querySelectorAll('.brand-face');
-  if (faces.length < 2) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  let current = 0;
-
-  emblem.addEventListener('animationend', () => emblem.classList.remove('is-spinning'));
-
-  setInterval(() => {
-    if (document.hidden) return;
-    emblem.classList.add('is-spinning');
-    // The spin is one second and linear, so at a quarter of the way round the
-    // emblem is edge-on: swap the image there, where the change cannot be seen.
-    setTimeout(() => {
-      faces[current].classList.remove('is-active');
-      current = (current + 1) % faces.length;
-      faces[current].classList.add('is-active');
-    }, 250);
-  }, 4000);
 }

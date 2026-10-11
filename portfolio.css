@@ -1,0 +1,133 @@
+/* Shared portfolio shell, scoped to leave the legacy embed edition intact. */
+@font-face{font-family:'Cinzel';src:url('assets/fonts/cinzel.woff2');font-weight:400 900;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant.woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/jakarta.woff2');font-weight:200 800;font-display:swap}
+.portfolio-page{background:#070a12;color:#efede8;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.55}
+.portfolio-page h1,.portfolio-page h2,.portfolio-page h3{font-family:'Cormorant Garamond',Georgia,serif;line-height:1.08;letter-spacing:0;color:#ffe5ab}
+.portfolio-page a{color:inherit}
+.portfolio-page [hidden]{display:none!important}
+.legacy-route{display:none;padding:16px;background:#121b29;text-align:center}
+.legacy-route:target{display:block}
+.portfolio-page button,.portfolio-page a{ -webkit-tap-highlight-color:transparent }
+.portfolio-wrap{width:min(1200px,calc(100% - 96px));margin-inline:auto}
+.portfolio-header{position:relative;z-index:10;background:#070a12}
+.header-inner{display:flex;align-items:center;justify-content:space-between;min-height:96px;gap:24px}
+.nest-brand{display:flex;gap:12px;align-items:center;text-decoration:none;white-space:nowrap}
+.portfolio-header .brand-emblem{width:48px;height:48px}
+.nest-brand img{border-radius:50%;border:1px solid #eeb34d;object-fit:contain;background:#fff}
+.nest-brand > span:not(.brand-emblem){font:600 27px 'Cinzel',Georgia,serif;color:#ffe9b6;letter-spacing:.02em;text-transform:uppercase}
+.portfolio-nav,.portfolio-footer nav{display:flex;align-items:center;gap:32px}
+.portfolio-nav a,.portfolio-footer nav a{text-decoration:none;min-height:48px;display:flex;align-items:center;font-size:16px}
+.portfolio-nav a[aria-current]{color:#ffc65e;border-bottom:2px solid #eeb34d}
+.portfolio-nav a:hover,.portfolio-footer nav a:hover{color:#ffc65e}
+.menu-toggle{display:none;color:#ffe9b6;background:none;border:1px solid #766442;border-radius:8px;width:48px;height:48px;align-items:center;justify-content:center;font:600 16px 'Plus Jakarta Sans',sans-serif}
+.menu-toggle svg,.gold-link svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.skip-link{position:fixed;left:16px;top:-80px;padding:12px 20px;background:#ffd27b;color:#070a12!important;z-index:1000}
+.skip-link:focus{top:12px}
+.portfolio-page :focus-visible{outline:3px solid #ffd27b;outline-offset:5px}
+.portal-hero{position:relative;padding-top:46px;text-align:center}
+.portal-hero:before{content:none}
+.portal-hero>*{position:relative}
+.portal-hero h1{font-family:'Cinzel',Georgia,serif;font-size:clamp(40px,6.7vw,88px);font-weight:600;letter-spacing:-.02em;text-transform:uppercase;margin:0;background:linear-gradient(100deg,#fff0c7 15%,#f4b448 90%);background-clip:text;-webkit-text-fill-color:transparent}
+.portal-subtitle{font-size:clamp(19px,2.7vw,30px);margin:12px 0 30px}
+.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.path-panel{display:flex;flex-direction:column;align-items:center;border:1px solid #dda848;border-radius:12px;padding:26px 24px 30px;background:rgba(5,10,17,.85);min-width:0}
+.path-panel h2{font-size:clamp(36px,5.5vw,66px);font-weight:600;margin:0 0 3px}
+.path-panel p{font-size:20px;margin:0 0 20px}
+.path-art{display:block;border-radius:8px;object-fit:cover;height:330px;width:100%;margin:auto 0 26px;border:1px solid #3b3325}
+.music-art{width:330px;max-width:100%;aspect-ratio:1}
+.cinema-art{object-position:65% center}
+.gold-link{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:50px;padding:10px 28px;min-width:160px;border-radius:999px;background:linear-gradient(#ffcf70,#dda037);color:#0a0b0d!important;font:600 17px/1.4 'Plus Jakarta Sans',sans-serif;text-decoration:none;border:1px solid #ffcc65;transition:filter .15s}
+.gold-link:hover{filter:brightness(1.1)}
+.path-panel>.gold-link{width:76%;font-size:20px;min-height:54px}
+.latest-work{padding-top:38px}
+.ruled-title{display:flex;align-items:center;gap:22px;font-size:48px;font-weight:600;margin:0 0 18px}
+.ruled-title:after{content:'';height:1px;background:#8f713b;flex:1}
+.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.work-preview{display:grid;grid-template-columns:40% 1fr;gap:20px;padding:16px;border:1px solid #273040;border-radius:12px;background:#0a111b;align-items:center;min-width:0}
+.work-preview>img{width:100%;height:180px;object-fit:cover;border-radius:6px}
+.work-preview h3{font-size:28px;font-weight:600;margin:8px 0 12px}
+.work-preview p{margin:0 0 16px;font-size:16px;line-height:1.5}
+.work-preview .work-label{color:#eeb34d;font-size:16px;letter-spacing:0;margin:0;text-transform:uppercase}
+.work-preview .gold-link{min-width:0;font-size:16px;padding-inline:20px}
+.portal-about{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:center;margin-top:36px}
+.portal-about>img{width:100%;height:290px;object-fit:cover;mask-image:linear-gradient(90deg,#000 70%,transparent 100%)}
+.portal-about h2{font-size:48px;font-weight:600;margin:0 0 18px}
+.portal-about p{font-size:24px;line-height:1.4;margin:0 0 16px}
+.portal-about .about-detail{font-size:16px;color:#bfc3cd;max-width:48ch}
+.portfolio-footer{border-top:1px solid #8c6e39;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0 30px;margin-top:24px}
+.portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:23px}
+.film-intro{padding-top:48px;padding-bottom:30px;text-align:center}
+.film-intro h1{font-size:clamp(48px,6vw,76px);margin:0 0 16px}
+.film-intro p{max-width:64ch;margin:0 auto 20px;font-size:18px}
+.account-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 28px}
+.account-links a{min-height:48px;display:flex;align-items:center;text-underline-offset:5px;color:#f2c470}
+.film-controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.film-controls button{font:600 16px/1.4 'Plus Jakarta Sans',sans-serif;min-height:48px;padding:10px 22px;border-radius:999px;color:#eedfc1;border:1px solid #9d7b3e;background:#0b111c;cursor:pointer}
+.film-controls button[aria-pressed=true]{background:#edb655;color:#080c13}
+.film-count{margin:0 0 24px;color:#c6cbd4;font-size:16px}
+.film-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.film-card{background:#0b111c;border:1px solid #30384a;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.film-card[hidden]{display:none}
+.film-still{position:relative;isolation:isolate;aspect-ratio:16/9;overflow:hidden;border:1px solid #3c3c3b;border-radius:8px;background:radial-gradient(ellipse at center,#282334,#090e17);flex-shrink:0}
+.film-still-backdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(18px) brightness(.55);transform:scale(1.15);pointer-events:none}
+.film-still-image{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:contain}
+.film-still img[hidden]{display:none}
+.film-still-fallback{display:none;position:absolute;inset:0;place-content:center;text-align:center;color:#bfc6d3;font-size:15px;line-height:1.6}
+.film-still:has(.film-still-image[hidden]) .film-still-backdrop{display:none}
+.film-still:has(.film-still-image[hidden]) .film-still-fallback{display:grid}
+.film-card .film-author{color:#e9b95e;margin:0;font-size:16px}
+.film-card h2{font-size:30px;margin:0;overflow-wrap:anywhere;line-height:1.2}
+.film-card time{font-size:16px;color:#bfc6d3}
+.film-card .film-caption{font-size:16px;color:#bfc6d3;overflow-wrap:anywhere;margin:0}
+.film-card .gold-link{margin-top:auto;align-self:flex-start;font-size:16px;padding-inline:22px}
+.film-note{font-size:16px;color:#bfc6d3;margin:28px 0 40px;max-width:80ch}
+.music-page .home-hero{padding-top:48px}
+.music-page .home-hero-copy{position:relative}
+.music-page .home-hero-copy:after{content:none}
+.motion-toggle{font:500 16px/1.4 'Plus Jakarta Sans',sans-serif;min-height:48px;color:#f3d99c;border:1px solid #8d7547;background:#070a12;border-radius:8px;padding:10px 16px;margin-top:20px}
+@media(min-width:1264px){.portal-hero:before{left:calc((1200px - 100vw)/2);right:calc((1200px - 100vw)/2)}}
+@media(max-width:1263px){.portal-hero:before{left:-48px;right:-48px}}
+@media(max-width:900px){.nest-brand > span:not(.brand-emblem){font-size:22px}.portfolio-nav{gap:20px}.path-panel{padding:24px 18px}.path-panel h2{font-size:42px}.path-panel p{font-size:17px}.path-art{height:280px}.music-art{width:280px}.work-preview{grid-template-columns:1fr}.work-preview>img{height:210px}.work-preview h3{font-size:30px}.portal-about h2{font-size:38px}.portal-about p{font-size:20px}.portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:19px}.portfolio-footer nav{gap:18px}.film-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:601px) and (max-width:900px){.path-panel>.gold-link{width:100%;font-size:18px;padding-inline:20px;gap:12px;white-space:nowrap}}
+@media(max-width:600px){
+ .portfolio-wrap{width:calc(100% - 32px)}.header-inner{min-height:76px;flex-wrap:wrap;gap:0}.nest-brand{gap:10px}.nest-brand img{width:38px;height:38px}.nest-brand > span:not(.brand-emblem){font-size:20px}.menu-toggle:not([hidden]){display:flex}.portfolio-nav{display:flex;flex-basis:100%;justify-content:space-between;gap:12px;padding:0 0 10px}.portfolio-nav a{font-size:16px}.menu-toggle:not([hidden])~.portfolio-nav:not(.is-open){display:none}
+ .portal-hero{padding-top:28px}.portal-hero:before{left:-16px;right:-16px;height:320px}.portal-hero h1{font-size:32px;white-space:nowrap}.portal-subtitle{font-size:19px;margin:10px 0 26px}.path-grid{grid-template-columns:1fr;gap:16px}.path-panel{position:relative;display:grid;grid-template-columns:1fr 38%;grid-template-rows:auto auto;text-align:left;padding:18px;gap:14px 10px;min-height:186px;overflow:hidden;align-items:start}.path-copy{grid-column:1;grid-row:1}.path-panel h2{font-size:32px;margin:0 0 6px;white-space:nowrap}.path-panel p{font-size:16px;line-height:1.4;margin:0;max-width:18ch}.path-art,.music-art{grid-column:2;grid-row:1/3;width:100%;height:146px;margin:0;object-fit:cover}.path-panel>.gold-link{grid-column:1;grid-row:2;width:max-content;max-width:100%;min-width:0;font-size:16px;min-height:50px;padding:10px 14px;gap:10px;align-self:end}.gold-link svg{width:18px;height:18px;flex-shrink:0}
+ .latest-work{padding-top:30px}.ruled-title{font-size:36px;margin-bottom:18px;gap:16px}.work-grid{grid-template-columns:1fr;gap:16px}.work-preview{grid-template-columns:35% 1fr;padding:12px;gap:14px}.work-preview>img{height:190px}.work-preview h3{font-size:27px}.work-preview .work-label{font-size:16px;letter-spacing:.03em}.work-preview p{margin-bottom:12px}.work-preview .gold-link{min-height:48px;padding-inline:16px;gap:10px}
+ .portal-about{grid-template-columns:1fr;gap:12px;margin-top:26px;text-align:center}.portal-about>img{height:220px;mask-image:linear-gradient(#000 70%,transparent 100%)}.portal-about h2{font-size:36px;margin-bottom:12px}.portal-about p{font-size:21px}.portal-about .about-detail{font-size:16px}.portfolio-footer{flex-direction:column;gap:12px;margin-top:28px;padding:22px 0}.portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:21px}.portfolio-footer nav{justify-content:space-between;width:100%;gap:14px}.portfolio-footer nav a{font-size:16px}
+ .film-intro{padding-top:32px}.film-intro p{font-size:16px}.film-grid{grid-template-columns:1fr}.film-card{padding:22px}.film-controls{gap:8px}.film-controls button{padding-inline:16px}.music-page .home-hero{padding-top:28px}
+}
+@media(prefers-reduced-motion:reduce){.portfolio-page *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+@media(max-width:600px){.portfolio-header .brand-emblem{width:38px;height:38px}}
+
+/* Fire sits behind the Home portal; sparks sit behind all page content. */
+.portfolio-page{position:relative;isolation:isolate}
+.portfolio-page>main,.portfolio-page>.portfolio-footer{position:relative;z-index:2}
+#ambientSparks{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.ambient-fire{position:absolute;left:0;width:100%;top:96px;height:900px;z-index:0;overflow:hidden;pointer-events:none}
+.ambient-fire video{display:block;width:100%;height:100%;object-fit:cover;object-position:center bottom;opacity:.95}
+.ambient-fire:after{content:'';position:absolute;inset:0;background:linear-gradient(#070a1230,transparent 24%,transparent 88%,#070a12)}
+.portfolio-page[data-ambient=fire] .portal-hero{padding-bottom:150px}
+.ambient-controls{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;align-items:flex-end;flex-direction:column;gap:8px;max-width:calc(100% - 36px);pointer-events:none}
+.ambient-controls .motion-toggle{pointer-events:auto;margin:0;min-height:48px;font-size:14px;padding:10px 16px;background:#070a12ed;box-shadow:0 3px 20px #0006;cursor:pointer}
+.ambient-controls .motion-toggle:disabled{cursor:default;color:#bfc6d3}
+.ambient-status{font-size:13px;max-width:280px;color:#e8d4ae;background:#070a12ed;border-radius:6px;padding:8px 12px}
+.ambient-status:empty{display:none}
+@media(min-width:901px){
+ .portal-hero .path-art{height:clamp(180px,25svh,330px)}
+ .portal-hero .music-art{width:clamp(180px,25svh,330px)}
+}
+@media(min-width:901px) and (max-height:800px){
+ .portfolio-page[data-ambient=fire] .portal-hero{padding-top:28px;padding-bottom:110px}
+ .portal-hero h1{font-size:clamp(48px,5.5vw,68px)}
+ .portal-subtitle{font-size:24px;margin:8px 0 24px}
+ .portal-hero .path-panel{padding:20px}
+ .portal-hero .path-panel h2{font-size:44px}
+ .portal-hero .path-panel p{font-size:17px;margin-bottom:16px}
+ .portal-hero .path-art{height:180px;margin-bottom:18px}
+ .portal-hero .music-art{width:180px}
+ .portal-hero .path-panel>.gold-link{min-height:50px;font-size:18px}
+}
+@media(max-width:600px){.ambient-fire{top:76px}.ambient-controls{right:12px;bottom:12px}.ambient-controls .motion-toggle{font-size:13px;padding-inline:12px}}
+@media(prefers-reduced-motion:reduce){#ambientSparks,.ambient-fire video{display:none}}

@@ -3,108 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music &mdash; Pilgrim's Nest | AI music for the awakened mind</title>
-  <meta name="description" content="Pilgrim creates AI music for the awakened mind. Stream the singles on Spotify, Apple Music, YouTube and more.">
+  <title>Music — Pilgrim’s Nest</title>
+
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Pilgrim makes AI music for the awakened mind: the album I AM and a run of singles on identity, consciousness and the definitions that shape our experience. Listen on Apple Music, Spotify and YouTube.">
+  <meta name="keywords" content="Pilgrim, Pilgrim's Nest, pilgrimsnest.org, AI music, singles, Tears in the Rain, awakened mind">
+  <meta name="author" content="Pilgrim">
+  <meta name="theme-color" content="#070A12">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="music.musician">
+  <meta property="og:url" content="https://pilgrimsnest.org/music.html">
+  <meta property="og:title" content="Pilgrim — AI Music for the Awakened Mind">
+  <meta property="og:description" content="Singles on identity, consciousness and the definitions that shape our experience. Listen on Apple Music.">
+  <meta property="og:image" content="https://pilgrimsnest.org/logo.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://pilgrimsnest.org/music.html">
+  <meta property="twitter:title" content="Pilgrim — AI Music for the Awakened Mind">
+  <meta property="twitter:description" content="Singles on identity, consciousness and the definitions that shape our experience. Listen on Apple Music.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cinzel+Decorative:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="apple-touch-icon" href="logo-512.png">
+
+  <!-- Google Fonts Preconnect -->
+
+
+
+
+  <!-- Main Stylesheet -->
+  <link rel="canonical" href="https://pilgrimsnest.org/music.html"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="portfolio.css"><script src="portfolio.js" defer></script>
 </head>
-<body>
-  <canvas id="starCanvas"></canvas>
+<body class="portfolio-page music-page" data-ambient="sparks"><canvas id="ambientSparks" aria-hidden="true"></canvas><div class="ambient-controls"><button id="ambientToggle" class="motion-toggle" type="button" aria-pressed="false" hidden>Play background</button><span id="ambientStatus" class="ambient-status" role="status"></span></div>
 
-  <!-- Header (same as index.html) -->
-  <header class="site-header">
-    <div class="container">
-      <div class="nav-wrap">
-        <a href="index.html" class="brand-link" aria-label="Pilgrim's Nest Home">
-          <span class="brand-emblem">
-            <img src="logo-512.png" alt="Pilgrim's Nest logo" class="brand-icon-img brand-face is-active">
-            <img src="assets/logo-alt-1.png" alt="" class="brand-icon-img brand-face">
-            <img src="assets/logo-alt-2.png" alt="" class="brand-icon-img brand-face">
-          </span>
-          <div>
-            <span class="brand-title">PILGRIM'S NEST</span>
-            <span class="brand-tagline">These are indeed exciting times</span>
+  <!-- Ambient Starlight & Ember Canvas -->
+
+
+  <!-- Navigation Header -->
+  <a class="skip-link" href="#main">Skip to content</a><header class="portfolio-header"><div class="portfolio-wrap header-inner"><a class="nest-brand" href="index.html"><span class="brand-emblem" aria-hidden="true"><img class="brand-face is-active" src="logo-512.png" width="48" height="48" alt=""><img class="brand-face" src="assets/logo-alt-1.png" width="48" height="48" alt=""><img class="brand-face" src="assets/logo-alt-2.png" width="48" height="48" alt=""></span><span>Pilgrim’s Nest</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" hidden aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><nav id="primary-nav" class="portfolio-nav" aria-label="Primary"><a href="index.html">Home</a><a href="music.html" aria-current="page">Music</a><a href="films.html">Films</a><a href="index.html#about">About</a></nav></div></header>
+
+  <main id="main">
+    <!-- Hero: the artist, and the latest single -->
+    <section class="hero home-hero" id="latest">
+
+      <div class="container home-hero-grid">
+        <div class="home-hero-copy">
+          <h1 class="artist-name"><span class="gradient-text">Pilgrim</span></h1>
+          <p class="artist-tagline">AI music for the awakened mind</p>
+          <p class="artist-lede">
+            Songs exploring identity, consciousness and the definitions shaping our
+            experience &mdash; written from the ache of it, not around it.
+          </p>
+          <div class="home-hero-actions">
+            <a class="btn btn-primary" href="https://music.apple.com/bw/artist/pilgrim/1857562164"
+               target="_blank" rel="noopener noreferrer">Listen on Apple Music</a>
+            <a class="btn btn-secondary" href="https://open.spotify.com/artist/38LF5CnSlrsLlRaau5VZmc"
+               target="_blank" rel="noopener noreferrer" aria-label="Pilgrim on Spotify">Spotify</a>
+            <a class="btn btn-secondary" href="https://www.youtube.com/channel/UCEpubs9WKih7WW-9HYVdqyw"
+               target="_blank" rel="noopener noreferrer" aria-label="Pilgrim on YouTube">YouTube</a>
           </div>
-        </a>
-        <nav class="nav-links" aria-label="Primary Navigation">
-          <a href="index.html#latest">Latest</a>
-          <a href="index.html#singles">Singles</a>
-          <a href="index.html#about">About</a>
-          <a href="music.html" aria-current="page">Catalogue</a>
-        </nav>
-        <div class="nav-actions">
-          <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" class="btn btn-secondary btn-compact"
-             target="_blank" rel="noopener noreferrer">Listen<span class="nav-cta-long">&nbsp;on Apple Music</span></a>
         </div>
-      </div>
-    </div>
-  </header>
 
-  <main>
-    <!-- Music Hero -->
-    <section class="music-hero">
-      <div class="container">
-        <span class="section-tag">The Music</span>
-        <h1 class="music-title">AI Music for the <span class="gradient-text">Awakened Mind</span></h1>
-        <p class="music-lede">
-          Singles exploring identity, consciousness and the definitions shaping our
-          experience &mdash; written from the ache of it, not around it.
-        </p>
-        <div class="platform-links">
-          <a class="platform-btn" href="https://music.apple.com/bw/artist/pilgrim/1857562164" target="_blank" rel="noopener noreferrer">
-            <span class="platform-name">Apple Music</span>
-          </a>
-          <a class="platform-btn" href="https://open.spotify.com/artist/38LF5CnSlrsLlRaau5VZmc" target="_blank" rel="noopener noreferrer">
-            <span class="platform-name">Spotify</span>
-          </a>
-          <a class="platform-btn" href="https://www.youtube.com/channel/UCEpubs9WKih7WW-9HYVdqyw" target="_blank" rel="noopener noreferrer">
-            <span class="platform-name">YouTube</span>
-          </a>
+        <!-- Latest single. The markup below is the no-JavaScript fallback;
+             script.js replaces it with the newest entry in releases.json. -->
+        <div class="home-hero-media">
+          <article class="feature" id="featuredRelease" data-release-id="6820991591">
+            <a class="feature-cover-link" href="https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591"
+               target="_blank" rel="noopener noreferrer" aria-label="Listen to I AM Talking to you on Apple Music">
+              <img class="feature-cover" width="600" height="600" alt="I AM Talking to you cover art"
+                   src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/97/80/51978078-959c-28f0-17bd-a5f8a0359e2f/artwork.jpg/600x600bb.jpg">
+            </a>
+            <div class="feature-body">
+              <div class="feature-meta">
+                <span class="feature-label">Latest single</span>
+                <h2 class="feature-title">I AM Talking to you</h2>
+                <p class="feature-date">October 2026</p>
+              </div>
+              <div class="release-links">
+                <a class="release-link" href="https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591"
+                   target="_blank" rel="noopener noreferrer" aria-label="I AM Talking to you on Apple Music">Apple Music</a>
+                <button type="button" class="release-link lyrics-btn" data-lyrics="lyrics/i-am-talking-to-you.txt"
+                        data-lyrics-title="I AM Talking to you">Lyrics</button>
+              </div>
+            </div>
+          </article>
         </div>
-        <p class="platform-note" id="platformNote">
-          The album and every single are on Apple Music, Spotify and YouTube.
-        </p>
       </div>
     </section>
 
-    <!-- Album, populated from releases.json -->
+    <!-- A lyric, in the song's own words -->
+    <section class="lyric-band" aria-label="A lyric from Tears in the Rain">
+      <div class="container">
+        <figure class="lyric-quote">
+          <blockquote class="lyric-lines">
+            <span>The peace is just a quiet storm</span>
+            <span>The cold is where I feel the warm</span>
+          </blockquote>
+          <figcaption class="lyric-source">From <cite>Tears in the Rain</cite></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- The album, rendered from releases.json -->
     <section class="section" id="album">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">The Album</span>
           <h2 class="section-title">Eighteen Tracks, Start to Finish</h2>
         </div>
+
         <div id="albumList">
           <p class="release-loading">Loading the album&hellip;</p>
         </div>
+        <noscript>
+          <p class="release-error">
+            <cite>I AM</cite> is on
+            <a href="https://music.apple.com/bw/album/i-am/1857644050">Apple Music</a>.
+          </p>
+        </noscript>
       </div>
     </section>
 
-    <!-- Track list, populated from releases.json -->
-    <section class="section" id="releases">
+    <!-- Earlier singles, rendered from releases.json -->
+    <section class="section" id="singles">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Singles</span>
-          <h2 class="section-title">The Released Work</h2>
+          <span class="section-tag">After the Album</span>
+          <h2 class="section-title">The Singles</h2>
         </div>
 
-        <div class="release-list" id="releaseList">
-          <!-- Rendered by script.js from releases.json -->
-          <p class="release-loading">Loading releases&hellip;</p>
+        <div class="singles-grid" id="singlesGrid">
+          <p class="release-loading">Loading the singles&hellip;</p>
         </div>
+        <noscript>
+          <p class="release-error">
+            Every single is on
+            <a href="https://music.apple.com/bw/artist/pilgrim/1857562164">Apple Music</a>.
+          </p>
+        </noscript>
+
+
       </div>
     </section>
 
-    <!-- About (same copy as index.html) -->
+    <!-- About -->
     <section class="section" id="about">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">About Pilgrim's Nest</span>
           <h2 class="section-title">Where Creative Expression and Spiritual Exploration Meet</h2>
         </div>
+
         <div class="about-lede">
           <p>
             Pilgrim's Nest brings together laughter with insight, visuals with meaning, and
@@ -112,16 +164,34 @@
             consciousness, and the many ways we experience life.
           </p>
         </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <span class="about-label">Goal</span>
+            <p>
+              To create and share work that entertains, sparks curiosity, and makes spiritual
+              ideas accessible. Pilgrim's Nest invites people to notice the definitions shaping
+              their experience, and to express themselves more authentically.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <span class="about-label">Vision</span>
+            <p>
+              A world where people remember themselves as conscious creators, recognise the role
+              their definitions play in their experience, and live as their authentic selves
+              unapologetically.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer-bottom">
-    <div class="container">
-      <div>&copy; 2026 <strong>pilgrimsnest.org</strong>. All rights reserved.</div>
-    </div>
-  </footer>
+  <!-- Site Footer -->
+  <footer class="portfolio-footer portfolio-wrap"><a class="nest-brand" href="index.html"><img src="logo-512.png" width="40" height="40" alt=""><span>Pilgrim’s Nest</span></a><nav aria-label="Footer"><a href="index.html">Home</a><a href="music.html">Music</a><a href="films.html">Films</a><a href="index.html#about">About</a></nav></footer>
 
+  <!-- Interactive JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
