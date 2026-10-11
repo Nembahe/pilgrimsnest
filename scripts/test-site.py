@@ -33,6 +33,36 @@ class SiteContract(unittest.TestCase):
         for identity in ['featuredRelease','albumList','singlesGrid','about']:
             self.assertIn('id="'+identity+'"',music)
         self.assertTrue((root/'lyrics/i-am-talking-to-you.txt').is_file())
+    def test_album_youtube_links_and_order(self):
+        music=(root/'music.html').read_text(encoding='utf-8')
+        self.assertLess(music.index('id="singles"'),music.index('id="album"'))
+        self.assertNotIn('After the Album',music)
+        album=json.loads((root/'releases.json').read_text(encoding='utf-8'))['albums'][0]
+        expected_ids='Tq-izfJzmK4 UPWuQ7P5wU8 S4wsAvwGNDg cF-J2KUMsoE yec8Fdag9XI ym9wqnlgNnU 0IlOX-MNEX8 pWLgWU0JzNY BxkBe4PvNpk 2L-Je9qW9Is 21WqOnmgfp4 3VdUy3uIBNQ sYBwBfOYYTM o-cQqwaRb94 s8cCNQxf3P0 Vb2MV8jkBD0 KFFcH1i5o5Q uLGbjexIarc'.split()
+        from urllib.parse import urlparse, parse_qs
+        self.assertEqual([parse_qs(urlparse(t['youtubeUrl']).query)['v'][0] for t in album['tracks']],expected_ids)
+        script=r"""
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict');
+const catalogue=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));const wrap={innerHTML:''};
+const context={URL,console,document:{addEventListener(){},getElementById:id=>id==='albumList'?wrap:null},fetch:async()=>({ok:true,json:async()=>catalogue})};
+vm.createContext(context);vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);
+(async()=>{
+ context.initAlbums();await new Promise(resolve=>setImmediate(resolve));
+ assert.equal((wrap.innerHTML.match(/class="album-track-title album-track-link"/g)||[]).length,18);
+ for(const track of catalogue.albums[0].tracks){
+  const html=context.albumTrackTitle(track);assert.ok(html.includes(track.youtubeUrl.replace(/&/g,'&amp;')));
+  assert.ok(html.includes('target="_blank" rel="noopener noreferrer"'));assert.ok(html.includes('on YouTube (opens in a new tab)'));
+ }
+ for(const youtubeUrl of [undefined,'javascript:alert(1)','https://evil.example/watch?v=Tq-izfJzmK4','https://www.youtube.com/watch?v=bad','https://user:pass@www.youtube.com/watch?v=Tq-izfJzmK4']){
+  const html=context.albumTrackTitle({title:'<unsafe> & "title"',youtubeUrl});assert.ok(!html.includes('<a '));assert.ok(html.includes('&lt;unsafe&gt; &amp; &quot;title&quot;'));
+ }
+ context.fetchCatalogue=()=>Promise.reject(new Error('controlled fetch failure'));context.initAlbums();await new Promise(resolve=>setImmediate(resolve));
+ assert.ok(wrap.innerHTML.includes('https://www.youtube.com/watch?v=Tq-izfJzmK4&amp;list='));
+})().catch(e=>{console.error(e);process.exitCode=1});
+"""
+        result=subprocess.run(['node','-e',script,str(root/'script.js'),str(root/'releases.json')],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
     def test_local_still_mapping(self):
         videos=json.loads((root/'films.json').read_text(encoding='utf-8'))['videos']
         tags=Links((root/'films.html').read_text(encoding='utf-8')).tags

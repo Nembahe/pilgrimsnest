@@ -2167,6 +2167,30 @@ section[id] {
   color: var(--text-muted);
 }
 
+.album-track-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-decoration-color: var(--gold-primary);
+  text-underline-offset: 4px;
+}
+
+.album-track-link:hover {
+  color: var(--gold-primary);
+}
+
+.album-track-link:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.album-track-cue {
+  color: var(--gold-primary);
+  margin-left: 0.35em;
+}
+
 @media (max-width: 1000px) {
   .album {
     grid-template-columns: minmax(0, 1fr);
