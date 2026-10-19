@@ -265,22 +265,31 @@ function formatReleaseDate(iso) {
   return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
 }
 
+// Every value from releases.json goes through this before it reaches
+// innerHTML, so a stray quote or angle bracket in a title can never
+// break the markup or inject an element.
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[char]);
+}
+
 // releases.json is the single source of truth for both pages. Newest first,
 // so the order never depends on where an entry was pasted into the file.
 // One link per platform a release is actually on. A missing URL in
 // releases.json simply produces no link, so nothing dead is ever shipped.
 function platformLinks(rel, cls) {
-  const esc = (u) => String(u).replace(/&/g, '&amp;');
+  const title = escapeHtml(rel.title);
   return [['appleUrl', 'Apple Music'], ['spotifyUrl', 'Spotify'], ['youtubeUrl', 'YouTube']]
     .filter(([key]) => rel[key])
-    .map(([key, label]) => `<a class="${cls}" href="${esc(rel[key])}" target="_blank" rel="noopener noreferrer" aria-label="${rel.title} on ${label}">${label}</a>`)
+    .map(([key, label]) => `<a class="${cls}" href="${escapeHtml(rel[key])}" target="_blank" rel="noopener noreferrer" aria-label="${title} on ${label}">${label}</a>`)
     .join('') + lyricsButton(rel);
 }
 
 // Lyrics exist only for releases that name a text file in releases.json.
 function lyricsButton(rel) {
   if (!rel.lyrics) return '';
-  return `<button type="button" class="release-link lyrics-btn" data-lyrics="${rel.lyrics}" data-lyrics-title="${rel.title}">Lyrics</button>`;
+  return `<button type="button" class="release-link lyrics-btn" data-lyrics="${escapeHtml(rel.lyrics)}" data-lyrics-title="${escapeHtml(rel.title)}">Lyrics</button>`;
 }
 
 // A release that is not on Apple Music yet still needs its cover art on screen,
@@ -288,12 +297,12 @@ function lyricsButton(rel) {
 // this, a release missing appleUrl renders href="undefined" and ships a dead
 // link on the most prominent card on the page.
 function coverImage(rel, cls, width, height, lazy) {
-  const esc = (u) => String(u).replace(/&/g, '&amp;');
+  const title = escapeHtml(rel.title);
   const img = `<img class="${cls}"${lazy ? ' loading="lazy" decoding="async"' : ''}` +
-    ` width="${width}" height="${height}" src="${esc(rel.cover)}" alt="${rel.title} cover art">`;
+    ` width="${width}" height="${height}" src="${escapeHtml(rel.cover)}" alt="${title} cover art">`;
   if (!rel.appleUrl) return img;
-  return `<a class="${cls}-link" href="${esc(rel.appleUrl)}" target="_blank" rel="noopener noreferrer"` +
-    ` aria-label="Listen to ${rel.title} on Apple Music">${img}</a>`;
+  return `<a class="${cls}-link" href="${escapeHtml(rel.appleUrl)}" target="_blank" rel="noopener noreferrer"` +
+    ` aria-label="Listen to ${title} on Apple Music">${img}</a>`;
 }
 
 /* ==========================================================================
@@ -379,10 +388,7 @@ function formatTrackTime(seconds) {
 }
 
 function albumTrackTitle(track) {
-  const escape = (value) => String(value).replace(/[&<>"']/g, (char) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  })[char]);
-  const title = escape(track.title);
+  const title = escapeHtml(track.title);
   let url;
   try {
     url = new URL(track.youtubeUrl);
@@ -394,7 +400,7 @@ function albumTrackTitle(track) {
       !/^[\w-]{11}$/.test(url.searchParams.get('v') || '')) {
     return `<span class="album-track-title">${title}</span>`;
   }
-  return `<a class="album-track-title album-track-link" href="${escape(url.href)}"
+  return `<a class="album-track-title album-track-link" href="${escapeHtml(url.href)}"
     target="_blank" rel="noopener noreferrer" aria-label="Listen to ${title} on YouTube (opens in a new tab)">${title}<span class="album-track-cue" aria-hidden="true"> ↗</span></a>`;
 }
 
@@ -414,13 +420,13 @@ function initAlbums() {
         return `
           <article class="album">
             <div class="album-side">
-              <a class="feature-cover-link" href="${album.appleUrl}"
+              <a class="feature-cover-link" href="${escapeHtml(album.appleUrl)}"
                  target="_blank" rel="noopener noreferrer"
-                 aria-label="Listen to ${album.title} on Apple Music">
-                <img class="feature-cover" src="${album.cover}" alt="${album.title} album cover"
+                 aria-label="Listen to ${escapeHtml(album.title)} on Apple Music">
+                <img class="feature-cover" src="${escapeHtml(album.cover)}" alt="${escapeHtml(album.title)} album cover"
                      loading="lazy" decoding="async" width="600" height="600">
               </a>
-              <h3 class="album-title">${album.title}</h3>
+              <h3 class="album-title">${escapeHtml(album.title)}</h3>
               <p class="album-facts">${tracks.length} tracks &bull; ${minutes} min &bull; ${formatReleaseDate(album.released)}</p>
               <div class="platform-links">${platformLinks(album, 'platform-btn')}</div>
             </div>
@@ -472,7 +478,7 @@ function initHome() {
           <div class="feature-body">
             <div class="feature-meta">
               <span class="feature-label">Latest single</span>
-              <h2 class="feature-title">${latest.title}</h2>
+              <h2 class="feature-title">${escapeHtml(latest.title)}</h2>
               <p class="feature-date">${formatReleaseDate(latest.released)}</p>
             </div>
             <div class="release-links">${platformLinks(latest, 'release-link')}</div>
@@ -484,7 +490,7 @@ function initHome() {
         <article class="single-card">
           ${coverImage(rel, 'single-cover', 600, 600, true)}
           <div class="single-meta">
-            <h3 class="single-title">${rel.title}</h3>
+            <h3 class="single-title">${escapeHtml(rel.title)}</h3>
             <p class="single-date">${formatReleaseDate(rel.released)}</p>
           </div>
           <div class="release-links">${platformLinks(rel, 'release-link')}</div>
@@ -507,10 +513,10 @@ function initReleases() {
     .then((items) => {
       list.innerHTML = items.map((rel) => `
         <article class="release-item">
-          <img class="release-cover" src="${rel.cover}" alt="${rel.title} cover art"
+          <img class="release-cover" src="${escapeHtml(rel.cover)}" alt="${escapeHtml(rel.title)} cover art"
                loading="lazy" decoding="async" width="84" height="84">
           <div class="release-meta">
-            <h3 class="release-title">${rel.title}</h3>
+            <h3 class="release-title">${escapeHtml(rel.title)}</h3>
             <p class="release-date">${formatReleaseDate(rel.released)}</p>
           </div>
           <div class="release-links">${platformLinks(rel, 'release-link')}</div>

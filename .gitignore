@@ -12,3 +12,7 @@ test-results/
 .DS_Store
 Thumbs.db
 *.swp
+
+# Internal notes and plans (personal details, budgets, DNS). GitHub Pages
+# publishes every tracked file, so these stay local only.
+notes/
