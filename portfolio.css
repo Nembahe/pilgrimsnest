@@ -67,7 +67,10 @@
 .film-controls button[aria-pressed=true]{background:#edb655;color:#080c13}
 .film-count{margin:0 0 24px;color:#c6cbd4;font-size:16px}
 .film-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.film-card{background:#0b111c;border:1px solid #30384a;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0}
+/* 227 cards: skip rendering the offscreen ones. "auto" lets the browser substitute each
+   card's remembered height once rendered, so the scrollbar settles instead of jumping.
+   Ignored by browsers without support, which simply render as before. */
+.film-card{background:#0b111c;border:1px solid #30384a;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 422px}
 .film-card[hidden]{display:none}
 .film-still{position:relative;isolation:isolate;aspect-ratio:16/9;overflow:hidden;border:1px solid #3c3c3b;border-radius:8px;background:radial-gradient(ellipse at center,#282334,#090e17);flex-shrink:0}
 .film-still-backdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(18px) brightness(.55);transform:scale(1.15);pointer-events:none}
