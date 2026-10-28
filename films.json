@@ -2822,17 +2822,17 @@
       "duration": 59,
       "still": {
         "src": "assets/film-stills/7336778317619563781.webp",
-        "width": 540,
-        "height": 960,
-        "alt": "Title card for the video “Bible Study 101 - records of Jayho's world & war crimes?” by Gentile Nembahe. The published cover for this video is blank.",
-        "sha256": "accc39406b464eb2620eeeb0a905d62dab533faec851a6095f598963442c7fb6",
+        "width": 270,
+        "height": 480,
+        "alt": "A finger pointing to a passage on a page of dense printed text.",
+        "sha256": "ad330e3bdbba42c40c9d58b6d6b569e4aeb2ea3a44838b546386cd562647dcf0",
         "source": {
-          "type": "blank-cover-placeholder",
+          "type": "public-video-preview-frame",
           "videoId": "7336778317619563781",
           "url": "https://www.tiktok.com/@thetruegentile/video/7336778317619563781",
-          "originalSha256": "f8fb6b4cd03f58a416064cf8390ca32003dbfa9d65ab69509ed680527a56517c",
-          "verifiedAt": "2026-10-28T16:38:30.044232+00:00",
-          "note": "Every published cover variant for this video is a blank frame; originalSha256 is that blank cover. This image is a generated title card, not a video frame."
+          "originalSha256": "a0f172e252d209998a54e47928226dc4773137057c11e90ae631923f3ab012da",
+          "verifiedAt": "2026-10-28T16:56:03.908079+00:00",
+          "previewFrameIndex": 5
         }
       }
     },
@@ -4445,17 +4445,17 @@
       "duration": 8,
       "still": {
         "src": "assets/film-stills/7279889345954286854.webp",
-        "width": 540,
-        "height": 960,
-        "alt": "Title card for the video “When you are not a professional!” by Pilgrim’s Nest. The published cover for this video is blank.",
-        "sha256": "015fe793ad62c108d2ec39f9ab532321a88a12891058be3467d7b10d43e2e42e",
+        "width": 270,
+        "height": 480,
+        "alt": "Two people in a living room, one helping the other adjust their clothes.",
+        "sha256": "dfd29757355ef595c35c3ae622188addaed25f82ccdbff1dd2aa0a2d6563bc2a",
         "source": {
-          "type": "blank-cover-placeholder",
+          "type": "public-video-preview-frame",
           "videoId": "7279889345954286854",
           "url": "https://www.tiktok.com/@truepilgrimm/video/7279889345954286854",
-          "originalSha256": "24a555e068910e6582d802571e1a0512c3b020af8cc6158de535ef3d97449c21",
-          "verifiedAt": "2026-10-28T16:38:25.967171+00:00",
-          "note": "Every published cover variant for this video is a blank frame; originalSha256 is that blank cover. This image is a generated title card, not a video frame."
+          "originalSha256": "85561ac498ba90843ffd4ffe32ad6f846ae47e6ed42dc240b7a7fe3a16750275",
+          "verifiedAt": "2026-10-28T16:56:02.248248+00:00",
+          "previewFrameIndex": 5
         }
       }
     },
@@ -4473,17 +4473,17 @@
       "duration": 22,
       "still": {
         "src": "assets/film-stills/7279721996546608389.webp",
-        "width": 540,
-        "height": 960,
-        "alt": "Title card for the video “Middle Earth Got Talent Audition Tape” by Pilgrim’s Nest. The published cover for this video is blank.",
-        "sha256": "170679c5e4ab874c15e48ec973e41ed9835a4460e87f35358fd5796a2ffa3a4e",
+        "width": 270,
+        "height": 480,
+        "alt": "A title card reading “Middle Earth got Talent — Audition Tape”.",
+        "sha256": "e495f8abb84802c3e551514910d3e8df67cd7cd7de52729c185f7ae12bea6b13",
         "source": {
-          "type": "blank-cover-placeholder",
+          "type": "public-video-preview-frame",
           "videoId": "7279721996546608389",
           "url": "https://www.tiktok.com/@truepilgrimm/video/7279721996546608389",
-          "originalSha256": "04e1a90d8e3d4321a2f4eb890fa3f8aed2cbe9f2c6b049ca2080ebef412e089b",
-          "verifiedAt": "2026-10-28T16:38:24.444774+00:00",
-          "note": "Every published cover variant for this video is a blank frame; originalSha256 is that blank cover. This image is a generated title card, not a video frame."
+          "originalSha256": "c4b770887136a6b712a6107129c7b65755c44543e00e5b3b23bbde6178977da2",
+          "verifiedAt": "2026-10-28T16:56:01.208922+00:00",
+          "previewFrameIndex": 5
         }
       }
     },
@@ -6067,17 +6067,17 @@
       "duration": 73,
       "still": {
         "src": "assets/film-stills/7246099247819459845.webp",
-        "width": 540,
-        "height": 960,
-        "alt": "Title card for the video “The man who knows better than anyone else.” by Pilgrim’s Nest. The published cover for this video is blank.",
-        "sha256": "aec2f74425084252a8ca669fc61ff10c8cbfdc0d9c7c2a22e1d1b3bb3649b662",
+        "width": 270,
+        "height": 480,
+        "alt": "A neon title card reading “Now introducing the man who knows better than anyone else”, with a megaphone drawn beside it.",
+        "sha256": "e4a63dfaa0b04c57adda27b092e795a4bc7e08277b152fbcde004dc731a8590c",
         "source": {
-          "type": "blank-cover-placeholder",
+          "type": "public-video-preview-frame",
           "videoId": "7246099247819459845",
           "url": "https://www.tiktok.com/@truepilgrimm/video/7246099247819459845",
-          "originalSha256": "472538c1ed7a96204c58f27102b5ba43f89e18f5c89dc1842d60cf664c104cc1",
-          "verifiedAt": "2026-10-28T16:38:23.049980+00:00",
-          "note": "Every published cover variant for this video is a blank frame; originalSha256 is that blank cover. This image is a generated title card, not a video frame."
+          "originalSha256": "087cd707151249ec271cd59424f12786adcc9d64f9d7e33ecfd415e24433d473",
+          "verifiedAt": "2026-10-28T16:56:00.201287+00:00",
+          "previewFrameIndex": 5
         }
       }
     },
