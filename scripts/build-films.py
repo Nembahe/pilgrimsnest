@@ -25,7 +25,7 @@ for index,v in enumerate(videos):
     assert isinstance(still['alt'],str) and still['alt'].strip(), 'Missing still description'
     source=still['source']
     assert source['videoId']==v['id'] and source['url']==v['url'], 'Still provenance mismatch'
-    assert source['type'] in ['public-video-selected-cover','public-video-origin-cover','public-video-cover','public-video-preview-frame','public-video-frame'], 'Unsupported still source'
+    assert source['type'] in ['public-video-selected-cover','public-video-origin-cover','public-video-cover','public-video-preview-frame','public-video-frame','blank-cover-placeholder'], 'Unsupported still source'
     assert re.fullmatch(r'[a-f0-9]{64}',source['originalSha256']), 'Missing source fingerprint'
     if source['type']=='public-video-frame':
         assert 0<=source['frameTimestampSeconds']<=float(v['duration'])+1, 'Invalid frame timestamp'
