@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
-import hashlib, json, shutil, tempfile, unittest, subprocess
+import hashlib, json, re, shutil, tempfile, unittest, subprocess
 
 root=Path(__file__).resolve().parents[1]
 class Links(HTMLParser):
@@ -165,4 +165,56 @@ function setup({mode='fire',reduced=false,stored='false',blocked=false,noContext
 """
         result = subprocess.run(['node','-e',script,str(root/'portfolio.js')],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+PAGES=['index.html','music.html','films.html']
+# Lower this whenever alt text is improved. Never raise it: it is a ratchet, not a target.
+GENERIC_ALT_CEILING=179
+
+class SiteHygiene(unittest.TestCase):
+    """Invariants that hold today, so they cannot regress unnoticed."""
+
+    def test_one_main_heading_per_page(self):
+        for page in PAGES:
+            tags=Links((root/page).read_text(encoding='utf-8')).tags
+            self.assertEqual(sum(1 for tag,_ in tags if tag=='h1'),1,f'{page} must have exactly one h1')
+
+    def test_internal_references_resolve(self):
+        missing=[]
+        for page in PAGES:
+            html=(root/page).read_text(encoding='utf-8')
+            for ref in re.findall(r'(?:href|src)="([^"]+)"',html):
+                if ref.startswith(('http://','https://','mailto:','data:','//','#')): continue
+                target=root/ref.split('#')[0].split('?')[0]
+                if not target.exists(): missing.append(f'{page} -> {ref}')
+        self.assertEqual(missing,[],'internal references that do not resolve')
+
+    def test_every_image_has_an_alt_attribute(self):
+        # Only presence is asserted. Whether an empty alt is correct depends on whether an
+        # ancestor is aria-hidden, which this flat parser cannot see - asserting it here
+        # produces false positives on the brand emblem, so it is deliberately not checked.
+        missing=[]
+        for page in PAGES:
+            for tag,attrs in Links((root/page).read_text(encoding='utf-8')).tags:
+                if tag=='img' and 'alt' not in attrs:
+                    missing.append(f"{page} -> {attrs.get('src','?')}")
+        self.assertEqual(missing,[],'images with no alt attribute')
+
+    def test_catalogue_alt_text_does_not_regress(self):
+        videos=json.loads((root/'films.json').read_text(encoding='utf-8'))['videos']
+        generic=[v['id'] for v in videos if v['still']['alt'].startswith('Cover frame from the video')]
+        self.assertLessEqual(len(generic),GENERIC_ALT_CEILING,
+            f'{len(generic)} generic alt texts, ceiling is {GENERIC_ALT_CEILING}. '
+            'Write a real description rather than raising the ceiling.')
+
+    def test_discovery_files(self):
+        for name in ['robots.txt','sitemap.xml']:
+            if not (root/name).is_file():
+                self.skipTest(f'{name} not present yet; this becomes a hard check once it exists')
+        robots=(root/'robots.txt').read_text(encoding='utf-8')
+        self.assertIn('Sitemap: https://pilgrimsnest.org/sitemap.xml',robots,'robots.txt must point at the sitemap')
+        sitemap=(root/'sitemap.xml').read_text(encoding='utf-8')
+        for page in PAGES:
+            self.assertIn(f'https://pilgrimsnest.org/{page}'.replace('/index.html','/'),sitemap,
+                          f'{page} must appear in sitemap.xml')
+        self.assertEqual(sitemap.count('<url>'),sitemap.count('</url>'),'sitemap.xml is malformed')
+
 if __name__=='__main__': unittest.main()
