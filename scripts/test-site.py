@@ -166,6 +166,10 @@ function setup({mode='fire',reduced=false,stored='false',blocked=false,noContext
         result = subprocess.run(['node','-e',script,str(root/'portfolio.js')],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stdout+result.stderr)
 PAGES=['index.html','music.html','films.html']
+# 404.html is served for any missing path at any depth, so it uses root-relative asset
+# paths and is deliberately noindex - it is checked for links and alt text, not listed
+# in the sitemap.
+ALL_PAGES=PAGES+['404.html']
 # Lower this whenever alt text is improved. Never raise it: it is a ratchet, not a target.
 GENERIC_ALT_CEILING=179
 
@@ -179,11 +183,13 @@ class SiteHygiene(unittest.TestCase):
 
     def test_internal_references_resolve(self):
         missing=[]
-        for page in PAGES:
+        for page in ALL_PAGES:
             html=(root/page).read_text(encoding='utf-8')
             for ref in re.findall(r'(?:href|src)="([^"]+)"',html):
                 if ref.startswith(('http://','https://','mailto:','data:','//','#')): continue
-                target=root/ref.split('#')[0].split('?')[0]
+                clean=ref.split('#')[0].split('?')[0]
+                if not clean: continue
+                target=root/clean.lstrip('/')   # root-relative paths resolve from the site root
                 if not target.exists(): missing.append(f'{page} -> {ref}')
         self.assertEqual(missing,[],'internal references that do not resolve')
 
@@ -192,7 +198,7 @@ class SiteHygiene(unittest.TestCase):
         # ancestor is aria-hidden, which this flat parser cannot see - asserting it here
         # produces false positives on the brand emblem, so it is deliberately not checked.
         missing=[]
-        for page in PAGES:
+        for page in ALL_PAGES:
             for tag,attrs in Links((root/page).read_text(encoding='utf-8')).tags:
                 if tag=='img' and 'alt' not in attrs:
                     missing.append(f"{page} -> {attrs.get('src','?')}")
@@ -206,9 +212,8 @@ class SiteHygiene(unittest.TestCase):
             'Write a real description rather than raising the ceiling.')
 
     def test_discovery_files(self):
-        for name in ['robots.txt','sitemap.xml']:
-            if not (root/name).is_file():
-                self.skipTest(f'{name} not present yet; this becomes a hard check once it exists')
+        for name in ['robots.txt','sitemap.xml','404.html']:
+            self.assertTrue((root/name).is_file(),f'{name} must exist')
         robots=(root/'robots.txt').read_text(encoding='utf-8')
         self.assertIn('Sitemap: https://pilgrimsnest.org/sitemap.xml',robots,'robots.txt must point at the sitemap')
         sitemap=(root/'sitemap.xml').read_text(encoding='utf-8')
