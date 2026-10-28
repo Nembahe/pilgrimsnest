@@ -1,13 +1,16 @@
 """Refresh the no-JavaScript gallery from the verified public manifest. No network calls."""
 from pathlib import Path
-import datetime,hashlib,html,json,re
+import collections,datetime,hashlib,html,json,re
 
 root=Path(__file__).resolve().parents[1]
 manifest=json.loads((root/'films.json').read_text(encoding='utf-8'))
 videos=manifest['videos']
-assert len(videos)==40 and len({v['id'] for v in videos})==40, 'Expected 40 unique verified videos'
-for handle in ['thetruegentile','truepilgrimm']:
-    assert sum(v['handle']==handle for v in videos)==20, 'Expected 20 per account'
+ACCOUNTS={'thetruegentile':'Gentile Nembahe','truepilgrimm':'Pilgrim’s Nest'}
+assert videos and len({v['id'] for v in videos})==len(videos), 'Expected unique verified videos'
+counts=collections.Counter(v['handle'] for v in videos)
+assert set(counts)==set(ACCOUNTS), 'Unexpected account set'
+published=[v['published'] for v in videos]
+assert published==sorted(published,reverse=True), 'Videos must stay newest first'
 cards=[]
 for index,v in enumerate(videos):
     assert all(v.get(k) for k in ['publicAccessVerified','dateVerified','videoVerified','ownerVerified']), 'Unverified video'
@@ -26,7 +29,7 @@ for index,v in enumerate(videos):
     assert re.fullmatch(r'[a-f0-9]{64}',source['originalSha256']), 'Missing source fingerprint'
     if source['type']=='public-video-frame':
         assert 0<=source['frameTimestampSeconds']<=float(v['duration'])+1, 'Invalid frame timestamp'
-    author='Pilgrim’s Nest' if v['handle']=='truepilgrimm' else 'Gentile Nembahe'
+    author=ACCOUNTS[v['handle']]
     title=re.split(r'\s#',v['title'],maxsplit=1)[0].strip() or 'Video by '+author
     title=title[:157]+'…' if len(title)>160 else title
     date=datetime.datetime.fromisoformat(v['published'])
@@ -39,8 +42,10 @@ page_path=root/'films.html'
 page=page_path.read_text(encoding='utf-8')
 verified=datetime.date.fromisoformat(manifest['verifiedAt'])
 verified_label=f'{verified.day} {verified:%B %Y}'
-page=re.sub(r'<p class="film-count"[^>]*>.*?</p>',lambda _: f'<p class="film-count" role="status" data-verified-label="{verified_label}">40 videos · 20 from each account · verified {verified_label}</p>',page)
+per_account=' · '.join(f'{counts[handle]} from {name}' for handle,name in ACCOUNTS.items())
+count_label=f'{len(videos)} videos · {per_account} · verified {verified_label}'
+page=re.sub(r'<p class="film-count"[^>]*>.*?</p>',lambda _: f'<p class="film-count" role="status" data-verified-label="{verified_label}">{html.escape(count_label)}</p>',page)
 assert page.count('<!-- films:start -->')==1 and page.count('<!-- films:end -->')==1
 page=re.sub(r'<!-- films:start -->.*?<!-- films:end -->',lambda _: '<!-- films:start -->\n'+'\n'.join(cards)+'\n<!-- films:end -->',page,flags=re.S)
 page_path.write_text(page,encoding='utf-8')
-print('Built 40 static video cards with verified local stills from films.json')
+print(f'Built {len(videos)} static video cards with verified local stills from films.json')

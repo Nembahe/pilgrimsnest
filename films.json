@@ -1,7 +1,7 @@
 {
-  "verifiedAt": "2026-10-11",
+  "verifiedAt": "2026-10-28",
   "verificationMethod": "Anonymous HTTPS video documents, without cookies or authentication; persisted metadata projection only",
-  "selection": "Newest 20 public video posts per confirmed account; pinned posts included by publication date; photo posts and private posts excluded. Includes commentary and other videos, not only AI films.",
+  "selection": "Initial snapshot on 11 October 2026 took the newest 20 public video posts per confirmed account. Posts published since then are appended once verified; earlier entries are never removed, so per-account counts may differ. Pinned posts included by publication date; photo posts and private posts excluded. Includes commentary and other videos, not only AI films.",
   "boundaryEvidence": {
     "thetruegentile": {
       "twentiethId": "7427240676028435717",
@@ -17,6 +17,33 @@
     }
   },
   "videos": [
+    {
+      "owner": "thetruegentile",
+      "videoVerified": true,
+      "dateVerified": true,
+      "id": "7698422111416749319",
+      "publicAccessVerified": true,
+      "published": "2026-10-19T16:49:44+00:00",
+      "title": "What happened to Jehovah Magen?",
+      "ownerVerified": true,
+      "url": "https://www.tiktok.com/@thetruegentile/video/7698422111416749319",
+      "handle": "thetruegentile",
+      "duration": 55,
+      "still": {
+        "src": "assets/film-stills/7698422111416749319.webp",
+        "width": 540,
+        "height": 960,
+        "alt": "Villagers outside thatched huts at sunset point to a vast glowing figure forming in the clouds above the savannah.",
+        "sha256": "8f57fdba2efda37af9be3b9eeec021fa985fbd78281c8fcacae01537e9d564f8",
+        "source": {
+          "type": "public-video-origin-cover",
+          "videoId": "7698422111416749319",
+          "url": "https://www.tiktok.com/@thetruegentile/video/7698422111416749319",
+          "originalSha256": "cf4a11b2b9a8e10cb98ad7b20b1169c5a4ce99c418848d2c795501ec77af607f",
+          "verifiedAt": "2026-10-28T14:25:10.916913+00:00"
+        }
+      }
+    },
     {
       "owner": "thetruegentile",
       "videoVerified": true,
@@ -1110,5 +1137,6 @@
   "stillVerification": {
     "verifiedAt": "2026-10-11T09:01:57.702765+00:00",
     "method": "All 40 images individually reviewed against public sources. Nine weak covers replaced: seven public preview frames and two decoded public-video frames. Local WebP copies retain the source composition. No signed URLs or credentials stored."
-  }
+  },
+  "boundaryEvidenceScope": "Describes the 11 October 2026 initial 20-per-account snapshot only. Entries appended after that date are newer than these boundaries."
 }

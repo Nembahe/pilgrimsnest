@@ -17,10 +17,12 @@ class SiteContract(unittest.TestCase):
                 self.assertIn(destination,links,page)
     def test_public_catalogue_and_fallback(self):
         manifest=json.loads((root/'films.json').read_text(encoding='utf-8'))
-        videos=manifest['videos']; self.assertEqual(len(videos),40)
-        self.assertEqual(len({v['id'] for v in videos}),40)
+        videos=manifest['videos']; self.assertTrue(videos)
+        self.assertEqual(len({v['id'] for v in videos}),len(videos))
         for handle in ['thetruegentile','truepilgrimm']:
-            self.assertEqual(sum(v['handle']==handle for v in videos),20)
+            self.assertGreater(sum(v['handle']==handle for v in videos),0)
+        published=[v['published'] for v in videos]
+        self.assertEqual(published,sorted(published,reverse=True),'Newest first')
         links=Links((root/'films.html').read_text(encoding='utf-8')).links
         actual={u for u in links if '/video/' in u}
         self.assertEqual(actual,{v['url'] for v in videos})
@@ -67,7 +69,7 @@ vm.createContext(context);vm.runInContext(fs.readFileSync(process.argv[1],'utf8'
         videos=json.loads((root/'films.json').read_text(encoding='utf-8'))['videos']
         tags=Links((root/'films.html').read_text(encoding='utf-8')).tags
         images=[attrs for tag,attrs in tags if tag=='img' and attrs.get('class')=='film-still-image']
-        self.assertEqual(len(images),40)
+        self.assertEqual(len(images),len(videos))
         hashes=set()
         for index,(video,image) in enumerate(zip(videos,images,strict=True)):
             still=video['still'];source=still['source']
@@ -85,7 +87,7 @@ vm.createContext(context);vm.runInContext(fs.readFileSync(process.argv[1],'utf8'
             self.assertEqual(data[:4],b'RIFF');self.assertEqual(data[8:12],b'WEBP')
             digest=hashlib.sha256(data).hexdigest()
             self.assertEqual(digest,still['sha256']);hashes.add(digest)
-        self.assertEqual(len(hashes),40,'No placeholder reuse')
+        self.assertEqual(len(hashes),len(videos),'No placeholder reuse')
         self.assertEqual({p.name for p in (root/'assets/film-stills').iterdir()},{v['id']+'.webp' for v in videos})
     def test_gallery_build_validation(self):
         with tempfile.TemporaryDirectory() as folder:
