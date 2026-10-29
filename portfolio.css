@@ -55,6 +55,14 @@
 .portal-about h2{font-size:48px;font-weight:600;margin:0 0 18px}
 .portal-about p{font-size:24px;line-height:1.4;margin:0 0 16px}
 .portal-about .about-detail{font-size:16px;color:#bfc3cd;max-width:48ch}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.about-card{border:1px solid #273040;border-radius:12px;background:#0a111b;padding:22px 24px;min-width:0}
+.about-card h3{color:#eeb34d;font-size:16px;text-transform:uppercase;font-weight:600;margin:0 0 10px}
+.about-card p{font-size:16px;line-height:1.55;color:#bfc3cd;margin:0}
+.contact-block{margin-top:40px}
+.contact-block p{font-size:18px;line-height:1.5;margin:0;max-width:60ch}
+.portfolio-page a.contact-email{color:#eeb34d;text-decoration:underline;text-underline-offset:3px}
+.portfolio-page a.contact-email:hover,.portfolio-page a.contact-email:focus-visible{color:#f6cf86}
 .portfolio-footer{border-top:1px solid #8c6e39;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0 30px;margin-top:24px}
 .portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:23px}
 .film-intro{padding-top:48px;padding-bottom:30px;text-align:center}
@@ -91,7 +99,7 @@
 .motion-toggle{font:500 16px/1.4 'Plus Jakarta Sans',sans-serif;min-height:48px;color:#f3d99c;border:1px solid #8d7547;background:#070a12;border-radius:8px;padding:10px 16px;margin-top:20px}
 @media(min-width:1264px){.portal-hero:before{left:calc((1200px - 100vw)/2);right:calc((1200px - 100vw)/2)}}
 @media(max-width:1263px){.portal-hero:before{left:-48px;right:-48px}}
-@media(max-width:900px){.nest-brand > span:not(.brand-emblem){font-size:22px}.portfolio-nav{gap:20px}.path-panel{padding:24px 18px}.path-panel h2{font-size:42px}.path-panel p{font-size:17px}.path-art{height:280px}.music-art{width:280px}.work-preview{grid-template-columns:1fr}.work-preview>img{height:210px}.work-preview h3{font-size:30px}.portal-about h2{font-size:38px}.portal-about p{font-size:20px}.portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:19px}.portfolio-footer nav{gap:18px}.film-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:900px){.nest-brand > span:not(.brand-emblem){font-size:22px}.portfolio-nav{gap:20px}.path-panel{padding:24px 18px}.path-panel h2{font-size:42px}.path-panel p{font-size:17px}.path-art{height:280px}.music-art{width:280px}.work-preview{grid-template-columns:1fr}.work-preview>img{height:210px}.work-preview h3{font-size:30px}.portal-about h2{font-size:38px}.portal-about p{font-size:20px}.about-grid{grid-template-columns:1fr;gap:16px}.portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:19px}.portfolio-footer nav{gap:18px}.film-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:601px) and (max-width:900px){.path-panel>.gold-link{width:100%;font-size:18px;padding-inline:20px;gap:12px;white-space:nowrap}}
 @media(max-width:600px){
  .portfolio-wrap{width:calc(100% - 32px)}.header-inner{min-height:76px;flex-wrap:wrap;gap:0}.nest-brand{gap:10px}.nest-brand img{width:38px;height:38px}.nest-brand > span:not(.brand-emblem){font-size:20px}.menu-toggle:not([hidden]){display:flex}.portfolio-nav{display:flex;flex-basis:100%;justify-content:space-between;gap:12px;padding:0 0 10px}.portfolio-nav a{font-size:16px}.menu-toggle:not([hidden])~.portfolio-nav:not(.is-open){display:none}
