@@ -16,3 +16,6 @@ Thumbs.db
 # Internal notes and plans (personal details, budgets, DNS). GitHub Pages
 # publishes every tracked file, so these stay local only.
 notes/
+
+# Local diagnostic artifacts from browser tooling
+.playwright-mcp/
