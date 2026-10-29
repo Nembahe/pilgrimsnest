@@ -211,6 +211,20 @@ class SiteHygiene(unittest.TestCase):
             f'{len(generic)} generic alt texts, ceiling is {GENERIC_ALT_CEILING}. '
             'Write a real description rather than raising the ceiling.')
 
+    def test_contact_address_is_not_in_page_source(self):
+        # The address is assembled from data attributes by portfolio.js so it never appears
+        # literally in the served HTML. A readable <noscript> fallback keeps the page usable
+        # without JavaScript. This only defeats regex harvesters, not scrapers running JS.
+        for page in ALL_PAGES:
+            html=(root/page).read_text(encoding='utf-8')
+            found=re.findall(r'[A-Za-z0-9._%+-]+@pilgrimsnest\.org',html)
+            self.assertEqual(found,[],f'{page} exposes a literal address: {found}')
+        index=(root/'index.html').read_text(encoding='utf-8')
+        self.assertIn('id="contactJs"',index,'contact line must be present for the script to fill')
+        self.assertIn('data-u=',index,'contact address parts must be in data attributes')
+        self.assertIn('<noscript>',index,'contact needs a no-JavaScript fallback')
+        self.assertIn('initContactEmail',(root/'portfolio.js').read_text(encoding='utf-8'))
+
     def test_discovery_files(self):
         for name in ['robots.txt','sitemap.xml','404.html']:
             self.assertTrue((root/name).is_file(),f'{name} must exist')

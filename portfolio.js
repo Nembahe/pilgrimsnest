@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initAmbientBackground();
   initBrandEmblem();
+  initContactEmail();
   const toggle = document.querySelector('.menu-toggle');
   const nav = document.getElementById('primary-nav');
   if (toggle && nav) {
@@ -223,4 +224,22 @@ function initBrandEmblem() {
       faces[current].classList.add('is-active');
     }, 250);
   }, 4000);
+}
+
+/* The contact address is stored split across data attributes and assembled here, so the
+   literal string never appears in the served HTML. This stops naive regex harvesters only
+   — a scraper that runs JavaScript still sees it. The <noscript> block beside the link
+   carries a readable fallback, because this site works without JavaScript. */
+function initContactEmail() {
+  const line = document.getElementById('contactJs');
+  if (!line) return;
+  const link = line.querySelector('a.contact-email');
+  if (!link) return;
+  const user = link.dataset.u;
+  const domain = link.dataset.d;
+  if (!user || !domain) return;
+  const address = user + String.fromCharCode(64) + domain;
+  link.href = 'mailto:' + address;
+  link.textContent = address;
+  line.hidden = false;
 }
