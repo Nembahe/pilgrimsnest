@@ -140,5 +140,15 @@
  .portal-hero .music-art{width:180px}
  .portal-hero .path-panel>.gold-link{min-height:50px;font-size:18px}
 }
-@media(max-width:600px){.ambient-fire{top:76px}.ambient-controls{right:12px;bottom:12px}.ambient-controls .motion-toggle{font-size:13px;padding-inline:12px}}
+/* On a phone the label is wide enough to sit over the page, so the button becomes a
+   44px glyph chosen by aria-pressed. The words stay in the button as its accessible
+   name - clipped, not removed - so the control reads the same to assistive tech. */
+@media(max-width:600px){
+ .ambient-fire{top:76px}
+ .ambient-controls{right:12px;bottom:12px}
+ .ambient-controls .motion-toggle{width:44px;min-height:44px;padding:0;overflow:hidden;white-space:nowrap;text-indent:-999em;background-repeat:no-repeat;background-position:center;background-size:19px 19px}
+ .ambient-controls .motion-toggle[aria-pressed=true]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f3d99c'%3E%3Crect x='6' y='4.5' width='4' height='15' rx='1.6'/%3E%3Crect x='14' y='4.5' width='4' height='15' rx='1.6'/%3E%3C/svg%3E")}
+ .ambient-controls .motion-toggle[aria-pressed=false]{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f3d99c'%3E%3Cpath d='M7.8 5.1a1 1 0 0 1 1.5-.87l9.4 6.9a1 1 0 0 1 0 1.74l-9.4 6.9a1 1 0 0 1-1.5-.87z'/%3E%3C/svg%3E")}
+ .ambient-controls .motion-toggle:disabled{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bfc6d3' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M6 18 18 6'/%3E%3C/svg%3E")}
+}
 @media(prefers-reduced-motion:reduce){#ambientSparks,.ambient-fire video{display:none}}
