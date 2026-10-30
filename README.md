@@ -48,10 +48,10 @@ The generator refuses shortfalls or unverified records and updates the cards and
 
 For music releases, update `releases.json` and the static latest-release/cover fallbacks in `index.html` and `music.html`. Use original artwork. Old homepage `#latest`, `#album` and `#singles` links route to Music; without JavaScript they offer an onward link.
 
-## Publication and legacy edition
+## Publication
 
 Local edits do not publish the site. Review the rendered candidate and verify current Pages configuration before an approved deployment. Preserve `CNAME` and DNS. Recovery copies and QA evidence are in ignored `output/website-films-plan-2026-10-11/`; do not deploy them.
 
-`google-sites-embed.html` is a separate legacy edition and is intentionally unchanged. Old retreat/countdown/waitlist documentation does not describe this portfolio.
+Old retreat/countdown/waitlist documentation does not describe this portfolio. The legacy `google-sites-embed.html` edition was removed on 30 October 2026; it remains in git history.
 
 Fonts: Cinzel, Cormorant Garamond and Plus Jakarta Sans, distributed through Google Fonts under the SIL Open Font License; local Latin variable subsets. Original cover source is recorded in `releases.json`.
