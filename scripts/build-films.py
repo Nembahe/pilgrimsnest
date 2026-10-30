@@ -9,7 +9,7 @@ ACCOUNTS={'thetruegentile':'Gentile Nembahe','truepilgrimm':'Pilgrim’s Nest'}
 assert videos and len({v['id'] for v in videos})==len(videos), 'Expected unique verified videos'
 counts=collections.Counter(v['handle'] for v in videos)
 assert set(counts)==set(ACCOUNTS), 'Unexpected account set'
-published=[v['published'] for v in videos]
+published=[datetime.datetime.fromisoformat(v['published']) for v in videos]
 assert published==sorted(published,reverse=True), 'Videos must stay newest first'
 cards=[]
 for index,v in enumerate(videos):

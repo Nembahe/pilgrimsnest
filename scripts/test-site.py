@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
-import hashlib, json, re, shutil, tempfile, unittest, subprocess
+import datetime, hashlib, json, re, shutil, tempfile, unittest, subprocess
 
 root=Path(__file__).resolve().parents[1]
 class Links(HTMLParser):
@@ -21,7 +21,7 @@ class SiteContract(unittest.TestCase):
         self.assertEqual(len({v['id'] for v in videos}),len(videos))
         for handle in ['thetruegentile','truepilgrimm']:
             self.assertGreater(sum(v['handle']==handle for v in videos),0)
-        published=[v['published'] for v in videos]
+        published=[datetime.datetime.fromisoformat(v['published']) for v in videos]
         self.assertEqual(published,sorted(published,reverse=True),'Newest first')
         links=Links((root/'films.html').read_text(encoding='utf-8')).links
         actual={u for u in links if '/video/' in u}
@@ -215,10 +215,15 @@ class SiteHygiene(unittest.TestCase):
         # The address is assembled from data attributes by portfolio.js so it never appears
         # literally in the served HTML. A readable <noscript> fallback keeps the page usable
         # without JavaScript. This only defeats regex harvesters, not scrapers running JS.
-        for page in ALL_PAGES:
-            html=(root/page).read_text(encoding='utf-8')
-            found=re.findall(r'[A-Za-z0-9._%+-]+@pilgrimsnest\.org',html)
-            self.assertEqual(found,[],f'{page} exposes a literal address: {found}')
+        # GitHub Pages serves every tracked file - README, JSON, lyrics, legacy pages - so
+        # all of them are scanned, not just the four pages people navigate to.
+        # -z: unquoted, NUL-separated names, so an unusual filename is scanned, not skipped.
+        listing=subprocess.run(['git','ls-files','-z'],cwd=root,capture_output=True,text=True,check=True).stdout
+        tracked=[name for name in listing.split('\0') if name]
+        self.assertGreater(len(tracked),len(ALL_PAGES),'git ls-files returned too little to trust')
+        exposed=[name for name in tracked if (root/name).is_file()
+                 and re.search(rb'[A-Za-z0-9._%+-]+@pilgrimsnest\.org',(root/name).read_bytes())]
+        self.assertEqual(exposed,[],f'served files expose a literal address: {exposed}')
         index=(root/'index.html').read_text(encoding='utf-8')
         self.assertIn('id="contactJs"',index,'contact line must be present for the script to fill')
         self.assertIn('data-u=',index,'contact address parts must be in data attributes')

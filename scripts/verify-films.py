@@ -41,8 +41,11 @@ def check_local(videos):
         src=still['source']
         if src['videoId']!=v['id'] or src['url']!=v['url']: bad(v,'still provenance mismatch')
         if not re.fullmatch(r'[a-f0-9]{64}',src.get('originalSha256','')): bad(v,'missing source fingerprint')
-    published=[v['published'] for v in videos]
-    if published!=sorted(published,reverse=True): problems.append('ORDER: videos are not newest-first')
+    try:
+        published=[datetime.datetime.fromisoformat(v['published']) for v in videos]
+        if published!=sorted(published,reverse=True): problems.append('ORDER: videos are not newest-first')
+    except ValueError as exc:
+        problems.append(f'ORDER: unreadable published date ({exc})')
     on_disk={p.name for p in (ROOT/'assets/film-stills').iterdir()}
     expected={v['id']+'.webp' for v in videos}
     for extra in sorted(on_disk-expected): problems.append(f'orphan still not in manifest: {extra}')
