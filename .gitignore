@@ -19,3 +19,15 @@ notes/
 
 # Local diagnostic artifacts from browser tooling
 .playwright-mcp/
+
+# Added 2026-11-16 backup/push hygiene
+.codex-remote-attachments/
+.codex/
+.claude/
+.venv/
+venv/
+node_modules/
+__pycache__/
+.env
+.env.*
+!.env.example

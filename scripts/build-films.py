@@ -36,8 +36,10 @@ for index,v in enumerate(videos):
     date_label=f'{date.day} {date:%B %Y}'
     duration=f"{int(v['duration'])//60}:{int(v['duration'])%60:02d}"
     loading='eager' if index<3 else 'lazy'
+    backdrop_priority=' fetchpriority="low"' if index<3 else ''
+    image_priority=' fetchpriority="high"' if index<3 else ''
     image_attrs=f'src="{still["src"]}" width="{still["width"]}" height="{still["height"]}" loading="{loading}" decoding="async" onerror="this.hidden=true"'
-    cards.append(f'''<article class="film-card" data-account="{v['handle']}" data-video-id="{v['id']}"><div class="film-still"><span class="film-still-fallback" aria-hidden="true">Still unavailable<br>Watch on TikTok below</span><img class="film-still-backdrop" {image_attrs} alt="" aria-hidden="true"><img class="film-still-image" {image_attrs} alt="{html.escape(still['alt'],quote=True)}"></div><p class="film-author">{author}</p><h2>{html.escape(title)}</h2><time datetime="{date.date().isoformat()}">{date_label} · {duration}</time><a class="gold-link" href="{v['url']}" target="_blank" rel="noopener noreferrer" aria-label="Watch {html.escape(title,quote=True)} on TikTok">Watch on TikTok <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></article>''')
+    cards.append(f'''<article class="film-card" data-account="{v['handle']}" data-video-id="{v['id']}"><div class="film-still"><span class="film-still-fallback" aria-hidden="true">Still unavailable<br>Watch on TikTok below</span><img class="film-still-backdrop" {image_attrs}{backdrop_priority} alt="" aria-hidden="true"><img class="film-still-image" {image_attrs}{image_priority} alt="{html.escape(still['alt'],quote=True)}"></div><p class="film-author">{author}</p><h2>{html.escape(title)}</h2><time datetime="{date.date().isoformat()}">{date_label} · {duration}</time><a class="gold-link" href="{v['url']}" target="_blank" rel="noopener noreferrer" aria-label="Watch {html.escape(title,quote=True)} on TikTok">Watch on TikTok <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></article>''')
 page_path=root/'films.html'
 page=page_path.read_text(encoding='utf-8')
 verified=datetime.date.fromisoformat(manifest['verifiedAt'])

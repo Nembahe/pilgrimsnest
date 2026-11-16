@@ -5,6 +5,7 @@
    ========================================================================== */
 
 :root {
+  interpolate-size: allow-keywords;
   /* Color Palette */
   --bg-dark: #070A12;
   --bg-primary: #0A0F1D;
@@ -71,6 +72,10 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  --scrollbar-thumb: var(--text-dim);
+  --scrollbar-track: var(--bg-dark);
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 body {
@@ -90,20 +95,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-}
-::-webkit-scrollbar-thumb {
-  background: #1F2937;
-  border-radius: 4px;
-  border: 2px solid var(--bg-dark);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-dark);
+/* Custom Scrollbar (legacy WebKit fallback) */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+    border: 2px solid var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+  }
 }
 
 /* Ambient Canvas Background */
@@ -1173,9 +1181,10 @@ h1, h2, h3, h4 {
 }
 
 .faq-answer {
+  block-size: 0;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: block-size 0.35s cubic-bezier(0.4, 0, 0.2, 1), max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0 1.75rem;
   color: var(--text-secondary);
   font-size: 0.95rem;
@@ -1183,6 +1192,8 @@ h1, h2, h3, h4 {
 }
 
 .faq-item.open .faq-answer {
+  block-size: auto;
+  max-height: 32rem;
   padding-bottom: 1.5rem;
 }
 
@@ -1611,7 +1622,7 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 48px;
   padding: 0.7rem 1.5rem;
   background: var(--bg-card);
   border: 1px solid var(--border-gold);
@@ -1919,7 +1930,7 @@ section[id] {
    one lyric in the song's own words, then the rest of the singles.
    ========================================================================== */
 .btn-compact {
-  min-height: 44px;
+  min-height: 48px;
   padding: 0.5rem 1rem;
   font-size: 0.82rem;
   white-space: nowrap;
@@ -2170,7 +2181,7 @@ section[id] {
 .album-track-link {
   display: flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 48px;
   text-decoration: underline;
   text-decoration-color: var(--gold-primary);
   text-underline-offset: 4px;
@@ -2275,7 +2286,7 @@ section[id] {
 
 /* Per-release platform links (Apple Music / Spotify / YouTube) */
 .release-link {
-  min-height: 44px;
+  min-height: 48px;
 }
 
 .feature-body {
@@ -2347,17 +2358,65 @@ section[id] {
   border-radius: var(--radius-lg);
   box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.9), 0 0 24px rgba(245, 158, 11, 0.15);
   overflow: hidden;
+  opacity: 0;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+.lyrics-dialog:modal {
+  overscroll-behavior: contain;
 }
 
 .lyrics-dialog[open] {
   display: flex;
   flex-direction: column;
+  opacity: 1;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lyrics-dialog {
+    transform: scale(0.95);
+  }
+  .lyrics-dialog[open] {
+    transform: scale(1);
+
+    @starting-style {
+      transform: scale(0.95);
+    }
+  }
 }
 
 .lyrics-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  transition-property: background-color, display, overlay;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+.lyrics-dialog[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+
+  @starting-style {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lyrics-dialog,
+  .lyrics-dialog::backdrop {
+    transition-duration: 0.1s;
+  }
 }
 
 .lyrics-head {
@@ -2417,8 +2476,8 @@ section[id] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 48px;
+  min-width: 48px;
 }
 
 @media (max-width: 900px) {

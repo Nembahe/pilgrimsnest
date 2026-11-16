@@ -12,12 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
       toggle.setAttribute('aria-label', expanded ? 'Close navigation' : 'Open navigation');
       nav.classList.toggle('is-open', expanded);
     });
-    nav.addEventListener('keydown', event => {
-      if (event.key === 'Escape') {
+    const headerInner = toggle.closest('.header-inner') || nav;
+    headerInner.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
         nav.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'Open navigation');
         toggle.focus();
+      }
+    });
+    nav.addEventListener('click', event => {
+      if (event.target.closest('a') && nav.classList.contains('is-open')) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
       }
     });
   }

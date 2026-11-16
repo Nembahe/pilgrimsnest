@@ -298,7 +298,7 @@ function lyricsButton(rel) {
 // link on the most prominent card on the page.
 function coverImage(rel, cls, width, height, lazy) {
   const title = escapeHtml(rel.title);
-  const img = `<img class="${cls}"${lazy ? ' loading="lazy" decoding="async"' : ''}` +
+  const img = `<img class="${cls}"${lazy ? ' loading="lazy" decoding="async"' : ' fetchpriority="high"'}` +
     ` width="${width}" height="${height}" src="${escapeHtml(rel.cover)}" alt="${title} cover art">`;
   if (!rel.appleUrl) return img;
   return `<a class="${cls}-link" href="${escapeHtml(rel.appleUrl)}" target="_blank" rel="noopener noreferrer"` +
@@ -312,12 +312,16 @@ function initLyrics() {
   if (typeof HTMLDialogElement === 'undefined') return;
 
   const dialog = document.createElement('dialog');
+  dialog.id = 'lyricsDialog';
   dialog.className = 'lyrics-dialog';
+  dialog.setAttribute('closedby', 'any');
   dialog.setAttribute('aria-labelledby', 'lyricsTitle');
   dialog.innerHTML = `
     <div class="lyrics-head">
-      <h2 class="lyrics-title" id="lyricsTitle"></h2>
-      <button type="button" class="lyrics-close" aria-label="Close lyrics">&times;</button>
+      <h2 class="lyrics-title" id="lyricsTitle">Lyrics</h2>
+      <form method="dialog">
+        <button type="submit" class="lyrics-close" commandfor="lyricsDialog" command="close" autofocus aria-label="Close lyrics">&times;</button>
+      </form>
     </div>
     <div class="lyrics-body" tabindex="0"></div>
   `;
@@ -326,11 +330,16 @@ function initLyrics() {
   const titleEl = dialog.querySelector('.lyrics-title');
   const bodyEl = dialog.querySelector('.lyrics-body');
 
-  dialog.querySelector('.lyrics-close').addEventListener('click', () => dialog.close());
-  // A click on the backdrop lands on the dialog element itself
-  dialog.addEventListener('click', (e) => {
-    if (e.target === dialog) dialog.close();
-  });
+  // Fallback for browsers without <dialog closedby="any"> (e.g. Safari)
+  if (!('closedBy' in HTMLDialogElement.prototype)) {
+    const outside = (e, d) => {
+      const r = d.getBoundingClientRect();
+      return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    };
+    let pressedOutside = false;
+    dialog.addEventListener('pointerdown', (e) => { pressedOutside = outside(e, dialog); });
+    dialog.addEventListener('pointerup', (e) => { if (pressedOutside && outside(e, dialog)) dialog.close(); });
+  }
 
   // Delegated, so it also covers buttons rendered later from releases.json
   document.addEventListener('click', (e) => {

@@ -30,6 +30,7 @@
   <link rel="apple-touch-icon" href="logo-512.png">
 
   <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://is1-ssl.mzstatic.com" crossorigin>
 
 
 
@@ -43,7 +44,7 @@
 
 
   <!-- Navigation Header -->
-  <a class="skip-link" href="#main">Skip to content</a><header class="portfolio-header"><div class="portfolio-wrap header-inner"><a class="nest-brand" href="index.html"><span class="brand-emblem" aria-hidden="true"><img class="brand-face is-active" src="assets/brand-1.webp" width="48" height="48" alt=""><img class="brand-face" src="assets/brand-2.webp" width="48" height="48" alt=""><img class="brand-face" src="assets/brand-3.webp" width="48" height="48" alt=""></span><span>Pilgrim’s Nest</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" hidden aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><nav id="primary-nav" class="portfolio-nav" aria-label="Primary"><a href="index.html">Home</a><a href="music.html" aria-current="page">Music</a><a href="films.html">Films</a><a href="index.html#about">About</a></nav></div></header>
+  <a class="skip-link" href="#main">Skip to content</a><header class="portfolio-header"><div class="portfolio-wrap header-inner"><a class="nest-brand" href="index.html"><span class="brand-emblem" aria-hidden="true"><img class="brand-face is-active" src="assets/brand-1.webp" width="48" height="48" alt=""><img class="brand-face" src="assets/brand-2.webp" width="48" height="48" alt="" loading="lazy" fetchpriority="low"><img class="brand-face" src="assets/brand-3.webp" width="48" height="48" alt="" loading="lazy" fetchpriority="low"></span><span>Pilgrim’s Nest</span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" hidden aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><nav id="primary-nav" class="portfolio-nav" aria-label="Primary"><a href="index.html">Home</a><a href="music.html" aria-current="page">Music</a><a href="films.html">Films</a><a href="index.html#about">About</a></nav></div></header>
 
   <main id="main">
     <!-- Hero: the artist, and the latest single -->
@@ -73,7 +74,7 @@
           <article class="feature" id="featuredRelease" data-release-id="6820991591">
             <a class="feature-cover-link" href="https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591"
                target="_blank" rel="noopener noreferrer" aria-label="Listen to I AM Talking to you on Apple Music">
-              <img class="feature-cover" width="600" height="600" alt="I AM Talking to you cover art"
+              <img class="feature-cover" width="600" height="600" alt="I AM Talking to you cover art" fetchpriority="high"
                    src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/51/97/80/51978078-959c-28f0-17bd-a5f8a0359e2f/artwork.jpg/600x600bb.jpg">
             </a>
             <div class="feature-body">
@@ -193,6 +194,6 @@
   <footer class="portfolio-footer portfolio-wrap"><a class="nest-brand" href="index.html"><img src="assets/brand-1.webp" width="40" height="40" alt=""><span>Pilgrim’s Nest</span></a><nav aria-label="Footer"><a href="index.html">Home</a><a href="music.html">Music</a><a href="films.html">Films</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav></footer>
 
   <!-- Interactive JavaScript -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
