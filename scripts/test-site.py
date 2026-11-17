@@ -171,7 +171,7 @@ PAGES=['index.html','music.html','films.html']
 # in the sitemap.
 ALL_PAGES=PAGES+['404.html']
 # Lower this whenever alt text is improved. Never raise it: it is a ratchet, not a target.
-GENERIC_ALT_CEILING=179
+GENERIC_ALT_CEILING=0
 
 class SiteHygiene(unittest.TestCase):
     """Invariants that hold today, so they cannot regress unnoticed."""
