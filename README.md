@@ -17,7 +17,7 @@ From this directory:
 python -m http.server 8080 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:8080`. Use HTTP because music and lyrics fetch local files. The Music background starts only after pressing **Play background**, and can be paused.
+Open `http://127.0.0.1:8080`. Use HTTP because opening lyrics or fetching `releases.json` from `file://` may be restricted. Ambient motion plays automatically unless `prefers-reduced-motion: reduce` is enabled or paused via **Pause background** (the pause preference persists across pages in `sessionStorage`).
 
 ```powershell
 python scripts/test-site.py
@@ -46,7 +46,7 @@ python scripts/test-site.py
 
 The generator refuses shortfalls or unverified records and updates the cards and verification label. Review additions/removals before publication. TikTok controls playback, availability and sign-in requirements. The site opens canonical post links and loads no TikTok embeds or tracking scripts.
 
-For music releases, update `releases.json` and the static latest-release/cover fallbacks in `index.html` and `music.html`. Use original artwork. Old homepage `#latest`, `#album` and `#singles` links route to Music; without JavaScript they offer an onward link.
+For music releases, update `releases.json` and run `python scripts/build-music.py` (and `python scripts/test-site.py`) to update the statically rendered singles, album tracklist, and lyric links in `music.html`, plus update the latest release card in `index.html`. Use original artwork. Old homepage `#latest`, `#album` and `#singles` links route to Music; without JavaScript they offer an onward link.
 
 ## Publication
 

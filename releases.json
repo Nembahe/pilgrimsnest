@@ -60,6 +60,16 @@
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d2/a6/10/d2a61074-a191-9200-b7b1-b6bd808b47de/artwork.jpg/600x600bb.jpg"
     },
     {
+      "title": "This Long Weekend",
+      "released": "2026-09-15",
+      "appleId": "6811697680",
+      "lyrics": "lyrics/this-long-weekend.txt",
+      "appleUrl": "https://music.apple.com/bw/album/this-long-weekend-single/6811697680",
+      "spotifyUrl": "https://open.spotify.com/album/3LoGCmHyUDHV8ZE6r8jhLC",
+      "youtubeUrl": "https://www.youtube.com/watch?v=tdBCy7B6yEc&list=OLAK5uy_mZ7cPa1bVXqnHLL8jwVnnr9lEAQAKx7sM",
+      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/7e/55/3a7e5538-061f-9d3f-862e-b301a6952898/artwork.jpg/600x600bb.jpg"
+    },
+    {
       "title": "These are the Games we play as God",
       "released": "2026-07-26",
       "appleId": "6794726975",
@@ -108,16 +118,6 @@
       "spotifyUrl": "https://open.spotify.com/album/54YRdj4Ufhns27Uq1t3xGO",
       "youtubeUrl": "https://www.youtube.com/watch?v=BiMa6imsSak&list=OLAK5uy_n2ZW9zESTvSFsiV78xLNj54v7lJMhYVjE",
       "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/bf/b2/d5bfb2e1-7613-683a-fe10-4875c4c12766/artwork.jpg/600x600bb.jpg"
-    },
-    {
-      "title": "This Long Weekend",
-      "released": "2026-09-15",
-      "appleId": "6811697680",
-      "lyrics": "lyrics/this-long-weekend.txt",
-      "appleUrl": "https://music.apple.com/bw/album/this-long-weekend-single/6811697680",
-      "spotifyUrl": "https://open.spotify.com/album/3LoGCmHyUDHV8ZE6r8jhLC",
-      "youtubeUrl": "https://www.youtube.com/watch?v=tdBCy7B6yEc&list=OLAK5uy_mZ7cPa1bVXqnHLL8jwVnnr9lEAQAKx7sM",
-      "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/7e/55/3a7e5538-061f-9d3f-862e-b301a6952898/artwork.jpg/600x600bb.jpg"
     }
   ]
 }

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function formatReleaseDate(iso) {
   const d = new Date(iso + 'T00:00:00Z');
   if (Number.isNaN(d.getTime())) return '';
-  return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long' });
+  return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', timeZone: 'UTC' });
 }
 
 // Every value from releases.json goes through this before it reaches
@@ -25,6 +25,19 @@ function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   })[char]);
+}
+
+function releaseSignature(rel) {
+  return [
+    rel.appleId || rel.title,
+    rel.title,
+    rel.released,
+    rel.appleUrl || '',
+    rel.spotifyUrl || '',
+    rel.youtubeUrl || '',
+    rel.lyrics || '',
+    rel.cover || ''
+  ].join('|');
 }
 
 // releases.json is the single source of truth for both pages. Newest first,
@@ -42,25 +55,31 @@ function platformLinks(rel, cls) {
 // Lyrics exist only for releases that name a text file in releases.json.
 function lyricsButton(rel) {
   if (!rel.lyrics) return '';
-  return `<button type="button" class="release-link lyrics-btn" data-lyrics="${escapeHtml(rel.lyrics)}" data-lyrics-title="${escapeHtml(rel.title)}">Lyrics</button>`;
+  const title = escapeHtml(rel.title);
+  const href = escapeHtml(rel.lyrics);
+  return `<a class="release-link lyrics-btn" href="${href}" data-lyrics="${href}" data-lyrics-title="${title}" aria-label="Lyrics for ${title}">Lyrics</a>`;
 }
 
 // A release that is not on Apple Music yet still needs its cover art on screen,
 // so the cover only becomes a link when there is a real URL behind it. Without
 // this, a release missing appleUrl renders href="undefined" and ships a dead
 // link on the most prominent card on the page.
-function coverImage(rel, cls, width, height, lazy) {
+function coverImage(rel, cls, width, height, lazy, altSuffix = 'cover art') {
   const title = escapeHtml(rel.title);
   const img = `<img class="${cls}"${lazy ? ' loading="lazy" decoding="async"' : ' fetchpriority="high"'}` +
-    ` width="${width}" height="${height}" src="${escapeHtml(rel.cover)}" alt="${title} cover art">`;
+    ` width="${width}" height="${height}" src="${escapeHtml(rel.cover)}" alt="${title} ${altSuffix}">`;
   if (!rel.appleUrl) return img;
   return `<a class="${cls}-link" href="${escapeHtml(rel.appleUrl)}" target="_blank" rel="noopener noreferrer"` +
     ` aria-label="Listen to ${title} on Apple Music">${img}</a>`;
 }
 
 /* ==========================================================================
-   11. Lyrics Dialog (both pages)
+   11. Lyrics Dialog
    ========================================================================== */
+function lyricsSlug(path) {
+  return String(path || '').replace(/^.*\//, '').replace(/\.txt$/i, '');
+}
+
 function initLyrics() {
   if (typeof HTMLDialogElement === 'undefined') return;
 
@@ -73,15 +92,18 @@ function initLyrics() {
     <div class="lyrics-head">
       <h2 class="lyrics-title" id="lyricsTitle">Lyrics</h2>
       <form method="dialog">
-        <button type="submit" class="lyrics-close" commandfor="lyricsDialog" command="close" autofocus aria-label="Close lyrics">&times;</button>
+        <button type="submit" class="lyrics-close" autofocus aria-label="Close lyrics">&times;</button>
       </form>
     </div>
-    <div class="lyrics-body" tabindex="0"></div>
+    <div class="lyrics-body" role="region" aria-label="Song lyrics" tabindex="0"></div>
   `;
   document.body.appendChild(dialog);
 
   const titleEl = dialog.querySelector('.lyrics-title');
   const bodyEl = dialog.querySelector('.lyrics-body');
+  const lyricsCache = new Map();
+  let requestSeq = 0;
+  let activeController = null;
 
   // Fallback for browsers without <dialog closedby="any"> (e.g. Safari)
   if (!('closedBy' in HTMLDialogElement.prototype)) {
@@ -94,29 +116,90 @@ function initLyrics() {
     dialog.addEventListener('pointerup', (e) => { if (pressedOutside && outside(e, dialog)) dialog.close(); });
   }
 
-  // Delegated, so it also covers buttons rendered later from releases.json
-  document.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-lyrics]');
-    if (!btn) return;
+  dialog.addEventListener('close', () => {
+    if (activeController) {
+      activeController.abort();
+      activeController = null;
+    }
+    requestSeq++;
+    try {
+      if (location.hash.startsWith('#lyrics=')) {
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+    } catch { /* Ignore history errors in restricted contexts. */ }
+  });
 
-    titleEl.textContent = btn.dataset.lyricsTitle || 'Lyrics';
+  function openLyrics(trigger, updateHash = true) {
+    const path = trigger.dataset.lyrics;
+    if (!path) return;
+    titleEl.textContent = trigger.dataset.lyricsTitle || 'Lyrics';
+
+    if (updateHash) {
+      try {
+        history.replaceState(null, '', '#lyrics=' + encodeURIComponent(lyricsSlug(path)));
+      } catch { /* Ignore history errors in restricted contexts. */ }
+    }
+
+    if (activeController) {
+      activeController.abort();
+      activeController = null;
+    }
+    const seq = ++requestSeq;
+
+    if (lyricsCache.has(path)) {
+      bodyEl.textContent = lyricsCache.get(path);
+      if (!dialog.open) dialog.showModal();
+      bodyEl.scrollTop = 0;
+      return;
+    }
+
     bodyEl.textContent = 'Loading the lyrics…';
-    dialog.showModal();
+    if (!dialog.open) dialog.showModal();
     bodyEl.scrollTop = 0;
 
-    fetch(btn.dataset.lyrics)
+    activeController = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const options = activeController ? { signal: activeController.signal } : undefined;
+
+    fetch(path, options)
       .then((r) => {
         if (!r.ok) throw new Error('HTTP ' + r.status);
         return r.text();
       })
       .then((text) => {
-        bodyEl.textContent = text.trim();
+        const trimmed = text.trim();
+        lyricsCache.set(path, trimmed);
+        if (seq !== requestSeq) return;
+        activeController = null;
+        bodyEl.textContent = trimmed;
+        bodyEl.scrollTop = 0;
       })
       .catch((err) => {
+        if (err && err.name === 'AbortError') return;
+        if (seq !== requestSeq) return;
+        activeController = null;
         console.error('Could not load lyrics:', err);
         bodyEl.textContent = 'The lyrics could not be loaded. Close this and try again.';
       });
+  }
+
+  // Delegated, so it also covers links rendered later from releases.json
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-lyrics]');
+    if (!trigger) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    openLyrics(trigger, true);
   });
+
+  try {
+    if (location.hash.startsWith('#lyrics=')) {
+      const targetSlug = decodeURIComponent(location.hash.slice(8));
+      const match = [...document.querySelectorAll('[data-lyrics]')].find(
+        (el) => lyricsSlug(el.dataset.lyrics) === targetSlug
+      );
+      if (match) openLyrics(match, false);
+    }
+  } catch { /* Ignore malformed hash values. */ }
 }
 
 let cataloguePromise = null;
@@ -182,12 +265,7 @@ function initAlbums() {
         return `
           <article class="album">
             <div class="album-side">
-              <a class="feature-cover-link" href="${escapeHtml(album.appleUrl)}"
-                 target="_blank" rel="noopener noreferrer"
-                 aria-label="Listen to ${escapeHtml(album.title)} on Apple Music">
-                <img class="feature-cover" src="${escapeHtml(album.cover)}" alt="${escapeHtml(album.title)} album cover"
-                     loading="lazy" decoding="async" width="600" height="600">
-              </a>
+              ${coverImage(album, 'feature-cover', 600, 600, true, 'album cover')}
               <h3 class="album-title">${escapeHtml(album.title)}</h3>
               <p class="album-facts">${tracks.length} tracks &bull; ${minutes} min &bull; ${formatReleaseDate(album.released)}</p>
               <div class="platform-links">${platformLinks(album, 'platform-btn')}</div>
@@ -206,6 +284,7 @@ function initAlbums() {
     })
     .catch((err) => {
       console.error('Could not load the album from releases.json:', err);
+      if (typeof wrap.querySelector === 'function' && wrap.querySelector('.album')) return;
       wrap.innerHTML = '<p class="release-error">The album could not be loaded. ' +
         'It is on <a href="https://music.apple.com/bw/album/i-am/1857644050" ' +
         'target="_blank" rel="noopener noreferrer">Apple Music</a> or ' +
@@ -228,13 +307,13 @@ function initHome() {
       const latest = items[0];
       const earlier = items.slice(1);
 
-      // index.html ships the latest single as static markup so the hero works
-      // without JavaScript. Only redraw it when releases.json has moved on.
-      // The title is the fallback key because a release that is not on Apple
-      // has no appleId, and "undefined" would never equal a stored string.
+      // music.html ships the latest single pre-rendered from releases.json.
+      // Only redraw it when releases.json metadata has changed.
       const latestKey = latest.appleId || latest.title;
-      if (feature && feature.dataset.releaseId !== latestKey) {
+      const latestSig = releaseSignature(latest);
+      if (feature && feature.dataset.releaseSig !== latestSig) {
         feature.dataset.releaseId = latestKey;
+        feature.dataset.releaseSig = latestSig;
         feature.innerHTML = `
           ${coverImage(latest, 'feature-cover', 600, 600, false)}
           <div class="feature-body">
@@ -261,6 +340,7 @@ function initHome() {
     })
     .catch((err) => {
       console.error('Could not load releases.json:', err);
+      if (typeof grid.querySelector === 'function' && grid.querySelector('.single-card')) return;
       grid.innerHTML = '<p class="release-error">The singles could not be loaded. ' +
         'All of them are on <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" ' +
         'target="_blank" rel="noopener noreferrer">Apple Music</a>.</p>';

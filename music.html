@@ -29,14 +29,14 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="logo-512.png">
 
-  <!-- Google Fonts Preconnect -->
+  <!-- Album Artwork CDN Preconnect -->
   <link rel="preconnect" href="https://is1-ssl.mzstatic.com" crossorigin>
 
 
 
 
   <!-- Main Stylesheet -->
-  <link rel="canonical" href="https://pilgrimsnest.org/music.html"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="portfolio.css"><script src="portfolio.js" defer></script>
+  <link rel="canonical" href="https://pilgrimsnest.org/music.html"><link rel="stylesheet" href="portfolio.css"><link rel="stylesheet" href="styles.css"><script src="portfolio.js" defer></script>
 </head>
 <body class="portfolio-page music-page" data-ambient="sparks"><canvas id="ambientSparks" aria-hidden="true"></canvas><div class="ambient-controls"><button id="ambientToggle" class="motion-toggle" type="button" aria-pressed="false" hidden>Play background</button><span id="ambientStatus" class="ambient-status" role="status"></span></div>
 
@@ -68,29 +68,22 @@
           </div>
         </div>
 
-        <!-- Latest single. The markup below is the no-JavaScript fallback;
-             script.js replaces it with the newest entry in releases.json. -->
+        <!-- Latest single, pre-rendered from releases.json by scripts/build-music.py;
+             script.js refreshes it when releases.json moves on. -->
         <div class="home-hero-media">
-          <article class="feature" id="featuredRelease" data-release-id="6820991591">
-            <a class="feature-cover-link" href="https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591"
-               target="_blank" rel="noopener noreferrer" aria-label="Listen to I AM Talking to you on Apple Music">
-              <img class="feature-cover" width="600" height="600" alt="I AM Talking to you cover art" fetchpriority="high"
-                   src="assets/i-am-talking-to-you.webp">
-            </a>
+          <!-- featured-release:start -->
+          <article class="feature" id="featuredRelease" data-release-id="6820991591" data-release-sig="6820991591|I AM Talking to you|2026-10-09|https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591|||lyrics/i-am-talking-to-you.txt|assets/i-am-talking-to-you.webp">
+            <a class="feature-cover-link" href="https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591" target="_blank" rel="noopener noreferrer" aria-label="Listen to I AM Talking to you on Apple Music"><img class="feature-cover" fetchpriority="high" width="600" height="600" src="assets/i-am-talking-to-you.webp" alt="I AM Talking to you cover art"></a>
             <div class="feature-body">
               <div class="feature-meta">
                 <span class="feature-label">Latest single</span>
                 <h2 class="feature-title">I AM Talking to you</h2>
                 <p class="feature-date">October 2026</p>
               </div>
-              <div class="release-links">
-                <a class="release-link" href="https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591"
-                   target="_blank" rel="noopener noreferrer" aria-label="I AM Talking to you on Apple Music">Apple Music</a>
-                <button type="button" class="release-link lyrics-btn" data-lyrics="lyrics/i-am-talking-to-you.txt"
-                        data-lyrics-title="I AM Talking to you">Lyrics</button>
-              </div>
+              <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/i-am-talking-to-you-single/6820991591" target="_blank" rel="noopener noreferrer" aria-label="I AM Talking to you on Apple Music">Apple Music</a><a class="release-link lyrics-btn" href="lyrics/i-am-talking-to-you.txt" data-lyrics="lyrics/i-am-talking-to-you.txt" data-lyrics-title="I AM Talking to you" aria-label="Lyrics for I AM Talking to you">Lyrics</a></div>
             </div>
           </article>
+          <!-- featured-release:end -->
         </div>
       </div>
     </section>
@@ -108,29 +101,78 @@
       </div>
     </section>
 
-    <!-- Earlier singles, rendered from releases.json -->
+    <!-- Earlier singles, pre-rendered from releases.json -->
     <section class="section" id="singles">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">The Singles</span>
-          <h2 class="section-title">The Singles</h2>
+          <h2 class="section-title">Single Releases</h2>
         </div>
 
         <div class="singles-grid" id="singlesGrid">
-          <p class="release-loading">Loading the singles&hellip;</p>
+          <!-- singles:start -->
+          <article class="single-card">
+            <a class="single-cover-link" href="https://music.apple.com/bw/album/tears-in-the-rain-single/6815746322" target="_blank" rel="noopener noreferrer" aria-label="Listen to Tears in the Rain on Apple Music"><img class="single-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d2/a6/10/d2a61074-a191-9200-b7b1-b6bd808b47de/artwork.jpg/600x600bb.jpg" alt="Tears in the Rain cover art"></a>
+            <div class="single-meta">
+              <h3 class="single-title">Tears in the Rain</h3>
+              <p class="single-date">September 2026</p>
+            </div>
+            <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/tears-in-the-rain-single/6815746322" target="_blank" rel="noopener noreferrer" aria-label="Tears in the Rain on Apple Music">Apple Music</a><a class="release-link" href="https://open.spotify.com/album/7LiEUqhndFOIGWK6uHgVAv" target="_blank" rel="noopener noreferrer" aria-label="Tears in the Rain on Spotify">Spotify</a><a class="release-link" href="https://www.youtube.com/watch?v=CWX6Q-zBqcg" target="_blank" rel="noopener noreferrer" aria-label="Tears in the Rain on YouTube">YouTube</a><a class="release-link lyrics-btn" href="lyrics/tears-in-the-rain.txt" data-lyrics="lyrics/tears-in-the-rain.txt" data-lyrics-title="Tears in the Rain" aria-label="Lyrics for Tears in the Rain">Lyrics</a></div>
+          </article>
+          <article class="single-card">
+            <a class="single-cover-link" href="https://music.apple.com/bw/album/this-long-weekend-single/6811697680" target="_blank" rel="noopener noreferrer" aria-label="Listen to This Long Weekend on Apple Music"><img class="single-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/3a/7e/55/3a7e5538-061f-9d3f-862e-b301a6952898/artwork.jpg/600x600bb.jpg" alt="This Long Weekend cover art"></a>
+            <div class="single-meta">
+              <h3 class="single-title">This Long Weekend</h3>
+              <p class="single-date">September 2026</p>
+            </div>
+            <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/this-long-weekend-single/6811697680" target="_blank" rel="noopener noreferrer" aria-label="This Long Weekend on Apple Music">Apple Music</a><a class="release-link" href="https://open.spotify.com/album/3LoGCmHyUDHV8ZE6r8jhLC" target="_blank" rel="noopener noreferrer" aria-label="This Long Weekend on Spotify">Spotify</a><a class="release-link" href="https://www.youtube.com/watch?v=tdBCy7B6yEc&amp;list=OLAK5uy_mZ7cPa1bVXqnHLL8jwVnnr9lEAQAKx7sM" target="_blank" rel="noopener noreferrer" aria-label="This Long Weekend on YouTube">YouTube</a><a class="release-link lyrics-btn" href="lyrics/this-long-weekend.txt" data-lyrics="lyrics/this-long-weekend.txt" data-lyrics-title="This Long Weekend" aria-label="Lyrics for This Long Weekend">Lyrics</a></div>
+          </article>
+          <article class="single-card">
+            <a class="single-cover-link" href="https://music.apple.com/bw/album/these-are-the-games-we-play-as-god-single/6794726975" target="_blank" rel="noopener noreferrer" aria-label="Listen to These are the Games we play as God on Apple Music"><img class="single-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/62/2a/63/622a63b1-e839-5755-5e3e-c31e27b94058/artwork.jpg/600x600bb.jpg" alt="These are the Games we play as God cover art"></a>
+            <div class="single-meta">
+              <h3 class="single-title">These are the Games we play as God</h3>
+              <p class="single-date">July 2026</p>
+            </div>
+            <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/these-are-the-games-we-play-as-god-single/6794726975" target="_blank" rel="noopener noreferrer" aria-label="These are the Games we play as God on Apple Music">Apple Music</a><a class="release-link" href="https://open.spotify.com/album/5yOqf0hlBSXb6ru6LThtSx" target="_blank" rel="noopener noreferrer" aria-label="These are the Games we play as God on Spotify">Spotify</a><a class="release-link" href="https://www.youtube.com/watch?v=8gMFCohRbtI&amp;list=OLAK5uy_mxMHqHPFzlO7S6ADFMhdNYQ8qiaPoC848" target="_blank" rel="noopener noreferrer" aria-label="These are the Games we play as God on YouTube">YouTube</a><a class="release-link lyrics-btn" href="lyrics/these-are-the-games-we-play-as-god.txt" data-lyrics="lyrics/these-are-the-games-we-play-as-god.txt" data-lyrics-title="These are the Games we play as God" aria-label="Lyrics for These are the Games we play as God">Lyrics</a></div>
+          </article>
+          <article class="single-card">
+            <a class="single-cover-link" href="https://music.apple.com/bw/album/magaraba-single/6784610644" target="_blank" rel="noopener noreferrer" aria-label="Listen to Magaraba on Apple Music"><img class="single-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/12/ac/e7/12ace7db-a5cf-cad0-0316-e6ef12140297/artwork.jpg/600x600bb.jpg" alt="Magaraba cover art"></a>
+            <div class="single-meta">
+              <h3 class="single-title">Magaraba</h3>
+              <p class="single-date">June 2026</p>
+            </div>
+            <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/magaraba-single/6784610644" target="_blank" rel="noopener noreferrer" aria-label="Magaraba on Apple Music">Apple Music</a><a class="release-link" href="https://open.spotify.com/album/1bgEWOOqo53NrRoGssPXJP" target="_blank" rel="noopener noreferrer" aria-label="Magaraba on Spotify">Spotify</a><a class="release-link" href="https://www.youtube.com/watch?v=NXspOQh2nEg&amp;list=OLAK5uy_n_vQfGHaw90NLTP8N1-6ZO2L_P50Qn350" target="_blank" rel="noopener noreferrer" aria-label="Magaraba on YouTube">YouTube</a><a class="release-link lyrics-btn" href="lyrics/magaraba.txt" data-lyrics="lyrics/magaraba.txt" data-lyrics-title="Magaraba" aria-label="Lyrics for Magaraba">Lyrics</a></div>
+          </article>
+          <article class="single-card">
+            <a class="single-cover-link" href="https://music.apple.com/bw/album/me-time-single/6782628012" target="_blank" rel="noopener noreferrer" aria-label="Listen to Me Time on Apple Music"><img class="single-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/63/27/25/63272516-9732-65b3-61aa-167c66582946/artwork.jpg/600x600bb.jpg" alt="Me Time cover art"></a>
+            <div class="single-meta">
+              <h3 class="single-title">Me Time</h3>
+              <p class="single-date">June 2026</p>
+            </div>
+            <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/me-time-single/6782628012" target="_blank" rel="noopener noreferrer" aria-label="Me Time on Apple Music">Apple Music</a><a class="release-link" href="https://open.spotify.com/album/0KUuH1meCI5QgIHbmkMIsM" target="_blank" rel="noopener noreferrer" aria-label="Me Time on Spotify">Spotify</a><a class="release-link" href="https://www.youtube.com/watch?v=8VguV95KUxE&amp;list=OLAK5uy_knzig3cIIt2k-e8h8MSbdrRWu4IMdntlc" target="_blank" rel="noopener noreferrer" aria-label="Me Time on YouTube">YouTube</a><a class="release-link lyrics-btn" href="lyrics/me-time.txt" data-lyrics="lyrics/me-time.txt" data-lyrics-title="Me Time" aria-label="Lyrics for Me Time">Lyrics</a></div>
+          </article>
+          <article class="single-card">
+            <a class="single-cover-link" href="https://music.apple.com/bw/album/new-view-single/6780299472" target="_blank" rel="noopener noreferrer" aria-label="Listen to New View on Apple Music"><img class="single-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/e3/48/f1/e348f197-ffa4-79d9-3c2a-79d509780e95/artwork.jpg/600x600bb.jpg" alt="New View cover art"></a>
+            <div class="single-meta">
+              <h3 class="single-title">New View</h3>
+              <p class="single-date">June 2026</p>
+            </div>
+            <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/new-view-single/6780299472" target="_blank" rel="noopener noreferrer" aria-label="New View on Apple Music">Apple Music</a><a class="release-link" href="https://open.spotify.com/album/1fev3DQkFIgF7DCkLWFU1x" target="_blank" rel="noopener noreferrer" aria-label="New View on Spotify">Spotify</a><a class="release-link" href="https://www.youtube.com/watch?v=hmzBj8igdxA&amp;list=OLAK5uy_kv5YwyM9C2yTecJIUiLohoNdViRmQDIXY" target="_blank" rel="noopener noreferrer" aria-label="New View on YouTube">YouTube</a><a class="release-link lyrics-btn" href="lyrics/new-view.txt" data-lyrics="lyrics/new-view.txt" data-lyrics-title="New View" aria-label="Lyrics for New View">Lyrics</a></div>
+          </article>
+          <article class="single-card">
+            <a class="single-cover-link" href="https://music.apple.com/bw/album/a-fool-and-a-liar-single/1895871191" target="_blank" rel="noopener noreferrer" aria-label="Listen to A Fool and a Liar on Apple Music"><img class="single-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/bf/b2/d5bfb2e1-7613-683a-fe10-4875c4c12766/artwork.jpg/600x600bb.jpg" alt="A Fool and a Liar cover art"></a>
+            <div class="single-meta">
+              <h3 class="single-title">A Fool and a Liar</h3>
+              <p class="single-date">April 2026</p>
+            </div>
+            <div class="release-links"><a class="release-link" href="https://music.apple.com/bw/album/a-fool-and-a-liar-single/1895871191" target="_blank" rel="noopener noreferrer" aria-label="A Fool and a Liar on Apple Music">Apple Music</a><a class="release-link" href="https://open.spotify.com/album/54YRdj4Ufhns27Uq1t3xGO" target="_blank" rel="noopener noreferrer" aria-label="A Fool and a Liar on Spotify">Spotify</a><a class="release-link" href="https://www.youtube.com/watch?v=BiMa6imsSak&amp;list=OLAK5uy_n2ZW9zESTvSFsiV78xLNj54v7lJMhYVjE" target="_blank" rel="noopener noreferrer" aria-label="A Fool and a Liar on YouTube">YouTube</a><a class="release-link lyrics-btn" href="lyrics/a-fool-and-a-liar.txt" data-lyrics="lyrics/a-fool-and-a-liar.txt" data-lyrics-title="A Fool and a Liar" aria-label="Lyrics for A Fool and a Liar">Lyrics</a></div>
+          </article>
+          <!-- singles:end -->
         </div>
-        <noscript>
-          <p class="release-error">
-            Every single is on
-            <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" target="_blank" rel="noopener noreferrer">Apple Music</a>.
-          </p>
-        </noscript>
-
-
       </div>
     </section>
 
-    <!-- The album, rendered from releases.json -->
+    <!-- The album, pre-rendered from releases.json -->
     <section class="section" id="album">
       <div class="container">
         <div class="section-header">
@@ -139,15 +181,91 @@
         </div>
 
         <div id="albumList">
-          <p class="release-loading">Loading the album&hellip;</p>
+          <!-- albums:start -->
+          <article class="album">
+            <div class="album-side">
+              <a class="feature-cover-link" href="https://music.apple.com/bw/album/i-am/1857644050" target="_blank" rel="noopener noreferrer" aria-label="Listen to I AM on Apple Music"><img class="feature-cover" loading="lazy" decoding="async" width="600" height="600" src="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/83/9b/cf/839bcfbd-0e21-bf93-ed04-7502cb9985f4/artwork.jpg/600x600bb.jpg" alt="I AM album cover"></a>
+              <h3 class="album-title">I AM</h3>
+              <p class="album-facts">18 tracks &bull; 85 min &bull; December 2025</p>
+              <div class="platform-links"><a class="platform-btn" href="https://music.apple.com/bw/album/i-am/1857644050" target="_blank" rel="noopener noreferrer" aria-label="I AM on Apple Music">Apple Music</a><a class="platform-btn" href="https://open.spotify.com/album/69Q17o7HANnFzA7ysbEsjw" target="_blank" rel="noopener noreferrer" aria-label="I AM on Spotify">Spotify</a><a class="platform-btn" href="https://www.youtube.com/watch?v=Tq-izfJzmK4&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="I AM on YouTube">YouTube</a></div>
+            </div>
+            <ol class="album-tracks">
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=Tq-izfJzmK4&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to You and U on YouTube (opens in a new tab)">You and U<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">5:53</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=UPWuQ7P5wU8&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to We Own The Night on YouTube (opens in a new tab)">We Own The Night<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:28</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=S4wsAvwGNDg&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to This Is It on YouTube (opens in a new tab)">This Is It<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:52</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=cF-J2KUMsoE&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to I Know Your Name on YouTube (opens in a new tab)">I Know Your Name<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:16</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=yec8Fdag9XI&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Weekday Motion on YouTube (opens in a new tab)">Weekday Motion<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:36</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=ym9wqnlgNnU&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to I Wanna Go on YouTube (opens in a new tab)">I Wanna Go<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:38</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=0IlOX-MNEX8&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Ke December Boss on YouTube (opens in a new tab)">Ke December Boss<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">5:00</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=pWLgWU0JzNY&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to My Guiding Star on YouTube (opens in a new tab)">My Guiding Star<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:29</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=BxkBe4PvNpk&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Solid Ground on YouTube (opens in a new tab)">Solid Ground<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">5:30</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=2L-Je9qW9Is&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Tonight We Dance on YouTube (opens in a new tab)">Tonight We Dance<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">3:53</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=21WqOnmgfp4&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Everyday A Friday on YouTube (opens in a new tab)">Everyday A Friday<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:43</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=3VdUy3uIBNQ&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Exciting Times on YouTube (opens in a new tab)">Exciting Times<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">5:09</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=sYBwBfOYYTM&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Happy Birthday on YouTube (opens in a new tab)">Happy Birthday<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">5:22</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=o-cQqwaRb94&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to I AM on YouTube (opens in a new tab)">I AM<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:19</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=s8cCNQxf3P0&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Unconditional on YouTube (opens in a new tab)">Unconditional<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:15</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=Vb2MV8jkBD0&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to I Wanna Go Back on YouTube (opens in a new tab)">I Wanna Go Back<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:02</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=KFFcH1i5o5Q&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to You-Inverse on YouTube (opens in a new tab)">You-Inverse<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:48</span>
+              </li>
+              <li class="album-track">
+                <a class="album-track-title album-track-link" href="https://www.youtube.com/watch?v=uLGbjexIarc&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer" aria-label="Listen to Outtro (I AM) on YouTube (opens in a new tab)">Outtro (I AM)<span class="album-track-cue" aria-hidden="true"> ↗</span></a>
+                <span class="album-track-time">4:28</span>
+              </li>
+            </ol>
+          </article>
+          <!-- albums:end -->
         </div>
-        <noscript>
-          <p class="release-error">
-            <cite>I AM</cite> is on
-            <a href="https://music.apple.com/bw/album/i-am/1857644050" target="_blank" rel="noopener noreferrer">Apple Music</a> and
-            <a href="https://www.youtube.com/watch?v=Tq-izfJzmK4&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" target="_blank" rel="noopener noreferrer">YouTube</a>.
-          </p>
-        </noscript>
       </div>
     </section>
 
@@ -155,13 +273,13 @@
     <section class="section" id="about">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">About Pilgrim's Nest</span>
+          <span class="section-tag">About Pilgrim’s Nest</span>
           <h2 class="section-title">Where Creative Expression and Spiritual Exploration Meet</h2>
         </div>
 
         <div class="about-lede">
           <p>
-            Pilgrim's Nest brings together laughter with insight, visuals with meaning, and
+            Pilgrim’s Nest brings together laughter with insight, visuals with meaning, and
             self-awareness with play. Each piece offers a different reflection on identity,
             consciousness, and the many ways we experience life.
           </p>
@@ -169,16 +287,16 @@
 
         <div class="about-grid">
           <div class="about-card">
-            <span class="about-label">Goal</span>
+            <h3 class="about-label">Goal</h3>
             <p>
               To create and share work that entertains, sparks curiosity, and makes spiritual
-              ideas accessible. Pilgrim's Nest invites people to notice the definitions shaping
+              ideas accessible. Pilgrim’s Nest invites people to notice the definitions shaping
               their experience, and to express themselves more authentically.
             </p>
           </div>
 
           <div class="about-card">
-            <span class="about-label">Vision</span>
+            <h3 class="about-label">Vision</h3>
             <p>
               A world where people remember themselves as conscious creators, recognise the role
               their definitions play in their experience, and live as their authentic selves

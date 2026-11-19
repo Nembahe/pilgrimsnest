@@ -10,43 +10,30 @@
   --bg-primary: #0A0F1D;
   --bg-secondary: #111827;
   --bg-card: rgba(17, 24, 39, 0.72);
-  --bg-card-hover: rgba(26, 36, 56, 0.85);
-  --bg-input: rgba(15, 23, 42, 0.8);
 
   /* Gold & Amber Hearth Accents */
   --gold-primary: #F59E0B;
   --gold-light: #FDE68A;
   --gold-dark: #D97706;
-  --gold-amber: #B45309;
   --gold-glow: rgba(245, 158, 11, 0.28);
   --gold-glow-subtle: rgba(245, 158, 11, 0.12);
-
-  /* Earth & Sage Secondary */
-  --sage-accent: #6EE7B7;
-  --sage-muted: #34D399;
-  --sage-dark: #065F46;
-  --sage-glow: rgba(110, 231, 183, 0.2);
 
   /* Typography Colors */
   --text-pure: #FFFFFF;
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
-  /* Lightened from #64748B: the original measured 4.16:1 on --bg-dark and
-     3.76:1 on --bg-card, both under the WCAG AA 4.5:1 gate for body text.
-     #74839A gives 5.14:1 and 4.64:1 respectively, and still sits clearly
-     below --text-muted so the hierarchy is preserved. */
   --text-dim: #74839A;
 
   /* Borders & Dividers */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-card: rgba(255, 255, 255, 0.12);
   --border-gold: rgba(245, 158, 11, 0.35);
-  --border-gold-strong: rgba(245, 158, 11, 0.65);
+  --border-gold-strong: rgba(245, 158, 11, 0.85);
 
   /* Fonts */
   --font-serif: 'Cinzel', serif;
-  --font-serif-display: 'Cinzel Decorative', 'Cinzel', serif;
+  --font-serif-display: 'Cinzel', serif;
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
   /* Transitions & Shadows */
@@ -54,63 +41,20 @@
   --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 1px 1px var(--border-subtle);
-  --shadow-glow: 0 0 25px var(--gold-glow);
-  --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 9999px;
 }
 
-/* Base Reset */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  color-scheme: dark;
-  --scrollbar-thumb: var(--text-dim);
-  --scrollbar-track: var(--bg-dark);
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
-
-body {
+.music-page {
   background-color: var(--bg-dark);
-  background-image: 
+  background-image:
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 158, 11, 0.12), transparent 70%),
     radial-gradient(circle at 10% 40%, rgba(16, 185, 129, 0.04), transparent 40%),
     radial-gradient(circle at 90% 70%, rgba(245, 158, 11, 0.05), transparent 50%),
     linear-gradient(180deg, var(--bg-dark) 0%, #0B0F19 50%, var(--bg-dark) 100%);
   color: var(--text-primary);
-  font-family: var(--font-sans);
-  font-size: 16px;
   line-height: 1.65;
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Custom Scrollbar (legacy WebKit fallback) */
-@supports not (scrollbar-color: auto) {
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
-    border-radius: 4px;
-    border: 2px solid var(--scrollbar-track);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-dark);
-  }
 }
 
 /* Layout Container */
@@ -121,14 +65,6 @@ body {
   padding-inline: 1.5rem;
   position: relative;
   z-index: 2;
-}
-
-/* Typography Helpers */
-h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  letter-spacing: 0.02em;
-  color: var(--text-pure);
-  font-weight: 600;
 }
 
 .gradient-text {
@@ -200,7 +136,7 @@ h1, h2, h3, h4 {
 .btn-secondary {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text-primary);
-  border: 1px solid var(--border-card);
+  border: 1px solid #64748B;
   backdrop-filter: blur(8px);
 }
 
@@ -257,7 +193,7 @@ h1, h2, h3, h4 {
   color: var(--text-secondary);
 }
 
-.about-grid {
+.music-page .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
@@ -265,7 +201,7 @@ h1, h2, h3, h4 {
   margin-inline: auto;
 }
 
-.about-card {
+.music-page .about-card {
   background: var(--bg-card);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-card);
@@ -275,29 +211,30 @@ h1, h2, h3, h4 {
   transition: border-color var(--transition-normal), transform var(--transition-normal);
 }
 
-.about-card:hover {
+.music-page .about-card:hover {
   border-color: var(--border-gold);
   transform: translateY(-2px);
 }
 
-.about-label {
+.music-page .about-label {
   display: block;
   font-family: var(--font-serif);
   font-size: 0.8rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--gold-primary);
   margin-bottom: 0.85rem;
 }
 
-.about-card p {
+.music-page .about-card p {
   font-size: 0.98rem;
   line-height: 1.7;
   color: var(--text-secondary);
 }
 
 @media (max-width: 640px) {
-  .about-card {
+  .music-page .about-card {
     padding: 1.5rem 1.25rem;
   }
   .about-lede p {
@@ -319,30 +256,6 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   Reduced Motion
-   ========================================================================== */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
-
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-}
-
-/* ==========================================================================
-   Keyboard Focus
-   ========================================================================== */
-:focus-visible {
-  outline: 2px solid var(--gold-primary);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-/* ==========================================================================
    Music Page
    ========================================================================== */
 .platform-links {
@@ -360,7 +273,7 @@ h1, h2, h3, h4 {
   min-height: 48px;
   padding: 0.7rem 1.5rem;
   background: var(--bg-card);
-  border: 1px solid var(--border-gold);
+  border: 1px solid rgba(245, 158, 11, 0.55);
   border-radius: var(--radius-full);
   color: var(--gold-light);
   font-size: 0.88rem;
@@ -374,12 +287,6 @@ h1, h2, h3, h4 {
   background: rgba(245, 158, 11, 0.12);
   border-color: var(--border-gold-strong);
   transform: translateY(-1px);
-}
-
-.platform-btn[data-unconfirmed="true"] {
-  opacity: 0.55;
-  border-style: dashed;
-  cursor: not-allowed;
 }
 
 .release-links {
@@ -397,7 +304,7 @@ h1, h2, h3, h4 {
   min-height: 48px;
   min-width: 48px;
   padding: 0.45rem 0.9rem;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid #64748B;
   border-radius: var(--radius-full);
   color: var(--text-secondary);
   font-size: 0.78rem;
@@ -431,54 +338,6 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   Header emblem spin & Music Page hero spacing
-   ========================================================================== */
-.brand-emblem {
-  position: relative;
-  display: block;
-  flex: 0 0 auto;
-  width: 72px;
-  height: 72px;
-}
-
-.brand-emblem .brand-face {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-}
-
-.brand-emblem .brand-face.is-active {
-  opacity: 1;
-}
-
-.brand-emblem.is-spinning {
-  animation: emblemSpin 1s linear;
-}
-
-@keyframes emblemSpin {
-  from { transform: perspective(400px) rotateY(0deg); }
-  to { transform: perspective(400px) rotateY(360deg); }
-}
-
-/* The taller header needs more room before the first heading */
-.home-hero {
-  padding-top: 9rem;
-}
-
-@media (max-width: 640px) {
-  .home-hero {
-    padding-top: 8rem;
-  }
-}
-
-/* Sections land below the taller fixed header when reached from the nav */
-section[id] {
-  scroll-margin-top: 6rem;
-}
-
-/* ==========================================================================
    Music Home (music.html)
    ========================================================================== */
 .home-hero-grid {
@@ -490,7 +349,7 @@ section[id] {
   gap: 4rem;
 }
 
-.artist-name {
+.music-page .artist-name {
   font-family: var(--font-serif-display);
   font-size: clamp(3.5rem, 9vw, 7rem);
   line-height: 1;
@@ -565,7 +424,8 @@ section[id] {
 
 .feature-body {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 0.5rem 0;
@@ -669,10 +529,11 @@ section[id] {
   margin-top: 2rem;
 }
 
-.album-title {
+.music-page .album-title {
   font-family: var(--font-serif-display);
   font-size: 2.5rem;
   line-height: 1.1;
+  letter-spacing: 0.02em;
   margin: 1.5rem 0 0.5rem;
 }
 
@@ -830,15 +691,6 @@ section[id] {
 }
 
 /* Per-release platform links (Apple Music / Spotify / YouTube) */
-.release-link {
-  min-height: 48px;
-}
-
-.feature-body {
-  flex-direction: column;
-  align-items: stretch;
-}
-
 .feature .release-links,
 .single-card .release-links {
   justify-content: flex-start;
@@ -881,7 +733,7 @@ section[id] {
 .lyrics-btn {
   font-family: var(--font-sans);
   background: var(--gold-glow-subtle);
-  border-color: var(--border-gold);
+  border-color: rgba(245, 158, 11, 0.55);
   color: var(--gold-light);
   cursor: pointer;
 }
@@ -983,7 +835,7 @@ section[id] {
   width: 48px;
   height: 48px;
   background: transparent;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid #64748B;
   border-radius: 50%;
   color: var(--text-secondary);
   font-size: 1.5rem;

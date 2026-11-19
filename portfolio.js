@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initFilmStillFallback();
   initAmbientBackground();
   initBrandEmblem();
   initContactEmail();
@@ -6,27 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.getElementById('primary-nav');
   if (toggle && nav) {
     toggle.hidden = false;
+    const headerInner = toggle.closest('.header-inner') || nav;
+    const closeNav = (restoreFocus = false) => {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation');
+      if (restoreFocus) toggle.focus();
+    };
     toggle.addEventListener('click', () => {
       const expanded = toggle.getAttribute('aria-expanded') !== 'true';
       toggle.setAttribute('aria-expanded', String(expanded));
       toggle.setAttribute('aria-label', expanded ? 'Close navigation' : 'Open navigation');
       nav.classList.toggle('is-open', expanded);
     });
-    const headerInner = toggle.closest('.header-inner') || nav;
-    headerInner.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open navigation');
-        toggle.focus();
-      }
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && nav.classList.contains('is-open')) closeNav(true);
+    });
+    document.addEventListener('click', event => {
+      if (nav.classList.contains('is-open') && !headerInner.contains(event.target)) closeNav(false);
     });
     nav.addEventListener('click', event => {
-      if (event.target.closest('a') && nav.classList.contains('is-open')) {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open navigation');
-      }
+      if (event.target.closest('a') && nav.classList.contains('is-open')) closeNav(false);
     });
   }
   // Keep shared links to the former music homepage useful.
@@ -41,16 +42,51 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!controls) return;
   const cards = [...document.querySelectorAll('.film-card')];
   const count = document.querySelector('.film-count');
+  const initialCountText = count.textContent;
+  const buttons = [...controls.querySelectorAll('button[data-account]')];
+  const applyFilter = (account, updateUrl = false) => {
+    const button = buttons.find(item => item.dataset.account === account) || buttons[0];
+    if (!button) return;
+    const activeAccount = button.dataset.account;
+    buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    cards.forEach(card => { card.hidden = activeAccount !== 'all' && card.dataset.account !== activeAccount; });
+    if (activeAccount === 'all') {
+      count.textContent = initialCountText;
+    } else {
+      const visible = cards.filter(card => !card.hidden).length;
+      count.textContent = `${visible} videos · ${button.textContent.trim()} · verified ${count.dataset.verifiedLabel}`;
+    }
+    if (updateUrl) {
+      try {
+        const url = new URL(location.href);
+        if (activeAccount === 'all') url.searchParams.delete('account');
+        else url.searchParams.set('account', activeAccount);
+        history.replaceState(null, '', url);
+      } catch { /* Ignore history errors in restricted contexts. */ }
+    }
+  };
   controls.hidden = false;
   controls.addEventListener('click', event => {
     const button = event.target.closest('button[data-account]');
     if (!button) return;
-    controls.querySelectorAll('button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    cards.forEach(card => { card.hidden = button.dataset.account !== 'all' && card.dataset.account !== button.dataset.account; });
-    const visible = cards.filter(card => !card.hidden).length;
-    count.textContent = `${visible} videos · ${button.textContent.trim()} · verified ${count.dataset.verifiedLabel}`;
+    applyFilter(button.dataset.account, true);
   });
+  try {
+    const requested = new URLSearchParams(location.search).get('account');
+    if (requested && buttons.some(item => item.dataset.account === requested && requested !== 'all')) {
+      applyFilter(requested, false);
+    }
+  } catch { /* Ignore URLSearchParams errors. */ }
 });
+
+function initFilmStillFallback() {
+  document.addEventListener('error', event => {
+    const target = event.target;
+    if (target && target.classList && (target.classList.contains('film-still-image') || target.classList.contains('film-still-backdrop'))) {
+      target.hidden = true;
+    }
+  }, true);
+}
 
 function initAmbientBackground() {
   const canvas = document.getElementById('ambientSparks');
@@ -69,11 +105,34 @@ function initAmbientBackground() {
   let previousTime = null;
   let width = 0;
   let height = 0;
+  let lastWidth = 0;
   let sparks = [];
   let fireVisible = true;
   let playPending = false;
   let autoplayBlocked = false;
   let fireFailed = false;
+
+  const createGlowSprites = () => {
+    if (!ctx || typeof document.createElement !== 'function' || typeof ctx.drawImage !== 'function') return null;
+    const makeSprite = (rgb) => {
+      const sprite = document.createElement('canvas');
+      sprite.width = 24;
+      sprite.height = 24;
+      const sctx = sprite.getContext('2d');
+      if (!sctx) return null;
+      const grad = sctx.createRadialGradient(12, 12, 0, 12, 12, 12);
+      grad.addColorStop(0, `rgba(${rgb},0.55)`);
+      grad.addColorStop(0.4, `rgba(${rgb},0.18)`);
+      grad.addColorStop(1, `rgba(${rgb},0)`);
+      sctx.fillStyle = grad;
+      sctx.fillRect(0, 0, 24, 24);
+      return sprite;
+    };
+    const soft = makeSprite('255,226,161');
+    const warm = makeSprite('255,179,75');
+    return soft && warm ? { '#ffe2a1': soft, '#ffb34b': warm } : null;
+  };
+  const glowSprites = createGlowSprites();
 
   const enabled = () => !userPaused && !reducedMotion.matches && !autoplayBlocked;
   const shouldPlayFire = () => enabled() && !document.hidden && fireVisible && !fireFailed;
@@ -89,10 +148,10 @@ function initAmbientBackground() {
       if (spark.x < -12) spark.x = width + 12;
       if (spark.x > width + 12) spark.x = -12;
       ctx.globalAlpha = spark.alpha * (0.85 + Math.sin(spark.phase) * 0.15);
+      const glow = glowSprites && glowSprites[spark.color];
+      if (glow) ctx.drawImage(glow, spark.x - 10, spark.y + spark.length * 0.5 - 10, 20, 20);
       ctx.strokeStyle = spark.color;
       ctx.lineWidth = spark.size;
-      ctx.shadowBlur = 7;
-      ctx.shadowColor = '#f7a53b';
       ctx.beginPath();
       ctx.moveTo(spark.x, spark.y);
       ctx.lineTo(spark.x - 1.5, spark.y + spark.length);
@@ -115,9 +174,16 @@ function initAmbientBackground() {
     fire.style.height = `${bounds.height}px`;
   }
 
-  function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
+  function resize(force = false) {
+    const nextWidth = window.innerWidth;
+    const nextHeight = window.innerHeight;
+    if (!force && lastWidth !== 0 && nextWidth === lastWidth && Math.abs(nextHeight - height) < 160) {
+      positionFire();
+      return;
+    }
+    lastWidth = nextWidth;
+    width = nextWidth;
+    height = nextHeight;
     const scale = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(width * scale);
     canvas.height = Math.round(height * scale);
@@ -147,9 +213,9 @@ function initAmbientBackground() {
     button.hidden = !ctx && (!video || fireFailed);
     button.disabled = reducedMotion.matches;
     button.textContent = reducedMotion.matches ? 'Motion reduced' : enabled() ? 'Pause background' : 'Play background';
+    button.title = reducedMotion.matches ? 'Background animation is off for reduced motion.' : '';
     button.setAttribute('aria-pressed', String(enabled()));
-    status.textContent = reducedMotion.matches ? 'Background animation is off for reduced motion.'
-      : autoplayBlocked ? 'Automatic playback was blocked. Press Play background to start.'
+    status.textContent = autoplayBlocked ? 'Automatic playback was blocked. Press Play background to start.'
       : fireFailed ? 'Fire background unavailable. Sparks can still be played or paused.' : '';
     if (!video) return;
     if (!shouldPlayFire()) { video.pause(); return; }
@@ -185,8 +251,8 @@ function initAmbientBackground() {
     if (video) video.pause();
   });
   window.addEventListener('pageshow', sync);
-  reducedMotion.addEventListener('change', () => { resize(); sync(); });
-  window.addEventListener('resize', resize);
+  reducedMotion.addEventListener('change', () => { resize(true); sync(); });
+  window.addEventListener('resize', () => resize());
   if (video && hero && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       fireVisible = entries[0].isIntersecting;
@@ -198,7 +264,7 @@ function initAmbientBackground() {
     new ResizeObserver(positionFire).observe(hero);
     new ResizeObserver(positionFire).observe(document.querySelector('.portfolio-header'));
   }
-  resize();
+  resize(true);
   sync();
 }
 
@@ -212,18 +278,20 @@ function initBrandEmblem() {
   const faces = emblem.querySelectorAll('.brand-face');
   if (faces.length < 2) return;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const canvas = document.getElementById('ambientSparks');
+  const isPaused = () => document.hidden || reducedMotion.matches || (canvas && canvas.dataset.motion === 'paused');
 
   let current = 0;
 
   emblem.addEventListener('animationend', () => emblem.classList.remove('is-spinning'));
 
   setInterval(() => {
-    if (document.hidden || reducedMotion.matches) return;
+    if (isPaused()) return;
     emblem.classList.add('is-spinning');
     // The spin is one second and linear, so at a quarter of the way round the
     // emblem is edge-on: swap the image there, where the change cannot be seen.
     setTimeout(() => {
-      if (document.hidden || reducedMotion.matches) {
+      if (isPaused()) {
         emblem.classList.remove('is-spinning');
         return;
       }

@@ -3,9 +3,12 @@
 @font-face{font-family:'Cormorant Garamond';src:url('assets/fonts/cormorant.woff2');font-weight:300 700;font-display:swap}
 @font-face{font-family:'Plus Jakarta Sans';src:url('assets/fonts/jakarta.woff2');font-weight:200 800;font-display:swap}
 @media(prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
-.portfolio-page{background:#070a12;color:#efede8;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-size-adjust:from-font;line-height:1.55}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;color-scheme:dark;scrollbar-width:thin;scrollbar-color:#74839a #070a12}
+section[id]{scroll-margin-top:6rem}
+.portfolio-page{background:#070a12;color:#efede8;font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-size-adjust:from-font;line-height:1.55;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 .portfolio-page h1,.portfolio-page h2,.portfolio-page h3{font-family:'Cormorant Garamond',Georgia,serif;line-height:1.08;letter-spacing:0;color:#ffe5ab}
-.portfolio-page a{color:inherit}
+:where(.portfolio-page) a{color:inherit}
 .portfolio-page [hidden]{display:none!important}
 .legacy-route{display:none;padding:16px;background:#121b29;text-align:center}
 .legacy-route:target{display:block}
@@ -14,7 +17,11 @@
 .portfolio-header{position:relative;z-index:10;background:#070a12}
 .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:96px;gap:24px}
 .nest-brand{display:flex;gap:12px;align-items:center;text-decoration:none;white-space:nowrap;min-height:48px}
-.portfolio-header .brand-emblem{width:48px;height:48px}
+.brand-emblem{position:relative;display:block;flex:0 0 auto;width:48px;height:48px}
+.brand-emblem .brand-face{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.brand-emblem .brand-face.is-active{opacity:1}
+.brand-emblem.is-spinning{animation:emblemSpin 1s linear}
+@keyframes emblemSpin{from{transform:perspective(400px) rotateY(0deg)}to{transform:perspective(400px) rotateY(360deg)}}
 .nest-brand img{border-radius:50%;border:1px solid #eeb34d;object-fit:contain;background:#fff}
 .nest-brand > span:not(.brand-emblem){font:600 27px 'Cinzel',Georgia,serif;color:#ffe9b6;letter-spacing:.02em;text-transform:uppercase}
 .portfolio-nav,.portfolio-footer nav{display:flex;align-items:center;gap:32px}
@@ -27,7 +34,6 @@
 .skip-link:focus{top:12px}
 .portfolio-page :focus-visible{outline:3px solid #ffd27b;outline-offset:5px}
 .portal-hero{position:relative;padding-top:46px;text-align:center}
-.portal-hero:before{content:none}
 .portal-hero>*{position:relative}
 .portal-hero h1{font-family:'Cinzel',Georgia,serif;font-size:clamp(40px,6.7vw,88px);font-weight:600;letter-spacing:-.02em;text-transform:uppercase;margin:0;background:linear-gradient(100deg,#fff0c7 15%,#f4b448 90%);background-clip:text;-webkit-text-fill-color:transparent}
 .portal-subtitle{font-size:clamp(19px,2.7vw,30px);margin:12px 0 30px}
@@ -91,27 +97,21 @@
 .film-card .film-author{color:#e9b95e;margin:0;font-size:16px}
 .film-card h2{font-size:30px;margin:0;overflow-wrap:anywhere;line-height:1.2}
 .film-card time{font-size:16px;color:#bfc6d3}
-.film-card .film-caption{font-size:16px;color:#bfc6d3;overflow-wrap:anywhere;margin:0}
 .film-card .gold-link{margin-top:auto;align-self:flex-start;font-size:16px;padding-inline:22px}
 .film-note{font-size:16px;color:#bfc6d3;margin:28px 0 40px;max-width:80ch}
 .music-page .home-hero{padding-top:48px}
 .music-page .home-hero-copy{position:relative}
-.music-page .home-hero-copy:after{content:none}
 .motion-toggle{font:500 16px/1.4 'Plus Jakarta Sans',sans-serif;min-height:48px;color:#f3d99c;border:1px solid #8d7547;background:#070a12;border-radius:8px;padding:10px 16px;margin-top:20px}
-@media(min-width:1264px){.portal-hero:before{left:calc((1200px - 100vw)/2);right:calc((1200px - 100vw)/2)}}
-@media(max-width:1263px){.portal-hero:before{left:-48px;right:-48px}}
 @media(max-width:900px){.nest-brand > span:not(.brand-emblem){font-size:22px}.portfolio-nav{gap:20px}.path-panel{padding:24px 18px}.path-panel h2{font-size:42px}.path-panel p{font-size:17px}.path-art{height:280px}.music-art{width:280px}.work-preview{grid-template-columns:1fr}.work-preview>img{height:210px}.work-preview h3{font-size:30px}.portal-about h2{font-size:38px}.portal-about p{font-size:20px}.about-grid{grid-template-columns:1fr;gap:16px}.portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:19px}.portfolio-footer nav{gap:18px}.film-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:601px) and (max-width:900px){.path-panel>.gold-link{width:100%;font-size:18px;padding-inline:20px;gap:12px;white-space:nowrap}}
 @media(max-width:600px){
- .portfolio-wrap{width:calc(100% - 32px)}.header-inner{min-height:76px;flex-wrap:wrap;gap:0}.nest-brand{gap:10px}.nest-brand img{width:38px;height:38px}.nest-brand > span:not(.brand-emblem){font-size:20px}.menu-toggle:not([hidden]){display:flex}.portfolio-nav{display:flex;flex-basis:100%;justify-content:space-between;gap:12px;padding:0 0 10px}.portfolio-nav a{font-size:16px}.menu-toggle:not([hidden])~.portfolio-nav:not(.is-open){display:none}
- .portal-hero{padding-top:28px}.portal-hero:before{left:-16px;right:-16px;height:320px}.portal-hero h1{font-size:32px;white-space:nowrap}.portal-subtitle{font-size:19px;margin:10px 0 26px}.path-grid{grid-template-columns:1fr;gap:16px}.path-panel{position:relative;display:grid;grid-template-columns:1fr 38%;grid-template-rows:auto auto;text-align:left;padding:18px;gap:14px 10px;min-height:186px;overflow:hidden;align-items:start}.path-copy{grid-column:1;grid-row:1}.path-panel h2{font-size:32px;margin:0 0 6px;white-space:nowrap}.path-panel p{font-size:16px;line-height:1.4;margin:0;max-width:18ch}.path-art,.music-art{grid-column:2;grid-row:1/3;width:100%;height:146px;margin:0;object-fit:cover}.path-panel>.gold-link{grid-column:1;grid-row:2;width:max-content;max-width:100%;min-width:0;font-size:16px;min-height:50px;padding:10px 14px;gap:10px;align-self:end}.gold-link svg{width:18px;height:18px;flex-shrink:0}
+ .portfolio-wrap{width:calc(100% - 32px)}.header-inner{min-height:76px;flex-wrap:wrap;gap:0}.nest-brand{gap:10px}.brand-emblem,.nest-brand img{width:38px;height:38px}.nest-brand > span:not(.brand-emblem){font-size:20px}.menu-toggle:not([hidden]){display:flex}.portfolio-nav{display:flex;flex-basis:100%;justify-content:space-between;gap:12px;padding:0 0 10px}.portfolio-nav a{font-size:16px}.menu-toggle:not([hidden])~.portfolio-nav:not(.is-open){display:none}
+ .portal-hero{padding-top:28px}.portal-hero h1{font-size:32px;white-space:nowrap}.portal-subtitle{font-size:19px;margin:10px 0 26px}.path-grid{grid-template-columns:1fr;gap:16px}.path-panel{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 38%;grid-template-rows:auto auto;text-align:left;padding:18px;gap:14px 10px;min-height:186px;overflow:hidden;align-items:start}.path-copy{grid-column:1;grid-row:1}.path-panel h2{font-size:clamp(26px,7.2vw,32px);margin:0 0 6px}.path-panel p{font-size:16px;line-height:1.4;margin:0;max-width:18ch}.path-art,.music-art{grid-column:2;grid-row:1/3;width:100%;height:146px;margin:0;object-fit:cover}.path-panel>.gold-link{grid-column:1;grid-row:2;width:max-content;max-width:100%;min-width:0;font-size:16px;min-height:50px;padding:10px 14px;gap:10px;align-self:end}.gold-link svg{width:18px;height:18px;flex-shrink:0}
  .latest-work{padding-top:30px}.ruled-title{font-size:36px;margin-bottom:18px;gap:16px}.work-grid{grid-template-columns:1fr;gap:16px}.work-preview{grid-template-columns:35% 1fr;padding:12px;gap:14px}.work-preview>img{height:190px}.work-preview h3{font-size:27px}.work-preview .work-label{font-size:16px;letter-spacing:.03em}.work-preview p{margin-bottom:12px}.work-preview .gold-link{min-height:48px;padding-inline:16px;gap:10px}
  .portal-about{grid-template-columns:1fr;gap:12px;margin-top:26px;text-align:center}.portal-about>img{height:220px;mask-image:linear-gradient(#000 70%,transparent 100%)}.portal-about h2{font-size:36px;margin-bottom:12px}.portal-about p{font-size:21px}.portal-about .about-detail{font-size:16px}.portfolio-footer{flex-direction:column;gap:12px;margin-top:28px;padding:22px 0}.portfolio-footer .nest-brand > span:not(.brand-emblem){font-size:21px}.portfolio-footer nav{justify-content:space-between;width:100%;gap:14px}.portfolio-footer nav a{font-size:16px}
  .film-intro{padding-top:32px}.film-intro p{font-size:16px}.film-grid{grid-template-columns:1fr}.film-card{padding:22px}.film-controls{gap:8px}.film-controls button{padding-inline:16px}.music-page .home-hero{padding-top:28px}
 }
-@media(prefers-reduced-motion:reduce){.portfolio-page *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-
-@media(max-width:600px){.portfolio-header .brand-emblem{width:38px;height:38px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.portfolio-page *,.portfolio-page *::before,.portfolio-page *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* Fire sits behind the Home portal; sparks sit behind all page content. */
 .portfolio-page{position:relative;isolation:isolate}
@@ -142,7 +142,7 @@
  .portal-hero .path-panel>.gold-link{min-height:50px;font-size:18px}
 }
 /* On a phone the label is wide enough to sit over the page, so the button becomes a
-   44px glyph chosen by aria-pressed. The words stay in the button as its accessible
+   48px glyph chosen by aria-pressed. The words stay in the button as its accessible
    name - clipped, not removed - so the control reads the same to assistive tech. */
 @media(max-width:600px){
  .ambient-fire{top:76px}

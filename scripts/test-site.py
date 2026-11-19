@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
-import datetime, hashlib, json, re, shutil, tempfile, unittest, subprocess
+import datetime, hashlib, json, os, re, shutil, struct, tempfile, unittest, subprocess
 
 root=Path(__file__).resolve().parents[1]
 class Links(HTMLParser):
@@ -80,7 +80,7 @@ vm.createContext(context);vm.runInContext(fs.readFileSync(process.argv[1],'utf8'
             for key in ['width','height']:self.assertEqual(int(image[key]),still[key])
             self.assertEqual(image['loading'],'eager' if index<3 else 'lazy')
             self.assertEqual(image['decoding'],'async')
-            self.assertEqual(image['onerror'],'this.hidden=true')
+            self.assertNotIn('onerror',image)
             self.assertEqual(source['videoId'],video['id'])
             self.assertEqual(source['url'],video['url'])
             data=(root/still['src']).read_bytes()
@@ -240,5 +240,127 @@ class SiteHygiene(unittest.TestCase):
             self.assertIn(f'https://pilgrimsnest.org/{page}'.replace('/index.html','/'),sitemap,
                           f'{page} must appear in sitemap.xml')
         self.assertEqual(sitemap.count('<url>'),sitemap.count('</url>'),'sitemap.xml is malformed')
+
+    def test_no_inline_onerror_and_delegated_fallback(self):
+        for page in ALL_PAGES:
+            html=(root/page).read_text(encoding='utf-8')
+            self.assertIsNone(re.search(r'\bonerror\s*=',html,re.I),f'{page} must not contain inline onerror handlers')
+        script=r"""
+const fs=require('node:fs'), vm=require('node:vm'), assert=require('node:assert/strict');
+const listeners={};
+const document={addEventListener(type,fn,capture){if(type==='error'&&capture)listeners.error=fn}};
+const context={document};
+vm.createContext(context);vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);
+context.initFilmStillFallback();
+assert.equal(typeof listeners.error,'function');
+const has=(set)=>({contains:c=>set.has(c)});
+const img={classList:has(new Set(['film-still-image'])),hidden:false};
+const backdrop={classList:has(new Set(['film-still-backdrop'])),hidden:false};
+const other={classList:has(new Set(['brand-face'])),hidden:false};
+listeners.error({target:img});listeners.error({target:backdrop});listeners.error({target:other});
+assert.equal(img.hidden,true);assert.equal(backdrop.hidden,true);assert.equal(other.hidden,false);
+"""
+        result=subprocess.run(['node','-e',script,str(root/'portfolio.js')],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
+    def test_film_links_label_in_name_and_backdrop_skip(self):
+        videos=json.loads((root/'films.json').read_text(encoding='utf-8'))['videos']
+        tags=Links((root/'films.html').read_text(encoding='utf-8')).tags
+        film_links=[attrs for tag,attrs in tags if tag=='a' and '/video/' in attrs.get('href','')]
+        self.assertEqual(len(film_links),len(videos))
+        for attrs in film_links:
+            self.assertTrue(attrs.get('aria-label','').startswith('Watch on TikTok: '),attrs.get('aria-label'))
+        backdrops=[attrs for tag,attrs in tags if tag=='img' and attrs.get('class')=='film-still-backdrop']
+        expected_backdrops=sum((v['still']['width']/v['still']['height'])<1.7 for v in videos)
+        self.assertEqual(len(backdrops),expected_backdrops)
+
+    def test_music_build_validation(self):
+        with tempfile.TemporaryDirectory() as folder:
+            copy=Path(folder)
+            for name in ['releases.json','music.html','scripts/build-music.py']:
+                (copy/name).parent.mkdir(parents=True,exist_ok=True)
+                shutil.copy2(root/name,copy/name)
+            shutil.copytree(root/'lyrics',copy/'lyrics')
+            before=(copy/'music.html').read_bytes()
+            result=subprocess.run(['python',str(copy/'scripts/build-music.py')],capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+            self.assertEqual((copy/'music.html').read_bytes(),before,'Music generation must be reproducible')
+            bad=json.loads((copy/'releases.json').read_text(encoding='utf-8'))
+            bad['releases'][0]['lyrics']='lyrics/missing.txt'
+            (copy/'releases.json').write_text(json.dumps(bad),encoding='utf-8')
+            result=subprocess.run(['python',str(copy/'scripts/build-music.py')],capture_output=True,text=True)
+            self.assertNotEqual(result.returncode,0)
+            self.assertEqual((copy/'music.html').read_bytes(),before,'Invalid lyrics must not rewrite music.html')
+        catalogue=json.loads((root/'releases.json').read_text(encoding='utf-8'))
+        music=(root/'music.html').read_text(encoding='utf-8')
+        tags=Links(music).tags
+        static_lyrics={attrs['href'] for tag,attrs in tags if tag=='a' and 'data-lyrics' in attrs}
+        expected_lyrics={r['lyrics'] for r in catalogue['releases'] if r.get('lyrics')}
+        self.assertEqual(static_lyrics,expected_lyrics)
+        for rel in catalogue['releases']:
+            self.assertIn(rel['title'],music)
+        track_links=[attrs for tag,attrs in tags if tag=='a' and 'album-track-link' in attrs.get('class','')]
+        self.assertEqual(len(track_links),len(catalogue['albums'][0]['tracks']))
+        self.assertNotIn('release-loading',music)
+
+    def test_script_utc_and_safety(self):
+        script=r"""
+const fs=require('node:fs'), vm=require('node:vm'), assert=require('node:assert/strict');
+const catalogue=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+const wrap={innerHTML:''};
+const context={URL,console,document:{addEventListener(){},getElementById:id=>id==='albumList'?wrap:null},fetch:async()=>({ok:true,json:async()=>({...catalogue,albums:[{...catalogue.albums[0],appleUrl:''}]})})};
+vm.createContext(context);vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),context);
+assert.equal(context.formatReleaseDate('2026-05-01'),'May 2026');
+const lyr=context.lyricsButton({title:'Test Song',lyrics:'lyrics/test.txt'});
+assert.ok(lyr.startsWith('<a ')&&lyr.includes('href="lyrics/test.txt"')&&lyr.includes('aria-label="Lyrics for Test Song"'));
+const noApple=context.coverImage({title:'Demo',cover:'x.webp'},'feature-cover',600,600,false);
+assert.ok(noApple.startsWith('<img ')&&!noApple.includes('<a '));
+const baseSig=context.releaseSignature(catalogue.releases[0]);
+const updatedSig=context.releaseSignature({...catalogue.releases[0],spotifyUrl:'https://open.spotify.com/album/abc'});
+assert.notEqual(baseSig,updatedSig);
+(async()=>{
+  context.initAlbums();await new Promise(resolve=>setImmediate(resolve));
+  assert.ok(!wrap.innerHTML.includes('href=""')&&!wrap.innerHTML.includes('href="undefined"'));
+})().catch(e=>{console.error(e);process.exitCode=1});
+"""
+        env={**os.environ,'TZ':'America/New_York'}
+        result=subprocess.run(['node','-e',script,str(root/'script.js'),str(root/'releases.json')],capture_output=True,text=True,env=env)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
+    def test_img_aspect_ratios(self):
+        def image_size(path):
+            data=path.read_bytes()
+            if data[:8]==b'\x89PNG\r\n\x1a\n':
+                return struct.unpack('>II',data[16:24])
+            if data[:4]==b'RIFF' and data[8:12]==b'WEBP':
+                chunk=data[12:16]
+                if chunk==b'VP8X':
+                    return int.from_bytes(data[24:27],'little')+1,int.from_bytes(data[27:30],'little')+1
+                if chunk==b'VP8 ':
+                    w,h=struct.unpack('<HH',data[26:30])
+                    return w&0x3fff,h&0x3fff
+                if chunk==b'VP8L':
+                    bits=int.from_bytes(data[21:25],'little')
+                    return (bits&0x3fff)+1,((bits>>14)&0x3fff)+1
+            return None
+        for page in ['index.html','music.html','404.html']:
+            for tag,attrs in Links((root/page).read_text(encoding='utf-8')).tags:
+                if tag!='img': continue
+                src=attrs.get('src','')
+                if src.startswith(('http://','https://','data:')): continue
+                target=root/src.lstrip('/')
+                dims=image_size(target)
+                if not dims or 'width' not in attrs or 'height' not in attrs: continue
+                aw,ah=dims; dw,dh=int(attrs['width']),int(attrs['height'])
+                self.assertAlmostEqual(aw/ah,dw/dh,delta=0.02,msg=f'{page} {src}: declared {dw}x{dh} vs actual {aw}x{ah}')
+
+    def test_css_isolation_and_404_footer(self):
+        for page in ['index.html','films.html','404.html']:
+            html=(root/page).read_text(encoding='utf-8')
+            self.assertNotIn('styles.css',html,f'{page} must not load styles.css')
+        music=(root/'music.html').read_text(encoding='utf-8')
+        self.assertLess(music.index('portfolio.css'),music.index('styles.css'))
+        not_found=(root/'404.html').read_text(encoding='utf-8')
+        self.assertIn('<footer class="portfolio-footer',not_found)
 
 if __name__=='__main__': unittest.main()
