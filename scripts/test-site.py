@@ -444,4 +444,23 @@ assert.notEqual(baseSig,updatedSig);
             if rel not in corpus: orphans.append(rel)
         self.assertEqual(orphans,[],f'Orphan assets found: {orphans}')
 
+    def test_films_discovery_controls_and_years(self):
+        videos=json.loads((root/'films.json').read_text(encoding='utf-8'))['videos']
+        films=(root/'films.html').read_text(encoding='utf-8')
+        tags=Links(films).tags
+        cards=[attrs for tag,attrs in tags if tag=='article' and 'film-card' in attrs.get('class','')]
+        self.assertEqual(len(cards),len(videos))
+        for video,card in zip(videos,cards,strict=True):
+            self.assertEqual(card.get('data-year'),str(datetime.datetime.fromisoformat(video['published']).year))
+        self.assertIn('id="filmSearch"',films)
+        self.assertIn('id="filmYear"',films)
+        self.assertIn('id="filmEmpty"',films)
+        self.assertIn('class="film-reset"',films)
+        self.assertIn('class="back-to-top"',films)
+        expected_years={str(datetime.datetime.fromisoformat(v['published']).year) for v in videos}
+        year_options={attrs.get('value') for tag,attrs in tags if tag=='option' and attrs.get('value')!='all'}
+        self.assertEqual(year_options,expected_years)
+        result=subprocess.run(['node','--check',str(root/'scripts/check-rendered.mjs')],capture_output=True,text=True)
+        self.assertEqual(result.returncode,0,result.stderr)
+
 if __name__=='__main__': unittest.main()

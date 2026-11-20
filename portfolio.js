@@ -38,46 +38,111 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   routeLegacyMusic();
   window.addEventListener('hashchange', routeLegacyMusic);
+  initFilmDiscovery();
+});
+
+function initFilmDiscovery() {
   const controls = document.querySelector('.film-controls');
   if (!controls) return;
-  const cards = [...document.querySelectorAll('.film-card')];
+  const cards = [...document.querySelectorAll('.film-card')].map(card => ({
+    card,
+    account: card.dataset.account || '',
+    year: card.dataset.year || '',
+    search: ((card.querySelector('h2')?.textContent || '') + ' ' +
+      (card.querySelector('.film-author')?.textContent || '') + ' ' +
+      (card.querySelector('time')?.textContent || '')).toLowerCase()
+  }));
   const count = document.querySelector('.film-count');
-  const initialCountText = count.textContent;
+  const initialCountText = count ? count.textContent : '';
   const buttons = [...controls.querySelectorAll('button[data-account]')];
-  const applyFilter = (account, updateUrl = false) => {
-    const button = buttons.find(item => item.dataset.account === account) || buttons[0];
-    if (!button) return;
-    const activeAccount = button.dataset.account;
-    buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    cards.forEach(card => { card.hidden = activeAccount !== 'all' && card.dataset.account !== activeAccount; });
-    if (activeAccount === 'all') {
-      count.textContent = initialCountText;
-    } else {
-      const visible = cards.filter(card => !card.hidden).length;
-      count.textContent = `${visible} videos · ${button.textContent.trim()} · verified ${count.dataset.verifiedLabel}`;
+  const yearSelect = document.getElementById('filmYear');
+  const searchInput = document.getElementById('filmSearch');
+  const emptyEl = document.getElementById('filmEmpty');
+  const resetBtn = emptyEl ? emptyEl.querySelector('.film-reset') : null;
+  const state = { account: 'all', year: 'all', q: '' };
+
+  const applyFilters = (updateUrl = false) => {
+    const activeBtn = buttons.find(item => item.dataset.account === state.account) || buttons[0];
+    if (activeBtn) state.account = activeBtn.dataset.account;
+    buttons.forEach(item => item.setAttribute('aria-pressed', String(item === activeBtn)));
+    if (yearSelect) yearSelect.value = state.year;
+    if (searchInput && searchInput.value !== state.q) searchInput.value = state.q;
+    const trimmed = state.q.trim();
+    const needle = trimmed.toLowerCase();
+    let visible = 0;
+    for (const item of cards) {
+      const show = (state.account === 'all' || item.account === state.account) &&
+        (state.year === 'all' || item.year === state.year) &&
+        (!needle || item.search.includes(needle));
+      item.card.hidden = !show;
+      if (show) visible++;
+    }
+    if (emptyEl) emptyEl.hidden = visible > 0;
+    if (count) {
+      if (state.account === 'all' && state.year === 'all' && !needle) {
+        count.textContent = initialCountText;
+      } else {
+        const parts = [`${visible} ${visible === 1 ? 'video' : 'videos'}`];
+        if (state.account !== 'all' && activeBtn) parts.push(activeBtn.textContent.trim());
+        if (state.year !== 'all') parts.push(state.year);
+        if (needle) parts.push(`matching “${trimmed}”`);
+        parts.push(`verified ${count.dataset.verifiedLabel}`);
+        count.textContent = parts.join(' · ');
+      }
     }
     if (updateUrl) {
       try {
         const url = new URL(location.href);
-        if (activeAccount === 'all') url.searchParams.delete('account');
-        else url.searchParams.set('account', activeAccount);
+        if (state.account === 'all') url.searchParams.delete('account');
+        else url.searchParams.set('account', state.account);
+        if (state.year === 'all') url.searchParams.delete('year');
+        else url.searchParams.set('year', state.year);
+        if (!trimmed) url.searchParams.delete('q');
+        else url.searchParams.set('q', trimmed);
         history.replaceState(null, '', url);
       } catch { /* Ignore history errors in restricted contexts. */ }
     }
   };
+
   controls.hidden = false;
   controls.addEventListener('click', event => {
     const button = event.target.closest('button[data-account]');
     if (!button) return;
-    applyFilter(button.dataset.account, true);
+    state.account = button.dataset.account;
+    applyFilters(true);
   });
+  if (yearSelect) {
+    yearSelect.addEventListener('change', () => {
+      state.year = yearSelect.value || 'all';
+      applyFilters(true);
+    });
+  }
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      state.q = searchInput.value;
+      applyFilters(true);
+    });
+  }
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      state.account = 'all';
+      state.year = 'all';
+      state.q = '';
+      applyFilters(true);
+      if (searchInput) searchInput.focus();
+    });
+  }
   try {
-    const requested = new URLSearchParams(location.search).get('account');
-    if (requested && buttons.some(item => item.dataset.account === requested && requested !== 'all')) {
-      applyFilter(requested, false);
-    }
+    const params = new URLSearchParams(location.search);
+    const reqAccount = params.get('account');
+    const reqYear = params.get('year');
+    const reqQ = params.get('q');
+    if (reqAccount && buttons.some(item => item.dataset.account === reqAccount)) state.account = reqAccount;
+    if (reqYear && yearSelect && [...yearSelect.options].some(opt => opt.value === reqYear)) state.year = reqYear;
+    if (reqQ) state.q = reqQ;
+    if (state.account !== 'all' || state.year !== 'all' || state.q) applyFilters(false);
   } catch { /* Ignore URLSearchParams errors. */ }
-});
+}
 
 function initFilmStillFallback() {
   document.addEventListener('error', event => {

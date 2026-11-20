@@ -41,9 +41,13 @@ for index,v in enumerate(videos):
     needs_backdrop=(still['width']/still['height'])<1.7
     image_attrs=f'src="{still["src"]}" width="{still["width"]}" height="{still["height"]}" loading="{loading}" decoding="async"'
     backdrop_html=f'<img class="film-still-backdrop" {image_attrs}{backdrop_priority} alt="" aria-hidden="true">' if needs_backdrop else ''
-    cards.append(f'''<article class="film-card" data-account="{v['handle']}" data-video-id="{v['id']}"><div class="film-still"><span class="film-still-fallback" aria-hidden="true">Still unavailable<br>Watch on TikTok below</span>{backdrop_html}<img class="film-still-image" {image_attrs}{image_priority} alt="{html.escape(still['alt'],quote=True)}"></div><p class="film-author">{author}</p><h2>{html.escape(title)}</h2><time datetime="{date.date().isoformat()}">{date_label} · {duration}</time><a class="gold-link" href="{v['url']}" target="_blank" rel="noopener noreferrer" aria-label="Watch on TikTok: {html.escape(title,quote=True)}">Watch on TikTok <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></article>''')
+    cards.append(f'''<article class="film-card" data-account="{v['handle']}" data-year="{date.year}" data-video-id="{v['id']}"><div class="film-still"><span class="film-still-fallback" aria-hidden="true">Still unavailable<br>Watch on TikTok below</span>{backdrop_html}<img class="film-still-image" {image_attrs}{image_priority} alt="{html.escape(still['alt'],quote=True)}"></div><p class="film-author">{author}</p><h2>{html.escape(title)}</h2><time datetime="{date.date().isoformat()}">{date_label} · {duration}</time><a class="gold-link" href="{v['url']}" target="_blank" rel="noopener noreferrer" aria-label="Watch on TikTok: {html.escape(title,quote=True)}">Watch on TikTok <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a></article>''')
 page_path=root/'films.html'
 page=page_path.read_text(encoding='utf-8')
+years=sorted({datetime.datetime.fromisoformat(v['published']).year for v in videos},reverse=True)
+year_options=''.join(['<option value="all">All years</option>']+[f'<option value="{y}">{y}</option>' for y in years])
+assert page.count('<!-- years:start -->')==1 and page.count('<!-- years:end -->')==1
+page=re.sub(r'<!-- years:start -->.*?<!-- years:end -->',lambda _: f'<!-- years:start -->{year_options}<!-- years:end -->',page,flags=re.S)
 verified=datetime.date.fromisoformat(manifest['verifiedAt'])
 verified_label=f'{verified.day} {verified:%B %Y}'
 per_account=' · '.join(f'{counts[handle]} from {name}' for handle,name in ACCOUNTS.items())

@@ -4,7 +4,7 @@ Static music and film portfolio for **pilgrimsnest.org**. No framework, installa
 
 - `index.html`: Music and Short AI Films paths, latest work and About.
 - `music.html`: latest single, I AM album, seven earlier singles and lyrics. All eight singles and eighteen album tracks remain in `releases.json`.
-- `films.html`: every public video link from both accounts — 227 in total, 44 from Gentile Nembahe and 183 from Pilgrim’s Nest — with All / Pilgrim’s Nest / Gentile Nembahe filters. Every link is available without JavaScript.
+- `films.html`: every public video link from both accounts — 227 in total, 44 from Gentile Nembahe and 183 from Pilgrim’s Nest — with All / Pilgrim’s Nest / Gentile Nembahe filters plus title search and year filtering. Every link is available without JavaScript.
 - `films.json`: verified public metadata. Verified 28 October 2026. Accounts: `@truepilgrimm` and `@thetruegentile`. The `boundaryEvidence` block is historical: it records the original 11 October 2026 twenty-per-account snapshot and no longer bounds the catalogue.
 - `portfolio.css` / `portfolio.js`: shared navigation, portal design and filters. `styles.css` / `script.js` retain music and lyrics behavior.
 - `assets/`: original single cover, decorative generated mountain/projector/filmstrip artwork, local fonts and existing brand/video assets. Cinema artwork represents the collection; it is not a listed film still.
@@ -23,6 +23,7 @@ Open `http://127.0.0.1:8080`. Use HTTP because opening lyrics or fetching `relea
 python scripts/test-site.py
 node --check portfolio.js
 node --check script.js
+node scripts/check-rendered.mjs
 ```
 
 Inspect both pages on phone and desktop. Verify lyrics open, Escape closes them and focus returns. Filter counts must match `films.json` — currently 227 / 44 / 183. Both homepage actions must be visible at 375 × 812.
