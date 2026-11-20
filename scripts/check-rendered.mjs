@@ -157,6 +157,9 @@ try {
   const { sessionId } = await call('Target.attachToTarget', { targetId, flatten: true });
   await call('Page.enable', {}, sessionId);
   await call('Runtime.enable', {}, sessionId);
+  await call('Page.addScriptToEvaluateOnNewDocument', {
+    source: "window.__cspViolations=[];document.addEventListener('securitypolicyviolation',e=>window.__cspViolations.push({directive:e.violatedDirective,blocked:e.blockedURI}));",
+  }, sessionId);
 
   const favRes = await fetch(`${base}/favicon.ico`);
   assert(favRes.status === 200, 'favicon.ico returns HTTP 200', `status=${favRes.status}`);
@@ -195,12 +198,17 @@ try {
           return r.height < 44 || !label;
         }).map(el => el.tagName + '#' + el.id + '.' + el.className);
         const jsonld = [...document.querySelectorAll('script[type="application/ld+json"]')].map(s => JSON.parse(s.textContent));
-        return { vw, sw, overflow: sw > vw, overflowEls, brokenImgs, externalImgs, missingAlt, onerrorCount, h1Count, lang, hasMain, smallOrUnnamed, jsonldCount: jsonld.length };
+        const hasCsp = !!document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+        const hasReferrer = !!document.querySelector('meta[name="referrer"]');
+        const cspViolations = [...(window.__cspViolations || [])];
+        return { vw, sw, overflow: sw > vw, overflowEls, brokenImgs, externalImgs, missingAlt, onerrorCount, h1Count, lang, hasMain, smallOrUnnamed, jsonldCount: jsonld.length, hasCsp, hasReferrer, cspViolations };
       })()`, true);
 
       const tag = `${p} @ ${vp.w}x${vp.h}`;
       assert(consoleErrors.length === 0, `${tag}: 0 console errors`, consoleErrors.join('; '));
       assert(pageErrors.length === 0, `${tag}: 0 page errors`, pageErrors.join('; '));
+      assert(report.hasCsp && report.hasReferrer, `${tag}: CSP & referrer meta present`);
+      assert(report.cspViolations.length === 0, `${tag}: 0 CSP violations`, JSON.stringify(report.cspViolations));
       assert(!report.overflow && report.overflowEls.length === 0, `${tag}: 0 horizontal overflow`, JSON.stringify(report.overflowEls));
       assert(report.brokenImgs.length === 0, `${tag}: 0 broken eager images`, JSON.stringify(report.brokenImgs));
       assert(report.externalImgs.length === 0, `${tag}: 0 external images`, JSON.stringify(report.externalImgs));
@@ -243,14 +251,17 @@ try {
     const opened = !!(d && d.open);
     const bodyRole = d ? d.querySelector('.lyrics-body').getAttribute('role') : null;
     const bodyLen = d ? d.querySelector('.lyrics-body').textContent.length : 0;
-    if (d) d.close();
-    await new Promise(r => setTimeout(r, 50));
+    const closeBtn = d ? d.querySelector('.lyrics-close') : null;
+    if (closeBtn) closeBtn.click();
+    await new Promise(r => setTimeout(r, 80));
+    const closedByForm = !!(d && !d.open);
+    const cspAfterForm = [...(window.__cspViolations || [])];
     const covers = [...document.querySelectorAll('.feature-cover, .single-cover')];
     covers.forEach(i => { i.loading = 'eager'; });
     await Promise.all(covers.map(i => i.complete ? null : new Promise(res => { i.onload = res; i.onerror = res; })));
     const italicLoaded = [...document.fonts].some(f => f.family.includes('Cormorant') && f.style === 'italic' && f.status === 'loaded');
     return {
-      opened, bodyRole, bodyLen, hashAfterClose: location.hash,
+      opened, bodyRole, bodyLen, closedByForm, cspAfterForm, hashAfterClose: location.hash,
       artistFont: getComputedStyle(document.querySelector('.artist-name')).fontFamily,
       albumFont: getComputedStyle(document.querySelector('.album-title')).fontFamily,
       italicLoaded,
@@ -258,7 +269,8 @@ try {
       covers600: covers.every(i => i.complete && i.naturalWidth === 600 && i.naturalHeight === 600),
     };
   })()`, true);
-  assert(musChk.opened && musChk.bodyRole === 'region' && musChk.bodyLen > 500 && musChk.hashAfterClose === '', 'music.html: lyrics deep-link modal opens & clears hash on close');
+  assert(musChk.opened && musChk.bodyRole === 'region' && musChk.bodyLen > 500 && musChk.closedByForm && musChk.hashAfterClose === '', 'music.html: lyrics deep-link modal opens & form-close clears hash');
+  assert(musChk.cspAfterForm.length === 0, 'music.html: 0 CSP violations on form[method=dialog] close', JSON.stringify(musChk.cspAfterForm));
   assert(musChk.artistFont.includes('Cinzel') && musChk.albumFont.includes('Cinzel') && musChk.italicLoaded, 'music.html: Cinzel display + Cormorant italic loaded');
   assert(musChk.coversCount === 9 && musChk.covers600, 'music.html: all 9 local covers loaded at 600x600');
 

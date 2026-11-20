@@ -463,4 +463,19 @@ assert.notEqual(baseSig,updatedSig);
         result=subprocess.run(['node','--check',str(root/'scripts/check-rendered.mjs')],capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr)
 
+    def test_csp_and_referrer_meta(self):
+        for page in ALL_PAGES:
+            html=(root/page).read_text(encoding='utf-8')
+            tags=Links(html).tags
+            csp=[attrs.get('content','') for tag,attrs in tags if tag=='meta' and attrs.get('http-equiv','').lower()=='content-security-policy']
+            self.assertEqual(len(csp),1,f'{page} must declare one CSP meta tag')
+            policy=csp[0]
+            for req in ["default-src 'self'","script-src 'self'","style-src 'self'","object-src 'none'","base-uri 'self'","form-action 'self'"]:
+                self.assertIn(req,policy,f'{page} CSP missing {req}')
+            for bad in ["'unsafe-inline'","'unsafe-eval'",'frame-ancestors','upgrade-insecure-requests']:
+                self.assertNotIn(bad,policy,f'{page} CSP must not include {bad}')
+            ref=[attrs.get('content','') for tag,attrs in tags if tag=='meta' and attrs.get('name','').lower()=='referrer']
+            self.assertEqual(ref,['strict-origin-when-cross-origin'],f'{page} must set referrer policy')
+            self.assertIsNone(re.search(r'<style\b|\bstyle\s*=|\bon[a-z]+\s*=',html,re.I),f'{page} must not contain inline styles or handlers')
+
 if __name__=='__main__': unittest.main()
