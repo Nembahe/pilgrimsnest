@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-28",
+  "verifiedAt": "2026-11-20",
   "verificationMethod": "Anonymous HTTPS video documents, without cookies or authentication; persisted metadata projection only",
   "selection": "Every public video post from both confirmed accounts as enumerated on 28 October 2026, plus posts verified earlier that do not appear in the public profile grid. Entries are appended and never removed. Photo posts and private posts excluded. Includes commentary and other videos, not only AI films.",
   "boundaryEvidence": {
