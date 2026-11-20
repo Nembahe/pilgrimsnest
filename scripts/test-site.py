@@ -363,4 +363,85 @@ assert.notEqual(baseSig,updatedSig);
         not_found=(root/'404.html').read_text(encoding='utf-8')
         self.assertIn('<footer class="portfolio-footer',not_found)
 
+    def test_self_hosted_covers_and_geo_apple_links(self):
+        rel_text=(root/'releases.json').read_text(encoding='utf-8')
+        music=(root/'music.html').read_text(encoding='utf-8')
+        script_js=(root/'script.js').read_text(encoding='utf-8')
+        for label,text in [('releases.json',rel_text),('music.html',music)]:
+            self.assertNotIn('mzstatic.com',text,f'{label} must not hotlink Apple CDN covers')
+        for label,text in [('releases.json',rel_text),('music.html',music),('script.js',script_js)]:
+            self.assertNotIn('https://music.apple.com/bw/',text,f'{label} must use geo-neutral Apple Music URLs')
+        catalogue=json.loads(rel_text)
+        for item in catalogue['albums']+catalogue['releases']:
+            cover=item['cover']
+            self.assertFalse(cover.startswith(('http://','https://')),cover)
+            path=root/cover
+            self.assertTrue(path.is_file(),f'Missing cover {cover}')
+            data=path.read_bytes()
+            self.assertEqual(data[:4],b'RIFF');self.assertEqual(data[8:12],b'WEBP')
+            self.assertIn(cover,music)
+
+    def test_structured_data_jsonld(self):
+        def parse_jsonld(page):
+            html=(root/page).read_text(encoding='utf-8')
+            blocks=re.findall(r'<script type="application/ld\+json">(.*?)</script>',html,re.S)
+            self.assertEqual(len(blocks),1,f'{page} must have exactly one JSON-LD script')
+            return json.loads(blocks[0].replace(r'<\/','</'))
+        idx=parse_jsonld('index.html')
+        self.assertEqual(idx['@context'],'https://schema.org')
+        self.assertEqual({n['@type'] for n in idx['@graph']},{'WebSite','MusicGroup'})
+        mus=parse_jsonld('music.html')
+        self.assertEqual(mus['@context'],'https://schema.org')
+        by_type={n['@type']:n for n in mus['@graph']}
+        self.assertIn('MusicGroup',by_type)
+        self.assertEqual(len(by_type['MusicAlbum']['track']),18)
+        self.assertEqual(len(by_type['ItemList']['itemListElement']),8)
+        flm=parse_jsonld('films.html')
+        self.assertEqual(flm['@context'],'https://schema.org')
+        self.assertEqual(flm['@type'],'CollectionPage')
+        self.assertEqual(flm['mainEntity']['numberOfItems'],227)
+
+    def test_social_cards_favicons_and_italic_font(self):
+        og=(root/'assets/og-card.jpg').read_bytes()
+        self.assertEqual(og[:2],b'\xff\xd8','og-card.jpg must be JPEG')
+        i=2; dims=None
+        while i+8<len(og):
+            if og[i]!=0xff: break
+            marker=og[i+1]; i+=2
+            if marker in (0xc0,0xc1,0xc2):
+                h,w=struct.unpack('>HH',og[i+3:i+7]); dims=(w,h); break
+            seg_len=struct.unpack('>H',og[i:i+2])[0]
+            i+=seg_len
+        self.assertEqual(dims,(1200,630))
+        ico=(root/'favicon.ico').read_bytes()
+        self.assertEqual(ico[:4],b'\x00\x00\x01\x00')
+        self.assertTrue((root/'assets/fonts/cormorant-italic.woff2').is_file())
+        pcss=(root/'portfolio.css').read_text(encoding='utf-8')
+        self.assertIn('cormorant-italic.woff2',pcss)
+        self.assertIn('font-style:italic',pcss)
+        for page in PAGES:
+            html=(root/page).read_text(encoding='utf-8')
+            self.assertNotIn('property="twitter:',html,f'{page} must use name="twitter:..."')
+            tags=Links(html).tags
+            metas={(attrs.get('property') or attrs.get('name')):attrs.get('content') for tag,attrs in tags if tag=='meta'}
+            self.assertEqual(metas.get('og:image'),'https://pilgrimsnest.org/assets/og-card.jpg',page)
+            self.assertEqual(metas.get('og:image:width'),'1200',page)
+            self.assertEqual(metas.get('og:image:height'),'630',page)
+            self.assertEqual(metas.get('twitter:card'),'summary_large_image',page)
+            self.assertEqual(metas.get('twitter:image'),'https://pilgrimsnest.org/assets/og-card.jpg',page)
+        for page in ALL_PAGES:
+            hrefs=[attrs.get('href','') for tag,attrs in Links((root/page).read_text(encoding='utf-8')).tags if tag=='link']
+            self.assertTrue(any(h.endswith('favicon.ico') for h in hrefs),page)
+            self.assertTrue(any(h.endswith('favicon.png') for h in hrefs),page)
+
+    def test_no_orphan_root_assets(self):
+        corpus='\n'.join((root/name).read_text(encoding='utf-8') for name in ALL_PAGES+['portfolio.css','styles.css','portfolio.js','script.js','releases.json'])
+        orphans=[]
+        for p in (root/'assets').rglob('*'):
+            if not p.is_file(): continue
+            rel=p.relative_to(root).as_posix()
+            if rel.startswith('assets/film-stills/') or rel.endswith('-OFL.txt'): continue
+            if rel not in corpus: orphans.append(rel)
+        self.assertEqual(orphans,[],f'Orphan assets found: {orphans}')
+
 if __name__=='__main__': unittest.main()

@@ -286,7 +286,7 @@ function initAlbums() {
       console.error('Could not load the album from releases.json:', err);
       if (typeof wrap.querySelector === 'function' && wrap.querySelector('.album')) return;
       wrap.innerHTML = '<p class="release-error">The album could not be loaded. ' +
-        'It is on <a href="https://music.apple.com/bw/album/i-am/1857644050" ' +
+        'It is on <a href="https://music.apple.com/album/i-am/1857644050" ' +
         'target="_blank" rel="noopener noreferrer">Apple Music</a> or ' +
         '<a href="https://www.youtube.com/watch?v=Tq-izfJzmK4&amp;list=OLAK5uy_lKT7jF2ScNqMVjfTpFOFi8JCnpUzofYpA" ' +
         'target="_blank" rel="noopener noreferrer">YouTube</a>.</p>';
@@ -342,7 +342,7 @@ function initHome() {
       console.error('Could not load releases.json:', err);
       if (typeof grid.querySelector === 'function' && grid.querySelector('.single-card')) return;
       grid.innerHTML = '<p class="release-error">The singles could not be loaded. ' +
-        'All of them are on <a href="https://music.apple.com/bw/artist/pilgrim/1857562164" ' +
+        'All of them are on <a href="https://music.apple.com/artist/pilgrim/1857562164" ' +
         'target="_blank" rel="noopener noreferrer">Apple Music</a>.</p>';
     });
 }

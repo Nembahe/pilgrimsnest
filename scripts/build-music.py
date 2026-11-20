@@ -25,6 +25,11 @@ def format_track_time(seconds):
     return f'{s // 60}:{s % 60:02d}'
 
 
+def iso_duration(seconds):
+    s = round(float(seconds or 0))
+    return f'PT{s // 60}M{s % 60}S'
+
+
 def validate_youtube_url(raw):
     if not isinstance(raw, str) or not raw:
         return False
@@ -185,19 +190,79 @@ albums_html = '\n'.join(album_blocks)
 page_path = root / 'music.html'
 page = page_path.read_text(encoding='utf-8')
 
+artist_links = catalogue.get('artistLinks') or {}
+artist_node = {
+    '@type': 'MusicGroup',
+    '@id': 'https://pilgrimsnest.org/#artist',
+    'name': catalogue.get('artist', 'Pilgrim'),
+    'url': 'https://pilgrimsnest.org/music.html',
+    'sameAs': [artist_links[k] for k in ('apple', 'spotify', 'youtube') if artist_links.get(k)],
+}
+album_nodes = []
+for album in albums:
+    tracks = album.get('tracks') or []
+    album_nodes.append({
+        '@type': 'MusicAlbum',
+        'name': album['title'],
+        'datePublished': album['released'],
+        'numTracks': len(tracks),
+        'byArtist': {'@id': 'https://pilgrimsnest.org/#artist'},
+        'image': 'https://pilgrimsnest.org/' + album['cover'],
+        'url': album.get('appleUrl', 'https://pilgrimsnest.org/music.html#album'),
+        'sameAs': [u for u in (album.get('spotifyUrl'), album.get('youtubeUrl')) if u],
+        'track': [
+            {
+                '@type': 'MusicRecording',
+                'position': idx,
+                'name': t['title'],
+                'duration': iso_duration(t.get('seconds')),
+                'url': t['youtubeUrl'],
+            }
+            for idx, t in enumerate(tracks, 1)
+        ],
+    })
+singles_node = {
+    '@type': 'ItemList',
+    'name': 'Pilgrim Singles',
+    'itemListElement': [
+        {
+            '@type': 'ListItem',
+            'position': idx,
+            'item': {
+                '@type': 'MusicRecording',
+                'name': rel['title'],
+                'datePublished': rel['released'],
+                'byArtist': {'@id': 'https://pilgrimsnest.org/#artist'},
+                'image': 'https://pilgrimsnest.org/' + rel['cover'],
+                'url': rel.get('appleUrl', 'https://pilgrimsnest.org/music.html'),
+                **({'sameAs': [u for u in (rel.get('spotifyUrl'), rel.get('youtubeUrl')) if u]}
+                   if any(rel.get(k) for k in ('spotifyUrl', 'youtubeUrl')) else {}),
+            },
+        }
+        for idx, rel in enumerate(sorted_releases, 1)
+    ],
+}
+jsonld_str = json.dumps(
+    {'@context': 'https://schema.org', '@graph': [artist_node, *album_nodes, singles_node]},
+    ensure_ascii=False,
+    separators=(',', ':'),
+).replace('</', r'<\/')
 
-def replace_region(doc, name, body):
+
+def replace_region(doc, name, body, inline=False):
     start = f'<!-- {name}:start -->'
     end = f'<!-- {name}:end -->'
     assert doc.count(start) == 1 and doc.count(end) == 1, f'Missing or duplicate markers for {name}'
+    replacement = f'{start}{body}{end}' if inline else f'{start}\n{body}\n          {end}'
     return re.sub(
         re.escape(start) + r'.*?' + re.escape(end),
-        lambda _: f'{start}\n{body}\n          {end}',
+        lambda _: replacement,
         doc,
         flags=re.S,
     )
 
 
+page = replace_region(page, 'jsonld', f'<script type="application/ld+json">{jsonld_str}</script>', inline=True)
 page = replace_region(page, 'featured-release', featured_html)
 page = replace_region(page, 'singles', singles_html)
 page = replace_region(page, 'albums', albums_html)

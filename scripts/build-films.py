@@ -49,6 +49,23 @@ verified_label=f'{verified.day} {verified:%B %Y}'
 per_account=' · '.join(f'{counts[handle]} from {name}' for handle,name in ACCOUNTS.items())
 count_label=f'{len(videos)} videos · {per_account} · verified {verified_label}'
 page=re.sub(r'<p class="film-count"[^>]*>.*?</p>',lambda _: f'<p class="film-count" role="status" data-verified-label="{verified_label}">{html.escape(count_label)}</p>',page)
+jsonld_obj={
+    '@context':'https://schema.org',
+    '@type':'CollectionPage',
+    'name':'Films — Pilgrim’s Nest',
+    'url':'https://pilgrimsnest.org/films.html',
+    'description':'Short AI films, stories and videos from Pilgrim’s Nest and Gentile Nembahe.',
+    'image':'https://pilgrimsnest.org/assets/og-card.jpg',
+    'dateModified':manifest['verifiedAt'],
+    'creator':[
+        {'@type':'Person','name':'Pilgrim’s Nest','sameAs':'https://www.tiktok.com/@truepilgrimm'},
+        {'@type':'Person','name':'Gentile Nembahe','sameAs':'https://www.tiktok.com/@thetruegentile'},
+    ],
+    'mainEntity':{'@type':'ItemList','numberOfItems':len(videos)},
+}
+jsonld_str=json.dumps(jsonld_obj,ensure_ascii=False,separators=(',',':')).replace('</',r'<\/')
+assert page.count('<!-- jsonld:start -->')==1 and page.count('<!-- jsonld:end -->')==1
+page=re.sub(r'<!-- jsonld:start -->.*?<!-- jsonld:end -->',lambda _: f'<!-- jsonld:start --><script type="application/ld+json">{jsonld_str}</script><!-- jsonld:end -->',page,flags=re.S)
 assert page.count('<!-- films:start -->')==1 and page.count('<!-- films:end -->')==1
 page=re.sub(r'<!-- films:start -->.*?<!-- films:end -->',lambda _: '<!-- films:start -->\n'+'\n'.join(cards)+'\n<!-- films:end -->',page,flags=re.S)
 page_path.write_text(page,encoding='utf-8')

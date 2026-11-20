@@ -31,10 +31,10 @@
       "duration": 55,
       "still": {
         "src": "assets/film-stills/7698422111416749319.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Villagers outside thatched huts at sunset point to a vast glowing figure forming in the clouds above the savannah.",
-        "sha256": "8f57fdba2efda37af9be3b9eeec021fa985fbd78281c8fcacae01537e9d564f8",
+        "sha256": "aea0054d0bc403b1966e2aa7d61d2cba80822f8fab46b3c155fc995d370a5fed",
         "source": {
           "type": "public-video-origin-cover",
           "videoId": "7698422111416749319",
@@ -58,10 +58,10 @@
       "duration": 90,
       "still": {
         "src": "assets/film-stills/7636073214120135943.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "A hooded figure in a dark forest on the A Fool and a Liar cover.",
-        "sha256": "5289e21729be4affc8ffa085976a096ad45ef96ff81041dfcc387df990c5b89f",
+        "sha256": "03830cc81c862b33c64290691b970a8c51f1ab8f36458314747980ab2df7f1e3",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7636073214120135943",
@@ -112,10 +112,10 @@
       "duration": 52,
       "still": {
         "src": "assets/film-stills/7593352887632186631.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Three characters on the Unexpected Adventures film poster.",
-        "sha256": "c2282f5febc8b0b6121d75d8450833a7bce2a78b7e1512e3b8fcd68241a2b587",
+        "sha256": "ba575e082fd6c147e8d6946bf896438bca50d0fba052fcb11d03c14398b99913",
         "source": {
           "type": "public-video-origin-cover",
           "videoId": "7593352887632186631",
@@ -139,10 +139,10 @@
       "duration": 260,
       "still": {
         "src": "assets/film-stills/7567365911208791303.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "A man with dreadlocks framed by tree branches and roots.",
-        "sha256": "4e0d56ca637c8ab98183f1712f11621f4d47fd8759a0aab1214c080aee9d5450",
+        "sha256": "d65a5b3211e96d722729679f79633fea8a7bdc019732b0aa5ae4ed8a918c584a",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7567365911208791303",
@@ -301,10 +301,10 @@
       "duration": 14,
       "still": {
         "src": "assets/film-stills/7488645737497038086.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "Glowing blue abstract forms against a dark background.",
-        "sha256": "b1ff4132e8d8b3fed1e00fd96ffc8cc0578fe929f0212ede8946cf640f98fdb1",
+        "sha256": "e8b542d7d40cfdb14b5a0f559f7c2008ca4abb5462defb66cb4bd21fa81da73b",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7488645737497038086",
@@ -328,10 +328,10 @@
       "duration": 39,
       "still": {
         "src": "assets/film-stills/7477223537330228486.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "A statue with outstretched arms overlooks a coastal city at sunset.",
-        "sha256": "c3bae1e979594c3bf960cf88f9d6bee902d9e7b967ac5dda06342d400c2cd64f",
+        "sha256": "83775625089e4c4c390320c645123a548b7ec7f688b471140f0f5df03da98145",
         "source": {
           "type": "public-video-preview-frame",
           "videoId": "7477223537330228486",
@@ -411,10 +411,10 @@
       "duration": 16,
       "still": {
         "src": "assets/film-stills/7469375452579204358.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "An illustration of Job kneeling, accompanied by a message about faith.",
-        "sha256": "343c6e90a34f629f7b0c64fff3a46642aefb89375e23d3416145076cc45ebf98",
+        "sha256": "208248c6098722e039f01a4d8ccc3dedcea522bdd86861cdff554d44eaa56cbf",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7469375452579204358",
@@ -465,10 +465,10 @@
       "duration": 7,
       "still": {
         "src": "assets/film-stills/7462000887817424133.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A skull-faced character wears a skull-trimmed top hat and holds a cigar.",
-        "sha256": "d4690d710e167344984b9518ea1e5ef5e88aaf9eadac685f228f59050f915609",
+        "sha256": "3c01adebf9df29e950aae15c237dd6d8e8816a944aa68ec5afa70ea4ba8594cd",
         "source": {
           "type": "public-video-origin-cover",
           "videoId": "7462000887817424133",
@@ -519,10 +519,10 @@
       "duration": 17,
       "still": {
         "src": "assets/film-stills/7458930806489189637.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "Two travellers look out over a ruined city.",
-        "sha256": "650c8699f0bbc416821c5591248fad43047c5aeadb4f5dcd224c2931f24313d1",
+        "sha256": "02ea71664ddc06ada0a034cfdde56e8cf610de74b5635222c38d3e3deff87de7",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7458930806489189637",
@@ -573,10 +573,10 @@
       "duration": 10,
       "still": {
         "src": "assets/film-stills/7456785211427163398.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "A figure in a coat and hat walks through a dark, wet alley.",
-        "sha256": "b821d3a4b8c2e0e150b163bf874e14f305280e5fdebff8e558f1e967d3f9f34f",
+        "sha256": "051a16a73a71a59dadb8f1783e4ed0aa01a5e1c98ec53d11c09ad92bfc4334c1",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7456785211427163398",
@@ -627,10 +627,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7454620025626955013.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "Layered picture frames show a lone figure in a desert.",
-        "sha256": "baba0f2e09629a4f4dc2a73de10af913b4f37aa03e6f7b8569aff982e0b267b3",
+        "sha256": "927a37caf3233efc318109b2169eb229c9051f6622471e2dc9ae29f88ae7ca2d",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7454620025626955013",
@@ -654,10 +654,10 @@
       "duration": 31,
       "still": {
         "src": "assets/film-stills/7452332906606890246.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "A tiger rests in sunlit grass.",
-        "sha256": "a193ab942a36d18d4c93a1e0445ba7d71e22a03500e7d5384ebf07546ee49135",
+        "sha256": "21297582c49f38729eab27c5f9400c27473cb99c1e56110bdc67fa32d7fde34c",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7452332906606890246",
@@ -681,10 +681,10 @@
       "duration": 13,
       "still": {
         "src": "assets/film-stills/7450674341332700422.webp",
-        "width": 720,
-        "height": 960,
+        "width": 480,
+        "height": 640,
         "alt": "A white church with ornate towers beneath a blue sky.",
-        "sha256": "8730fa3006b6c4a1be1d89ba49174cc3c79fea53adbffeb19214ad37273b76bd",
+        "sha256": "af6152fc44f61e58ecbe5c6b11707d650964e666d60c8913f788136ec9119f5a",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7450674341332700422",
@@ -925,10 +925,10 @@
       "duration": 5,
       "still": {
         "src": "assets/film-stills/7399524325272882437.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A bearded ruler sits on a radiant throne before celestial rings above the word \"HEAVEN\".",
-        "sha256": "3ae4c610352171abd16d78cfdc83a036ca76e3d7841f348c683a40c9524debb8",
+        "sha256": "e69920a5a659218602888c5fbc7caacc7af1d5468edba2144222bdbc75620942",
         "source": {
           "type": "public-video-cover",
           "videoId": "7399524325272882437",
@@ -952,10 +952,10 @@
       "duration": 11,
       "still": {
         "src": "assets/film-stills/7397761456898428166.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "A bearded cleric in dark robes walks across a misty stone bridge through lush foliage with the text \"lives by FAITH\".",
-        "sha256": "5480761ca12335b4fc1a513b7bef891a19f6c35d749d3e024a70af814c39b11f",
+        "sha256": "acc1107d8a145c4637f73a7e4df86827d1d6709627d9b0775119706e262161d6",
         "source": {
           "type": "public-video-cover",
           "videoId": "7397761456898428166",
@@ -979,10 +979,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7394666718183836934.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "People in traditional robes sit in a circle inside a round thatch hut with the caption \"Align yourself with\".",
-        "sha256": "c7e6f476a3bcafaa5076cb129944d9c4bbed7c510e5c72a3c73e81095c1936b8",
+        "sha256": "a03f010ae7d8de6c2ca0f3ba49a773a982ea0effba4aca83479c5e11f9011db0",
         "source": {
           "type": "public-video-cover",
           "videoId": "7394666718183836934",
@@ -1034,10 +1034,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7392937697188318469.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "Two men in jackets stand outside on a city sidewalk while one reads from papers with the caption \"Jack it says\".",
-        "sha256": "0b920d92ff314d0b1285dd94d65551df9cb61fed923ffa1feec4f679477ec490",
+        "sha256": "42448bb7e3042d512acbcf2a4891713f4e978dba0edfd6936016a2b18173e2aa",
         "source": {
           "type": "public-video-cover",
           "videoId": "7392937697188318469",
@@ -1116,10 +1116,10 @@
       "duration": 8,
       "still": {
         "src": "assets/film-stills/7389745209678105861.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "A glowing figure in white robes stands in bright golden clouds surrounded by winged angels.",
-        "sha256": "79cb634ee6b17d05f23a42e60d7bc736aba42fb42faf3bac495ba11c83146342",
+        "sha256": "181ec2a3d2f531f08392482136c88cf9630ab3fe05268d03f00ed582e4db736a",
         "source": {
           "type": "public-video-cover",
           "videoId": "7389745209678105861",
@@ -1198,10 +1198,10 @@
       "duration": 11,
       "still": {
         "src": "assets/film-stills/7388079627157245189.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "A luminous silhouetted figure meditates above terraced green hills with the caption \"based on the teachings of Yeshua\".",
-        "sha256": "b74d5035e832a48cc6f2a22665c68c965e65d662d770a196fc383445ba563c5a",
+        "sha256": "0fc6afcc6b0fff9db301fcfee52cb956b76e4fa9a88a90afefe48688ece34189",
         "source": {
           "type": "public-video-cover",
           "videoId": "7388079627157245189",
@@ -1225,10 +1225,10 @@
       "duration": 102,
       "still": {
         "src": "assets/film-stills/7388043116852432134.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A Black man and woman in leaf garments stand together beneath green foliage above \"meticulously fashioned Adamu and Efa\".",
-        "sha256": "9c463f0540ba6955a983e730e3ad775bc03d69cce64ca73f807601d00d47c1f0",
+        "sha256": "94e9b5775c05f0555f1829cbb74634103c4082e02d10d63b03185593d5605ed3",
         "source": {
           "type": "public-video-cover",
           "videoId": "7388043116852432134",
@@ -1334,10 +1334,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7382611911721929990.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Two illustrated bearded men sit chained in wooden stocks beneath a prayer caption and the word \"HAVE\".",
-        "sha256": "b9cb625e4d6b1d46c0cde074ccd3dac9fe3a915576be4af5f2d1abbdfa8941f8",
+        "sha256": "adf3cec1657e5a6136ef0a1ce90284b08376e0f14fb3c515bc8d63ed657dc399",
         "source": {
           "type": "public-video-cover",
           "videoId": "7382611911721929990",
@@ -1361,10 +1361,10 @@
       "duration": 10,
       "still": {
         "src": "assets/film-stills/7382469148930002182.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "A lone traveler climbs a tall stone staircase toward a jagged, sunlit mountain peak.",
-        "sha256": "3e335664f613368e27f5297601104b9b032284a2b137dc18c2f132317829f6be",
+        "sha256": "3fe5f6c3decf03fcf538bd4d6d6dd0612ff5fb2fa18c4ef7a453cbfd55ce0c98",
         "source": {
           "type": "public-video-cover",
           "videoId": "7382469148930002182",
@@ -1388,10 +1388,10 @@
       "duration": 34,
       "still": {
         "src": "assets/film-stills/7381836612541385990.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "Cloaked figures gather around a glowing campfire with lanterns in a snowy dark forest above the word \"Traditions\".",
-        "sha256": "26860af543116ee427d4fed82c3e2e8d3f0976f7458b69c43f1666e105d34189",
+        "sha256": "e44d1cefd462ac9da6f0e3d0df051c498aa02620fee4626edc5c6055e143a242",
         "source": {
           "type": "public-video-cover",
           "videoId": "7381836612541385990",
@@ -1443,10 +1443,10 @@
       "duration": 13,
       "still": {
         "src": "assets/film-stills/7381043538680614150.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "A martial artist in silhouette crouches with a staff inside a sunlit misty bamboo forest.",
-        "sha256": "1a25e339b2749954736c062d7624f5c87a0449425c039bf3c635e2a7c5a8bf90",
+        "sha256": "5fe09b5b04089a22f13bad33ed16e456fcde9ed67b2ca466fc9dab8986cc0c66",
         "source": {
           "type": "public-video-cover",
           "videoId": "7381043538680614150",
@@ -1470,10 +1470,10 @@
       "duration": 9,
       "still": {
         "src": "assets/film-stills/7380784625758653701.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "An elderly bearded sage walks past lantern-lit wooden houses along a canal beside the word \"Knowledge\".",
-        "sha256": "06173a0abb0e725c4564a4690f51c3cdd936621c50bfa6303017386ef87b30cd",
+        "sha256": "7d8f5bc01ee1c8807d61013c50528fffc7c440e10ef9c18df2b3b0a232d4107b",
         "source": {
           "type": "public-video-cover",
           "videoId": "7380784625758653701",
@@ -1497,10 +1497,10 @@
       "duration": 8,
       "still": {
         "src": "assets/film-stills/7380269361803611398.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A bearded wizard hands a glowing object to a girl inside a library above \"sacred is the m\".",
-        "sha256": "f24637f3cb35eada8610f2593d01c2501fd2bac66187060ca7c43b0f35dee1b3",
+        "sha256": "df15094a7d7f28df56c4245ac3b11c66e7125a659d96738d9ab25a5b1a445f9b",
         "source": {
           "type": "public-video-cover",
           "videoId": "7380269361803611398",
@@ -1605,10 +1605,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7379966526801153296.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A figure stands on a glowing path splitting between a misty dark forest and a sunlit church above the word \"in\".",
-        "sha256": "8d569a11a4f9f53cdd2829dfd6ecdee3411810d7a02aae1bcd60f65017315b76",
+        "sha256": "17dab24790b2e85a7babe7d60f63feed8bd03fd2613388c4aa4a18edf0c3c2c4",
         "source": {
           "type": "public-video-cover",
           "videoId": "7379966526801153296",
@@ -1659,10 +1659,10 @@
       "duration": 22,
       "still": {
         "src": "assets/film-stills/7378859110214749446.webp",
-        "width": 960,
-        "height": 540,
+        "width": 768,
+        "height": 432,
         "alt": "A man kneels to propose to a woman in a busy shopping centre.",
-        "sha256": "058f167c588448254e7b3c3f04bb47e4b00f69be9921e7e0173f529bcc2ba379",
+        "sha256": "3b49cf71c7a94c03df8b79a379c5825b9a6ce083a17b48d2c3594a53d8330f00",
         "source": {
           "type": "public-video-selected-cover",
           "videoId": "7378859110214749446",
@@ -1714,10 +1714,10 @@
       "duration": 58,
       "still": {
         "src": "assets/film-stills/7373988218670173446.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A young woman with blue hair sits cross-legged on a bed typing on a laptop with the caption \"digital prayer has become a widespread phenomenon\".",
-        "sha256": "eccd9bc915e68d742678aba9a4ff52427c0c3f3b07a31e55742d9b80a71180f4",
+        "sha256": "4e54c38577ebc5c2e8e3dac5daf996a7f5779202ef5ef913461b4108566d3c58",
         "source": {
           "type": "public-video-cover",
           "videoId": "7373988218670173446",
@@ -1822,10 +1822,10 @@
       "duration": 8,
       "still": {
         "src": "assets/film-stills/7368430299912408326.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Barbers cut a customer's hair in a busy barbershop with wall art behind them.",
-        "sha256": "cef384ee2286887f0ec952bb9142a261d519c170a3e44bdb5e0c0c64ab6f5fa1",
+        "sha256": "bb16f1b65ddf2f27b7bb45b39a4a634c2590d4a2b518c6cc1a1f00a38e3af766",
         "source": {
           "type": "public-video-cover",
           "videoId": "7368430299912408326",
@@ -1849,10 +1849,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7367476685962284293.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A smiling man with dreadlocks in a dark coat and white trousers stands on a wooden deck above the word \"HOLDING\".",
-        "sha256": "2864ac42e302f5ffdb39ceb7874721682c78b8057d13b75662fe96f3bd12adac",
+        "sha256": "39eab878a66c20d2ba06f502041f665b5ab817e039c18c3184b22a5b8cc7d012",
         "source": {
           "type": "public-video-cover",
           "videoId": "7367476685962284293",
@@ -1984,10 +1984,10 @@
       "duration": 24,
       "still": {
         "src": "assets/film-stills/7362540014724467974.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Men wearing matching pink suits and sunglasses walk together down a city street.",
-        "sha256": "8b2f3c2b32ff7b8ef7d807798c187601f092ff111cb7034d4c5d5d9ebe0c82a3",
+        "sha256": "d5b44c95bfa3649d53f33358765d92d503ea0531c59741036b813abf1cbc1201",
         "source": {
           "type": "public-video-cover",
           "videoId": "7362540014724467974",
@@ -2092,10 +2092,10 @@
       "duration": 15,
       "still": {
         "src": "assets/film-stills/7355165061897342213.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A young man hugs a little girl in a denim jacket inside a bright hallway.",
-        "sha256": "77c14db4b69aeccbda934f9eb6ea03555807c1c3a23a087d2b71fabe48e9e887",
+        "sha256": "6454d49420847519d2a12c8edf6e308bad6e956383bc85a2e5d8d684075d9120",
         "source": {
           "type": "public-video-cover",
           "videoId": "7355165061897342213",
@@ -2173,10 +2173,10 @@
       "duration": 42,
       "still": {
         "src": "assets/film-stills/7353588088934812933.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Concertgoers sit in packed arena seating above a red caption reading \"This is what a pyramid scheme looks like.\"",
-        "sha256": "9f0178982092a9edb0ac1966fcb097738f7e51da4a4e7d7f77bac7a453eb3a0a",
+        "sha256": "0b55eed1a3670800ec45ae7c1b154aa23ab5e440fb32d078e77fb6a093ea8649",
         "source": {
           "type": "public-video-cover",
           "videoId": "7353588088934812933",
@@ -2200,10 +2200,10 @@
       "duration": 29,
       "still": {
         "src": "assets/film-stills/7352374728708934917.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "An ancient stone doorway set into a rocky hillside beneath golden sunlight and a stone path.",
-        "sha256": "ca422faf89473086b4fab7105cfb1a85224fd1b2dafd315480785ecf5a0325e6",
+        "sha256": "713379ea357bacfcbe604ed115b732b29657dfd94ccd26f2a45ce01f1482d67a",
         "source": {
           "type": "public-video-cover",
           "videoId": "7352374728708934917",
@@ -2227,10 +2227,10 @@
       "duration": 22,
       "still": {
         "src": "assets/film-stills/7351869791747001605.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A single yellow duckling stands beside a green dish surrounded by dark brown ducklings above the word \"definitely\".",
-        "sha256": "12de86fc2508ea3e68d2c560f3afb3169fb611bdad936b824399fb13150b29e4",
+        "sha256": "c4008d8c164b6858bc7dbf97089d9612b648195dc4cd4fe3fa2fa59c1a4e4247",
         "source": {
           "type": "public-video-cover",
           "videoId": "7351869791747001605",
@@ -2390,10 +2390,10 @@
       "duration": 25,
       "still": {
         "src": "assets/film-stills/7348711179474226437.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Red bold text reading \"IS THERE A CONNECTION HERE?\" overlays an outdoor path beneath green trees.",
-        "sha256": "7b22d9cd7ea2dd2a5f4cf2e07f2fac36d8fa566745e350b78898ce4afd8576eb",
+        "sha256": "f81c14b073fced2d1f9f099897c0e348fea656e41b1b5f0395a409b0db6993b7",
         "source": {
           "type": "public-video-cover",
           "videoId": "7348711179474226437",
@@ -2471,10 +2471,10 @@
       "duration": 21,
       "still": {
         "src": "assets/film-stills/7344584126172810501.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A young man in a white shirt and striped tie stands in a wood-paneled courtroom labeled \"Mr Pilgrim\".",
-        "sha256": "ddeb5ec8864123631176a9b5328321f484c949af89b7217913991f0932196456",
+        "sha256": "e878d8de2597eb0d567cc844eafe6c1e2b8c41c0ce87e983963904e73b99913a",
         "source": {
           "type": "public-video-cover",
           "videoId": "7344584126172810501",
@@ -2498,10 +2498,10 @@
       "duration": 18,
       "still": {
         "src": "assets/film-stills/7343582595491319046.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A person swings a broomstick like a baseball bat in a backyard while others watch.",
-        "sha256": "45b7835d4d7b75cf2b3aaef442986f298bd4fa9ffa1af170d0800fde7ade053d",
+        "sha256": "b063f7a232faf2fdc958fd77da331899314bb03276bb89fe9f95fc8431ea05b2",
         "source": {
           "type": "public-video-cover",
           "videoId": "7343582595491319046",
@@ -2714,10 +2714,10 @@
       "duration": 45,
       "still": {
         "src": "assets/film-stills/7338084305937206534.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Split-screen video frames show a young woman in a denim jacket speaking in three stacked panels.",
-        "sha256": "39000ba86ed972e6f0da1295d3df0dc34c314a90dba7ee28e251da8329267275",
+        "sha256": "98fa1628f095f062c38b9f252b2e230b9eb593516a06b2076f15ecd10eb62cb4",
         "source": {
           "type": "public-video-cover",
           "videoId": "7338084305937206534",
@@ -2931,10 +2931,10 @@
       "duration": 58,
       "still": {
         "src": "assets/film-stills/7333092210876878086.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A mud-coated leopard lies camouflaged against cracked gray earth above the word \"LEOPARD\".",
-        "sha256": "98a89f7f8e88ca661c890ea20111c370e14aa428fcdcd124ffd4d7938e1f5cbb",
+        "sha256": "6fae161a070364e0300a797eacd293025ca86fff0b5f89ff6222d8644cd58160",
         "source": {
           "type": "public-video-cover",
           "videoId": "7333092210876878086",
@@ -3012,10 +3012,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7327222580899859718.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A smiling person in denim overalls and a yellow shirt shields their eyes in warm light beneath a pilgrim watermark.",
-        "sha256": "316c64f96c9f265c5d8180cac15beda1db988052163ab3bffb62ca03aea6e618",
+        "sha256": "138b88ed6b35d95800db9a101519d29d7154ab44d3568f6d3133cab3361342d3",
         "source": {
           "type": "public-video-cover",
           "videoId": "7327222580899859718",
@@ -3526,10 +3526,10 @@
       "duration": 16,
       "still": {
         "src": "assets/film-stills/7308830451907497221.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A bearded man in a fur-lined parka stands in snow above the caption \"SPIRIT ANIMAL IS AN ESKIMO.\".",
-        "sha256": "a4a8aced9a4d89aa27db5c9942e1046f85fc2ffba9cc90eeba11a280c7bee196",
+        "sha256": "d40835e82795083dd98a1636a326f4ad640f9bb4b434317fae8245d95db3fbd8",
         "source": {
           "type": "public-video-cover",
           "videoId": "7308830451907497221",
@@ -3824,10 +3824,10 @@
       "duration": 30,
       "still": {
         "src": "assets/film-stills/7295698324483624198.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A smiling man in a brown shirt stands on a sidewalk holding out hands above \"CHANGING\".",
-        "sha256": "ac07230b0488d421fb16569b0a0c4d9a08b61c2eba9628455d0a2b95680a0337",
+        "sha256": "6322a661f0dc7a0d27a833a9105091266a89a41d60ae260a432841f98173f160",
         "source": {
           "type": "public-video-cover",
           "videoId": "7295698324483624198",
@@ -3851,10 +3851,10 @@
       "duration": 21,
       "still": {
         "src": "assets/film-stills/7295103655961808133.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A small monkey dressed in a plaid shirt and jeans sits on pavement looking at a phone.",
-        "sha256": "5d1355e5dc62817274fb53e5e2ec6d87918d0a0d521696225a4d9a548acaaf8f",
+        "sha256": "d9691c9fb72ed11cc45f4f2b8e561a72a9edbfa14e3d7f4a413b21fb45689807",
         "source": {
           "type": "public-video-cover",
           "videoId": "7295103655961808133",
@@ -3959,10 +3959,10 @@
       "duration": 12,
       "still": {
         "src": "assets/film-stills/7293057749825490182.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "A man kneels with cleaning gear scrubbing a bathroom toilet under three surprised-face emojis.",
-        "sha256": "891736eb6dc49faa39b20ad198a5f93fa91341987cf372cca1050a746ad98cfe",
+        "sha256": "f83d3384158548206d84a0a49537e6e2f15e0126f01a9ebfb265647202b34331",
         "source": {
           "type": "public-video-cover",
           "videoId": "7293057749825490182",
@@ -3986,10 +3986,10 @@
       "duration": 47,
       "still": {
         "src": "assets/film-stills/7292468702543498501.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Earth seen from space with glowing city lights across the horizon above \"and the rest\".",
-        "sha256": "98b7f466e4af5f1bcc44dba05db60379f8f71a2308d6c2bc4ab30c3eaa3239ee",
+        "sha256": "f7abc583d8cb6c2ebeabe8356556c89b305d168c24f1e3b4b15db6e373cf1ca2",
         "source": {
           "type": "public-video-cover",
           "videoId": "7292468702543498501",
@@ -4310,10 +4310,10 @@
       "duration": 16,
       "still": {
         "src": "assets/film-stills/7283034276587719941.webp",
-        "width": 540,
-        "height": 960,
+        "width": 360,
+        "height": 640,
         "alt": "Glitch-styled neon blue and pink lettering reading \"Guess the\" over blurred shapes.",
-        "sha256": "4565ec94575246e18ea9e11e607f0f2abdeef0a69cf0a5fdcb12a645ba9fba4b",
+        "sha256": "9d1857057e9616ab9b132f4003c0e15541f0c6f2f4c9319f2c42d606270a5f75",
         "source": {
           "type": "public-video-cover",
           "videoId": "7283034276587719941",
