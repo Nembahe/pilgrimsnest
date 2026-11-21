@@ -87,6 +87,7 @@ try {
     '--headless=new',
     '--no-sandbox',
     '--disable-gpu',
+    '--disable-dev-shm-usage',
     '--remote-debugging-port=0',
     '--remote-allow-origins=*',
     `--user-data-dir=${userData}`,
@@ -244,7 +245,16 @@ try {
   // music.html desktop checks (fonts, covers, lyrics modal + deep link, JS-disabled)
   await call('Emulation.setDeviceMetricsOverride', { width: 1280, height: 800, deviceScaleFactor: 1, mobile: false }, sessionId);
   await call('Page.navigate', { url: `${base}/music.html#lyrics=tears-in-the-rain` }, sessionId);
-  await new Promise((r) => setTimeout(r, 700));
+  for (let i = 0; i < 50; i++) {
+    await new Promise((r) => setTimeout(r, 100));
+    try {
+      const ready = await evalPage(sessionId, `(() => {
+        const d = document.getElementById('lyricsDialog');
+        return location.pathname === '/music.html' && document.readyState === 'complete' && !!(d && d.open) && ((d.querySelector('.lyrics-body')?.textContent.length || 0) > 500);
+      })()`);
+      if (ready) break;
+    } catch { /* Ignore transient navigation context teardown. */ }
+  }
   const musChk = await evalPage(sessionId, `(async () => {
     await document.fonts.ready;
     const d = document.getElementById('lyricsDialog');

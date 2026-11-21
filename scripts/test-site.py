@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
-import datetime, hashlib, json, os, re, shutil, struct, tempfile, unittest, subprocess
+import datetime, hashlib, json, os, re, shutil, struct, sys, tempfile, unittest, subprocess
 
 root=Path(__file__).resolve().parents[1]
 class Links(HTMLParser):
@@ -97,13 +97,13 @@ vm.createContext(context);vm.runInContext(fs.readFileSync(process.argv[1],'utf8'
                 shutil.copy2(root/name,copy/name)
             shutil.copytree(root/'assets/film-stills',copy/'assets/film-stills')
             before=(copy/'films.html').read_bytes()
-            result=subprocess.run(['python',str(copy/'scripts/build-films.py')],capture_output=True,text=True)
+            result=subprocess.run([sys.executable,str(copy/'scripts/build-films.py')],capture_output=True,text=True)
             self.assertEqual(result.returncode,0,result.stderr)
             self.assertEqual((copy/'films.html').read_bytes(),before,'Gallery generation must be reproducible')
             manifest=json.loads((copy/'films.json').read_text(encoding='utf-8'))
             manifest['videos'][0]['still']['src']=manifest['videos'][1]['still']['src']
             (copy/'films.json').write_text(json.dumps(manifest),encoding='utf-8')
-            result=subprocess.run(['python',str(copy/'scripts/build-films.py')],capture_output=True,text=True)
+            result=subprocess.run([sys.executable,str(copy/'scripts/build-films.py')],capture_output=True,text=True)
             self.assertNotEqual(result.returncode,0)
             self.assertEqual((copy/'films.html').read_bytes(),before,'Invalid provenance must not rewrite the gallery')
     def test_page_motion_modes(self):
@@ -282,13 +282,13 @@ assert.equal(img.hidden,true);assert.equal(backdrop.hidden,true);assert.equal(ot
                 shutil.copy2(root/name,copy/name)
             shutil.copytree(root/'lyrics',copy/'lyrics')
             before=(copy/'music.html').read_bytes()
-            result=subprocess.run(['python',str(copy/'scripts/build-music.py')],capture_output=True,text=True)
+            result=subprocess.run([sys.executable,str(copy/'scripts/build-music.py')],capture_output=True,text=True)
             self.assertEqual(result.returncode,0,result.stdout+result.stderr)
             self.assertEqual((copy/'music.html').read_bytes(),before,'Music generation must be reproducible')
             bad=json.loads((copy/'releases.json').read_text(encoding='utf-8'))
             bad['releases'][0]['lyrics']='lyrics/missing.txt'
             (copy/'releases.json').write_text(json.dumps(bad),encoding='utf-8')
-            result=subprocess.run(['python',str(copy/'scripts/build-music.py')],capture_output=True,text=True)
+            result=subprocess.run([sys.executable,str(copy/'scripts/build-music.py')],capture_output=True,text=True)
             self.assertNotEqual(result.returncode,0)
             self.assertEqual((copy/'music.html').read_bytes(),before,'Invalid lyrics must not rewrite music.html')
         catalogue=json.loads((root/'releases.json').read_text(encoding='utf-8'))
@@ -477,5 +477,23 @@ assert.notEqual(baseSig,updatedSig);
             ref=[attrs.get('content','') for tag,attrs in tags if tag=='meta' and attrs.get('name','').lower()=='referrer']
             self.assertEqual(ref,['strict-origin-when-cross-origin'],f'{page} must set referrer policy')
             self.assertIsNone(re.search(r'<style\b|\bstyle\s*=|\bon[a-z]+\s*=',html,re.I),f'{page} must not contain inline styles or handlers')
+
+    def test_ci_workflow_hygiene(self):
+        wf=root/'.github/workflows/pages.yml'
+        self.assertTrue(wf.is_file(),'pages.yml workflow must exist')
+        text=wf.read_text(encoding='utf-8').replace('\r\n','\n')
+        uses=re.findall(r'^\s*-?\s*uses:\s*([^\s#]+)',text,re.M)
+        self.assertGreaterEqual(len(uses),6)
+        for ref in uses:
+            self.assertRegex(ref,r'^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+@[0-9a-f]{40}$',f'Action must be SHA-pinned: {ref}')
+        head,sep,deploy=text.partition('\n  deploy:')
+        self.assertTrue(sep,'Workflow must define a deploy job')
+        self.assertIn('contents: read',head)
+        self.assertNotIn('pages: write',head)
+        self.assertNotIn('id-token: write',head)
+        for req in ['scripts/test-site.py','scripts/verify-films.py','node --check','scripts/check-rendered.mjs',"['git', 'ls-files', '-z']","'CNAME'","'scripts/'","'README.md'"]:
+            self.assertIn(req,head,f'verify job missing {req}')
+        for req in ['needs: verify',"refs/heads/main",'pages: write','id-token: write','name: github-pages']:
+            self.assertIn(req,deploy,f'deploy job missing {req}')
 
 if __name__=='__main__': unittest.main()
